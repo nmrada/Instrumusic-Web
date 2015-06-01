@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CarritoDeComprasEditDlg" widgetVar="CarritoDeComprasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCarritoDeComprasTitle}">
+            <h:form id="CarritoDeComprasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{carritoDeComprasController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCarritoDeComprasLabel_idCarritoDeCompras}" for="idCarritoDeCompras" />
+                        <p:inputText id="idCarritoDeCompras" value="#{carritoDeComprasController.selected.idCarritoDeCompras}" title="#{bundle.EditCarritoDeComprasTitle_idCarritoDeCompras}" required="true" requiredMessage="#{bundle.EditCarritoDeComprasRequiredMessage_idCarritoDeCompras}"/>
+                        <p:outputLabel value="#{bundle.EditCarritoDeComprasLabel_subtotal}" for="subtotal" />
+                        <p:inputText id="subtotal" value="#{carritoDeComprasController.selected.subtotal}" title="#{bundle.EditCarritoDeComprasTitle_subtotal}" required="true" requiredMessage="#{bundle.EditCarritoDeComprasRequiredMessage_subtotal}"/>
+                        <p:outputLabel value="#{bundle.EditCarritoDeComprasLabel_precioTotal}" for="precioTotal" />
+                        <p:inputText id="precioTotal" value="#{carritoDeComprasController.selected.precioTotal}" title="#{bundle.EditCarritoDeComprasTitle_precioTotal}" required="true" requiredMessage="#{bundle.EditCarritoDeComprasRequiredMessage_precioTotal}"/>
+                        <p:outputLabel value="#{bundle.EditCarritoDeComprasLabel_impuestos}" for="impuestos" />
+                        <p:inputText id="impuestos" value="#{carritoDeComprasController.selected.impuestos}" title="#{bundle.EditCarritoDeComprasTitle_impuestos}" required="true" requiredMessage="#{bundle.EditCarritoDeComprasRequiredMessage_impuestos}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{carritoDeComprasController.update}" value="#{bundle.Save}" update="display,:CarritoDeComprasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CarritoDeComprasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CarritoDeComprasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

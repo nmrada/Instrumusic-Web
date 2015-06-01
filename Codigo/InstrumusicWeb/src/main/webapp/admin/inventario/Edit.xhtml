@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InventarioEditDlg" widgetVar="InventarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditInventarioTitle}">
+            <h:form id="InventarioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inventarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditInventarioLabel_inventarioPK_idInventario}" for="inventarioPK_idInventario" />
+                        <p:inputText id="inventarioPK_idInventario" value="#{inventarioController.selected.inventarioPK.idInventario}" title="#{bundle.EditInventarioTitle_inventarioPK_idInventario}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_inventarioPK_idInventario}"/>
+                        <p:outputLabel value="#{bundle.EditInventarioLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{inventarioController.selected.fecha}" title="#{bundle.EditInventarioTitle_fecha}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditInventarioLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{inventarioController.selected.cantidad}" title="#{bundle.EditInventarioTitle_cantidad}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_cantidad}"/>
+                        <p:outputLabel value="#{bundle.EditInventarioLabel_proveedor}" for="proveedor" />
+                        <p:selectOneMenu id="proveedor" value="#{inventarioController.selected.proveedor}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_proveedor}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"
+                                           var="proveedorItem"
+                                           itemValue="#{proveedorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditInventarioLabel_producto}" for="producto" />
+                        <p:selectOneMenu id="producto" value="#{inventarioController.selected.producto}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_producto}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{productoController.itemsAvailableSelectOne}"
+                                           var="productoItem"
+                                           itemValue="#{productoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{inventarioController.update}" value="#{bundle.Save}" update="display,:InventarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'InventarioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InventarioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

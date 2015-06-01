@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DomicilioProveedorCreateDlg" widgetVar="DomicilioProveedorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDomicilioProveedorTitle}">
+            <h:form id="DomicilioProveedorCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{domicilioProveedorController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDomicilioProveedorLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{domicilioProveedorController.selected.telefono}" title="#{bundle.CreateDomicilioProveedorTitle_telefono}" required="true" requiredMessage="#{bundle.CreateDomicilioProveedorRequiredMessage_telefono}"/>
+                        <p:outputLabel value="#{bundle.CreateDomicilioProveedorLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{domicilioProveedorController.selected.direccion}" title="#{bundle.CreateDomicilioProveedorTitle_direccion}" required="true" requiredMessage="#{bundle.CreateDomicilioProveedorRequiredMessage_direccion}"/>
+                        <p:outputLabel value="#{bundle.CreateDomicilioProveedorLabel_barrio}" for="barrio" />
+                        <p:inputText id="barrio" value="#{domicilioProveedorController.selected.barrio}" title="#{bundle.CreateDomicilioProveedorTitle_barrio}" required="true" requiredMessage="#{bundle.CreateDomicilioProveedorRequiredMessage_barrio}"/>
+                        <p:outputLabel value="#{bundle.CreateDomicilioProveedorLabel_localidad}" for="localidad" />
+                        <p:inputText id="localidad" value="#{domicilioProveedorController.selected.localidad}" title="#{bundle.CreateDomicilioProveedorTitle_localidad}" />
+                        <p:outputLabel value="#{bundle.CreateDomicilioProveedorLabel_proveedor}" for="proveedor" />
+                        <p:selectOneMenu id="proveedor" value="#{domicilioProveedorController.selected.proveedor}" required="true" requiredMessage="#{bundle.EditDomicilioProveedorRequiredMessage_proveedor}">
+                            <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"
+                                           var="proveedorItem"
+                                           itemValue="#{proveedorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDomicilioProveedorLabel_municipioidMunicipio}" for="municipioidMunicipio" />
+                        <p:selectOneMenu id="municipioidMunicipio" value="#{domicilioProveedorController.selected.municipioidMunicipio}" required="true" requiredMessage="#{bundle.EditDomicilioProveedorRequiredMessage_municipioidMunicipio}">
+                            <f:selectItems value="#{municipioController.itemsAvailableSelectOne}"
+                                           var="municipioidMunicipioItem"
+                                           itemValue="#{municipioidMunicipioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{domicilioProveedorController.create}" value="#{bundle.Save}" update="display,:DomicilioProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args,'DomicilioProveedorCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DomicilioProveedorCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DomicilioCuentaCreateDlg" widgetVar="DomicilioCuentaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDomicilioCuentaTitle}">
+            <h:form id="DomicilioCuentaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{domicilioCuentaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDomicilioCuentaLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{domicilioCuentaController.selected.telefono}" title="#{bundle.CreateDomicilioCuentaTitle_telefono}" required="true" requiredMessage="#{bundle.CreateDomicilioCuentaRequiredMessage_telefono}"/>
+                        <p:outputLabel value="#{bundle.CreateDomicilioCuentaLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{domicilioCuentaController.selected.direccion}" title="#{bundle.CreateDomicilioCuentaTitle_direccion}" required="true" requiredMessage="#{bundle.CreateDomicilioCuentaRequiredMessage_direccion}"/>
+                        <p:outputLabel value="#{bundle.CreateDomicilioCuentaLabel_barrio}" for="barrio" />
+                        <p:inputText id="barrio" value="#{domicilioCuentaController.selected.barrio}" title="#{bundle.CreateDomicilioCuentaTitle_barrio}" required="true" requiredMessage="#{bundle.CreateDomicilioCuentaRequiredMessage_barrio}"/>
+                        <p:outputLabel value="#{bundle.CreateDomicilioCuentaLabel_localidad}" for="localidad" />
+                        <p:inputText id="localidad" value="#{domicilioCuentaController.selected.localidad}" title="#{bundle.CreateDomicilioCuentaTitle_localidad}" />
+                        <p:outputLabel value="#{bundle.CreateDomicilioCuentaLabel_municipioidMunicipio}" for="municipioidMunicipio" />
+                        <p:selectOneMenu id="municipioidMunicipio" value="#{domicilioCuentaController.selected.municipioidMunicipio}" required="true" requiredMessage="#{bundle.EditDomicilioCuentaRequiredMessage_municipioidMunicipio}">
+                            <f:selectItems value="#{municipioController.itemsAvailableSelectOne}"
+                                           var="municipioidMunicipioItem"
+                                           itemValue="#{municipioidMunicipioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDomicilioCuentaLabel_cuenta}" for="cuenta" />
+                        <p:selectOneMenu id="cuenta" value="#{domicilioCuentaController.selected.cuenta}" required="true" requiredMessage="#{bundle.EditDomicilioCuentaRequiredMessage_cuenta}">
+                            <f:selectItems value="#{cuentaController.itemsAvailableSelectOne}"
+                                           var="cuentaItem"
+                                           itemValue="#{cuentaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{domicilioCuentaController.create}" value="#{bundle.Save}" update="display,:DomicilioCuentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'DomicilioCuentaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DomicilioCuentaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

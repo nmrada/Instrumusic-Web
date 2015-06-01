@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PagoCreateDlg" widgetVar="PagoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePagoTitle}">
+            <h:form id="PagoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pagoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePagoLabel_facturaidFactura}" for="facturaidFactura" />
+                        <p:inputText id="facturaidFactura" value="#{pagoController.selected.facturaidFactura}" title="#{bundle.CreatePagoTitle_facturaidFactura}" required="true" requiredMessage="#{bundle.CreatePagoRequiredMessage_facturaidFactura}"/>
+                        <p:outputLabel value="#{bundle.CreatePagoLabel_numTarCredito}" for="numTarCredito" />
+                        <p:inputText id="numTarCredito" value="#{pagoController.selected.numTarCredito}" title="#{bundle.CreatePagoTitle_numTarCredito}" required="true" requiredMessage="#{bundle.CreatePagoRequiredMessage_numTarCredito}"/>
+                        <p:outputLabel value="#{bundle.CreatePagoLabel_banco}" for="banco" />
+                        <p:inputText id="banco" value="#{pagoController.selected.banco}" title="#{bundle.CreatePagoTitle_banco}" required="true" requiredMessage="#{bundle.CreatePagoRequiredMessage_banco}"/>
+                        <p:outputLabel value="#{bundle.CreatePagoLabel_tipoCuentaTar}" for="tipoCuentaTar" />
+                        <p:inputText id="tipoCuentaTar" value="#{pagoController.selected.tipoCuentaTar}" title="#{bundle.CreatePagoTitle_tipoCuentaTar}" required="true" requiredMessage="#{bundle.CreatePagoRequiredMessage_tipoCuentaTar}"/>
+                        <p:outputLabel value="#{bundle.CreatePagoLabel_tipoTransaccion}" for="tipoTransaccion" />
+                        <p:inputText id="tipoTransaccion" value="#{pagoController.selected.tipoTransaccion}" title="#{bundle.CreatePagoTitle_tipoTransaccion}" required="true" requiredMessage="#{bundle.CreatePagoRequiredMessage_tipoTransaccion}"/>
+                        <p:outputLabel value="#{bundle.CreatePagoLabel_factura}" for="factura" />
+                        <p:selectOneMenu id="factura" value="#{pagoController.selected.factura}" required="true" requiredMessage="#{bundle.EditPagoRequiredMessage_factura}">
+                            <f:selectItems value="#{facturaController.itemsAvailableSelectOne}"
+                                           var="facturaItem"
+                                           itemValue="#{facturaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pagoController.create}" value="#{bundle.Save}" update="display,:PagoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PagoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PagoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
