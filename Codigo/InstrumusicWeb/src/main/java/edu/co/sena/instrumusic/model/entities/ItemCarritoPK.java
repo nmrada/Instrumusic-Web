@@ -79,7 +79,7 @@ public class ItemCarritoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.ItemCarritoPK[ productoidProducto=" + productoidProducto + ", carritoDeComprasidCarritoDeCompras=" + carritoDeComprasidCarritoDeCompras + " ]";
+        return "edu.co.sena.instrumusic.model.entities.ItemCarritoPK[ productoidProducto=" + productoidProducto + ", carritoDeComprasidCarritoDeCompras=" + carritoDeComprasidCarritoDeCompras + " ]";
     }
     
 }

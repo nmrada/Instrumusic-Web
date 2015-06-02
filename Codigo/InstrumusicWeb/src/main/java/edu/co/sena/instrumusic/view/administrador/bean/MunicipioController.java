@@ -153,7 +153,7 @@ public class MunicipioController implements Serializable {
             }
             if (object instanceof Municipio) {
                 Municipio o = (Municipio) object;
-                return getStringKey(o.getIdMunicipio());
+                return getStringKey(o.getIdMunicipio().toString());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Municipio.class.getName()});
                 return null;

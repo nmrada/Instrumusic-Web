@@ -153,7 +153,7 @@ public class DepartamentoController implements Serializable {
             }
             if (object instanceof Departamento) {
                 Departamento o = (Departamento) object;
-                return getStringKey(o.getIdDepartamento());
+                return getStringKey(o.getIdDepartamento().toString());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Departamento.class.getName()});
                 return null;

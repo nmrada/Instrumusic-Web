@@ -79,7 +79,7 @@ public class CuentaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.CuentaPK[ tipoDocumentotipoDocumento=" + tipoDocumentotipoDocumento + ", numeroDocumento=" + numeroDocumento + " ]";
+        return "edu.co.sena.instrumusic.model.entities.CuentaPK[ tipoDocumentotipoDocumento=" + tipoDocumentotipoDocumento + ", numeroDocumento=" + numeroDocumento + " ]";
     }
     
 }

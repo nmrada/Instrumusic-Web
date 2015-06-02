@@ -149,7 +149,7 @@ public class Proveedor implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.Proveedor[ proveedorPK=" + proveedorPK + " ]";
+        return "edu.co.sena.instrumusic.model.entities.Proveedor[ proveedorPK=" + proveedorPK + " ]";
     }
     
 }

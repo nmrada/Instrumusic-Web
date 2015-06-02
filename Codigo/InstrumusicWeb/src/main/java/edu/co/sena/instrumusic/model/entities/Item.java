@@ -144,7 +144,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.Item[ itemPK=" + itemPK + " ]";
+        return "edu.co.sena.instrumusic.model.entities.Item[ itemPK=" + itemPK + " ]";
     }
     
 }

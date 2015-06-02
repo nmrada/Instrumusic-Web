@@ -148,7 +148,7 @@ public class Factura implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.Factura[ idFactura=" + idFactura + " ]";
+        return "edu.co.sena.instrumusic.model.entities.Factura[ idFactura=" + idFactura + " ]";
     }
     
 }

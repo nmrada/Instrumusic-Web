@@ -146,7 +146,7 @@ public class Pedido implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.Pedido[ facturaidFactura=" + facturaidFactura + " ]";
+        return "edu.co.sena.instrumusic.model.entities.Pedido[ facturaidFactura=" + facturaidFactura + " ]";
     }
     
 }

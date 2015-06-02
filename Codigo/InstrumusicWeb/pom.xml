@@ -34,11 +34,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-	<groupId>org.primefaces</groupId>
-	<artifactId>primefaces</artifactId>
-	<version>5.2</version>
-</dependency>
-
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>5.2</version>
+        </dependency> 
     </dependencies>
 
     <build>

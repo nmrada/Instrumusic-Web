@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -38,11 +40,10 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Municipio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 4)
     @Column(name = "idMunicipio")
-    private String idMunicipio;
+    private Integer idMunicipio;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -59,20 +60,20 @@ public class Municipio implements Serializable {
     public Municipio() {
     }
 
-    public Municipio(String idMunicipio) {
+    public Municipio(Integer idMunicipio) {
         this.idMunicipio = idMunicipio;
     }
 
-    public Municipio(String idMunicipio, String nombre) {
+    public Municipio(Integer idMunicipio, String nombre) {
         this.idMunicipio = idMunicipio;
         this.nombre = nombre;
     }
 
-    public String getIdMunicipio() {
+    public Integer getIdMunicipio() {
         return idMunicipio;
     }
 
-    public void setIdMunicipio(String idMunicipio) {
+    public void setIdMunicipio(Integer idMunicipio) {
         this.idMunicipio = idMunicipio;
     }
 
@@ -132,7 +133,7 @@ public class Municipio implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.Municipio[ idMunicipio=" + idMunicipio + " ]";
+        return "edu.co.sena.instrumusic.model.entities.Municipio[ idMunicipio=" + idMunicipio + " ]";
     }
     
 }

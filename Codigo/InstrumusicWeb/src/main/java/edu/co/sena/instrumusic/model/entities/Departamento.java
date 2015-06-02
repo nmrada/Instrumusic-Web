@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -36,11 +38,10 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Departamento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 2)
     @Column(name = "idDepartamento")
-    private String idDepartamento;
+    private Integer idDepartamento;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -52,20 +53,20 @@ public class Departamento implements Serializable {
     public Departamento() {
     }
 
-    public Departamento(String idDepartamento) {
+    public Departamento(Integer idDepartamento) {
         this.idDepartamento = idDepartamento;
     }
 
-    public Departamento(String idDepartamento, String nombre) {
+    public Departamento(Integer idDepartamento, String nombre) {
         this.idDepartamento = idDepartamento;
         this.nombre = nombre;
     }
 
-    public String getIdDepartamento() {
+    public Integer getIdDepartamento() {
         return idDepartamento;
     }
 
-    public void setIdDepartamento(String idDepartamento) {
+    public void setIdDepartamento(Integer idDepartamento) {
         this.idDepartamento = idDepartamento;
     }
 
@@ -108,7 +109,7 @@ public class Departamento implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.Departamento[ idDepartamento=" + idDepartamento + " ]";
+        return "edu.co.sena.instrumusic.model.entities.Departamento[ idDepartamento=" + idDepartamento + " ]";
     }
     
 }

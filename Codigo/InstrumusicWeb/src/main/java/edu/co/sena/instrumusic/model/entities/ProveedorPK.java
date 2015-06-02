@@ -79,7 +79,7 @@ public class ProveedorPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.ProveedorPK[ tipoDocumentotipoDocumento=" + tipoDocumentotipoDocumento + ", numeroDocumento=" + numeroDocumento + " ]";
+        return "edu.co.sena.instrumusic.model.entities.ProveedorPK[ tipoDocumentotipoDocumento=" + tipoDocumentotipoDocumento + ", numeroDocumento=" + numeroDocumento + " ]";
     }
     
 }

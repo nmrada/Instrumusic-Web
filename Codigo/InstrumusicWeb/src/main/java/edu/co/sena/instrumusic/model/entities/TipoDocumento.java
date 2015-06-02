@@ -133,7 +133,7 @@ public class TipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.TipoDocumento[ tipoDocumento=" + tipoDocumento + " ]";
+        return "edu.co.sena.instrumusic.model.entities.TipoDocumento[ tipoDocumento=" + tipoDocumento + " ]";
     }
     
 }

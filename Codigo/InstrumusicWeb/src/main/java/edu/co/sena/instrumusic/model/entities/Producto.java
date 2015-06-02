@@ -286,7 +286,7 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.Producto[ idProducto=" + idProducto + " ]";
+        return "edu.co.sena.instrumusic.model.entities.Producto[ idProducto=" + idProducto + " ]";
     }
     
 }

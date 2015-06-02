@@ -164,7 +164,7 @@ public class DomicilioProveedor implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.DomicilioProveedor[ domicilioProveedorPK=" + domicilioProveedorPK + " ]";
+        return "edu.co.sena.instrumusic.model.entities.DomicilioProveedor[ domicilioProveedorPK=" + domicilioProveedorPK + " ]";
     }
     
 }

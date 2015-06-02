@@ -78,7 +78,7 @@ public class ItemPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.ItemPK[ productoidProducto=" + productoidProducto + ", pedidoFacturaidFactura=" + pedidoFacturaidFactura + " ]";
+        return "edu.co.sena.instrumusic.model.entities.ItemPK[ productoidProducto=" + productoidProducto + ", pedidoFacturaidFactura=" + pedidoFacturaidFactura + " ]";
     }
     
 }

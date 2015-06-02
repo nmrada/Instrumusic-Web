@@ -135,7 +135,7 @@ public class CarritoDeCompras implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.CarritoDeCompras[ idCarritoDeCompras=" + idCarritoDeCompras + " ]";
+        return "edu.co.sena.instrumusic.model.entities.CarritoDeCompras[ idCarritoDeCompras=" + idCarritoDeCompras + " ]";
     }
     
 }

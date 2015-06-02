@@ -150,7 +150,7 @@ public class Pago implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.Pago[ facturaidFactura=" + facturaidFactura + " ]";
+        return "edu.co.sena.instrumusic.model.entities.Pago[ facturaidFactura=" + facturaidFactura + " ]";
     }
     
 }

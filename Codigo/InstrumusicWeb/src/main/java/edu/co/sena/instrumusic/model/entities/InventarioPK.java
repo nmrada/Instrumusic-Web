@@ -113,7 +113,7 @@ public class InventarioPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.InventarioPK[ idInventario=" + idInventario + ", productoidProducto=" + productoidProducto + ", proveedorTipoDocumentotipoDocumento=" + proveedorTipoDocumentotipoDocumento + ", proveedornumeroDocumento=" + proveedornumeroDocumento + " ]";
+        return "edu.co.sena.instrumusic.model.entities.InventarioPK[ idInventario=" + idInventario + ", productoidProducto=" + productoidProducto + ", proveedorTipoDocumentotipoDocumento=" + proveedorTipoDocumentotipoDocumento + ", proveedornumeroDocumento=" + proveedornumeroDocumento + " ]";
     }
     
 }

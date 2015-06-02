@@ -1,60 +1,60 @@
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\TipoDocumento.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\ItemFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\ItemCarrito.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Producto.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\CarritoDeComprasFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\AbstractFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\DomicilioProveedor.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\FacturaFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\ItemCarritoPK.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Proveedor.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Departamento.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\CarritoDeComprasController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Usuario.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\DomicilioCuentaFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Item.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\MunicipioController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\ProveedorController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\TipoDocumentoController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\general\util\JsfUtil.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\MunicipioFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Inventario.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\PedidoFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\PagoController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\DomicilioCuentaController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\UsuarioFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\TipoDocumentoFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\ProductoController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\CarritoDeCompras.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\ItemController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\ProductoFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Pago.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\ItemCarritoController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\CuentaController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\FacturaController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\DomicilioCuentaPK.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\PagoFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\DomicilioProveedorPK.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Municipio.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Categoria.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\DomicilioProveedorController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\ProveedorFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\InventarioFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\DomicilioProveedorFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\CuentaFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\CategoriaController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\ItemPK.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Cuenta.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\InventarioPK.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Factura.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\ItemCarritoFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\UsuarioController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\DomicilioCuenta.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\CategoriaFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\InventarioController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\CuentaPK.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\ProveedorPK.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\DepartamentoController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\DepartamentoFacade.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\PedidoController.java
-F:\Trimestre 6\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Pedido.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\CategoriaFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\PedidoFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\ItemCarritoFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\CuentaController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\CarritoDeCompras.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Cuenta.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\ItemCarritoController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\ProductoController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Pedido.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\TipoDocumentoFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\DomicilioCuentaFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\InventarioPK.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\CuentaPK.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\InventarioController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\FacturaController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\CuentaFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\ItemController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Departamento.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\ItemCarrito.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\InventarioFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\MunicipioController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\FacturaFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\PedidoController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\DepartamentoFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\MunicipioFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\CategoriaController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\DomicilioProveedor.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\UsuarioController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\UsuarioFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\DepartamentoController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Inventario.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\CarritoDeComprasController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Categoria.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\DomicilioProveedorFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\PagoController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\CarritoDeComprasFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Municipio.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\general\util\JsfUtil.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\DomicilioCuentaController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\ProveedorFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\DomicilioProveedorController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Producto.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\DomicilioCuenta.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\ProveedorPK.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Usuario.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\AbstractFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\ItemPK.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Factura.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\DomicilioCuentaPK.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Pago.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\PagoFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\TipoDocumentoController.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Proveedor.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\Item.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\DomicilioProveedorPK.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\TipoDocumento.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\ItemFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\controller\administrador\beans\ProductoFacade.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\model\entities\ItemCarritoPK.java
+C:\Users\aprendiz\Desktop\InstrumusicWeb\src\main\java\edu\co\sena\instrumusic\view\administrador\bean\ProveedorController.java

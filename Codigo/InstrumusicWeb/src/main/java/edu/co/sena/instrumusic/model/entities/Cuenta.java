@@ -183,7 +183,7 @@ public class Cuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.Cuenta[ cuentaPK=" + cuentaPK + " ]";
+        return "edu.co.sena.instrumusic.model.entities.Cuenta[ cuentaPK=" + cuentaPK + " ]";
     }
     
 }

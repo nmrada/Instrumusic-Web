@@ -139,7 +139,7 @@ public class Inventario implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.modelo.entities.Inventario[ inventarioPK=" + inventarioPK + " ]";
+        return "edu.co.sena.instrumusic.model.entities.Inventario[ inventarioPK=" + inventarioPK + " ]";
     }
     
 }
