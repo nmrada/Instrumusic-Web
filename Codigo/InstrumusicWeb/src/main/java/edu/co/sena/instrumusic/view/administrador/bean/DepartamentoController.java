@@ -26,7 +26,11 @@ public class DepartamentoController implements Serializable {
     @EJB
     private edu.co.sena.instrumusic.controller.administrador.beans.DepartamentoFacade ejbFacade;
     private List<Departamento> items = null;
+    private List<Departamento> itemsBuscados = null;
     private Departamento selected;
+    private Departamento selectedBuscar;
+
+    private Integer idBuscar;
 
     public DepartamentoController() {
     }
@@ -81,6 +85,12 @@ public class DepartamentoController implements Serializable {
         return items;
     }
 
+    public List<Departamento> getItemsEncontrados() {
+
+        itemsBuscados = getFacade().findById(idBuscar);
+        return itemsBuscados;
+    }
+
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -119,6 +129,30 @@ public class DepartamentoController implements Serializable {
 
     public List<Departamento> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    public Integer getIdBuscar() {
+        return idBuscar;
+    }
+
+    public void setIdBuscar(Integer idBuscar) {
+        this.idBuscar = idBuscar;
+    }
+
+    public List<Departamento> getItemsBuscados() {
+        return itemsBuscados;
+    }
+
+    public void setItemsBuscados(List<Departamento> itemsBuscados) {
+        this.itemsBuscados = itemsBuscados;
+    }
+
+    public Departamento getSelectedBuscar() {
+        return selectedBuscar;
+    }
+
+    public void setSelectedBuscar(Departamento selectedBuscar) {
+        this.selectedBuscar = selectedBuscar;
     }
 
     @FacesConverter(forClass = Departamento.class)

@@ -6,9 +6,11 @@
 package edu.co.sena.instrumusic.controller.administrador.beans;
 
 import edu.co.sena.instrumusic.model.entities.Departamento;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -16,6 +18,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class DepartamentoFacade extends AbstractFacade<Departamento> {
+
     @PersistenceContext(unitName = "edu.co.sena_InstrumusicWeb_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -27,5 +30,10 @@ public class DepartamentoFacade extends AbstractFacade<Departamento> {
     public DepartamentoFacade() {
         super(Departamento.class);
     }
-    
+
+    public List<Departamento> findById(Object id) {
+        Query queryJPQL = getEntityManager().createNamedQuery("Departamento.findByIdDepartamento");
+        queryJPQL.setParameter("idDepartamento", id);
+        return queryJPQL.getResultList();
+    }
 }

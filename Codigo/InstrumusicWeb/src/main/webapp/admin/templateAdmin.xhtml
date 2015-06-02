@@ -39,6 +39,9 @@
                             <p:menuitem value="TipoDocumento" outcome="/admin/tipoDocumento/List.xhtml" />
                             <p:menuitem value="Usuario" outcome="/admin/usuario/List.xhtml" />
                         </p:submenu>
+                        <p:submenu label="#{bundle.MenuAdministrador}">
+                            <p:menuitem value="Departamento" outcome="/admin/departamento/List.xhtml" />
+                        </p:submenu>
                     </p:menubar>
                 </h:form>
             </p:layoutUnit>
@@ -48,9 +51,9 @@
             </p:layoutUnit>
 
             <p:layoutUnit position="center">
-                
+
                 <ui:insert name="body"/>
-                
+
             </p:layoutUnit>
 
         </p:layout>
