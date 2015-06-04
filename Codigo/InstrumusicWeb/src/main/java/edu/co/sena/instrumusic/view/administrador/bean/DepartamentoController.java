@@ -93,8 +93,8 @@ public class DepartamentoController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        selectedBuscar = null;
         itemsBuscados = null;
+        selectedBuscar = null;
     }
 
     public List<Departamento> getItems() {
@@ -112,16 +112,15 @@ public class DepartamentoController implements Serializable {
         return itemsBuscados;
 
     }
-    
-    public List<Departamento> buscarPorNombre(){
-    
+
+    public List<Departamento> buscarPorNombre() {
+
         itemsBuscados = getFacade().findByNombre(nombreBuscar);
-         items = null;
-         idBuscar = null;
-         return itemsBuscados;
-    
+        items = null;
+        idBuscar = null;
+        return itemsBuscados;
+
     }
-    
 
     public List<Departamento> getItemsEncontrados() {
 
@@ -156,7 +155,7 @@ public class DepartamentoController implements Serializable {
             }
         }
         if (selectedBuscar != null) {
-         setEmbeddableKeys();
+            setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETEBUSCAR) {
                     getFacade().edit(selectedBuscar);
@@ -164,7 +163,7 @@ public class DepartamentoController implements Serializable {
                     getFacade().remove(selectedBuscar);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
-            }catch (EJBException ex) {
+            } catch (EJBException ex) {
                 String msg = "";
                 Throwable cause = ex.getCause();
                 if (cause != null) {
@@ -175,11 +174,11 @@ public class DepartamentoController implements Serializable {
                 } else {
                     JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
                 }
-            }catch (Exception ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
                 JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
-        }  
+        }
     }
 
     public Departamento getDepartamento(java.lang.String id) {
