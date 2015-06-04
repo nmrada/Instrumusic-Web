@@ -51,9 +51,9 @@ public class TipoDocumento implements Serializable {
     @NotNull
     @Column(name = "activo")
     private boolean activo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento", fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, mappedBy = "tipoDocumento", fetch = FetchType.EAGER)
     private List<Cuenta> cuentaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento", fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, mappedBy = "tipoDocumento", fetch = FetchType.EAGER)
     private List<Proveedor> proveedorList;
 
     public TipoDocumento() {
