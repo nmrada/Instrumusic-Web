@@ -31,6 +31,7 @@ public class DepartamentoController implements Serializable {
     private Departamento selectedBuscar;
 
     private Integer idBuscar;
+    private String nombreBuscar;
 
     public DepartamentoController() {
     }
@@ -68,6 +69,14 @@ public class DepartamentoController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DepartamentoUpdated"));
+        selectedBuscar = null;
+        itemsBuscados = null;
+    }
+
+    public void updateBuscar() {
+        persist(PersistAction.UPDATEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("DepartamentoUpdated"));
+        selected = null;
+        items = null;
     }
 
     public void destroy() {
@@ -78,12 +87,41 @@ public class DepartamentoController implements Serializable {
         }
     }
 
+    public void eliminarBuscado() {
+        persist(PersistAction.DELETEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("DepartamentoDeleted"));
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        selectedBuscar = null;
+        itemsBuscados = null;
+    }
+
     public List<Departamento> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
         return items;
     }
+
+    //se agrego nuevo metodo
+    public List<Departamento> buscarPorId() {
+        itemsBuscados = getFacade().findById(idBuscar);
+        nombreBuscar = null;
+        items = null;
+        return itemsBuscados;
+
+    }
+    
+    public List<Departamento> buscarPorNombre(){
+    
+        itemsBuscados = getFacade().findByNombre(nombreBuscar);
+         items = null;
+         idBuscar = null;
+         return itemsBuscados;
+    
+    }
+    
 
     public List<Departamento> getItemsEncontrados() {
 
@@ -117,6 +155,31 @@ public class DepartamentoController implements Serializable {
                 JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
         }
+        if (selectedBuscar != null) {
+         setEmbeddableKeys();
+            try {
+                if (persistAction != PersistAction.DELETEBUSCAR) {
+                    getFacade().edit(selectedBuscar);
+                } else {
+                    getFacade().remove(selectedBuscar);
+                }
+                JsfUtil.addSuccessMessage(successMessage);
+            }catch (EJBException ex) {
+                String msg = "";
+                Throwable cause = ex.getCause();
+                if (cause != null) {
+                    msg = cause.getLocalizedMessage();
+                }
+                if (msg.length() > 0) {
+                    JsfUtil.addErrorMessage(msg);
+                } else {
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                }
+            }catch (Exception ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            }
+        }  
     }
 
     public Departamento getDepartamento(java.lang.String id) {
@@ -153,6 +216,14 @@ public class DepartamentoController implements Serializable {
 
     public void setSelectedBuscar(Departamento selectedBuscar) {
         this.selectedBuscar = selectedBuscar;
+    }
+
+    public String getNombreBuscar() {
+        return nombreBuscar;
+    }
+
+    public void setNombreBuscar(String nombreBuscar) {
+        this.nombreBuscar = nombreBuscar;
     }
 
     @FacesConverter(forClass = Departamento.class)
