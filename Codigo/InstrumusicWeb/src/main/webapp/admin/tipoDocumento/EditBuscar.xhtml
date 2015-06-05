@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoDocumentoEditDlgBuscar" widgetVar="TipoDocumentoEditDialogBuscar" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipoDocumentoTitle}">
+            <h:form id="TipoDocumentoEditFormBuscar">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoDocumentoController.selectedBuscar != null}">
+                        <p:outputLabel value="#{bundle.EditTipoDocumentoLabel_tipoDocumento}"/>
+                        <p:outputLabel value="#{tipoDocumentoController.selectedBuscar.tipoDocumento}" title="#{bundle.EditTipoDocumentoTitle_tipoDocumento}"/>
+                        <p:outputLabel value="#{bundle.EditTipoDocumentoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{tipoDocumentoController.selectedBuscar.descripcion}" title="#{bundle.EditTipoDocumentoTitle_descripcion}" required="true" requiredMessage="#{bundle.EditTipoDocumentoRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.EditTipoDocumentoLabel_activo}" for="activo" />
+                        <p:selectBooleanCheckbox id="activo" value="#{tipoDocumentoController.selectedBuscar.activo}" required="false" requiredMessage="#{bundle.EditTipoDocumentoRequiredMessage_activo}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipoDocumentoController.updateBuscar}" value="#{bundle.Save}" update="display,:TipoDocumentoListForm:datalist,:BuscarTipoDocumentoListForm:datalist2,:growl" oncomplete="handleSubmit(args, 'TipoDocumentoEditDialogBuscar');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipoDocumentoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
