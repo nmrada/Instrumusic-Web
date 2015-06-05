@@ -32,9 +32,48 @@ public class CategoriaController implements Serializable {
 
     private Integer idBuscar;
     private String nombreBuscar;
-    private boolean activaBuscar;
+    private Boolean activaBuscar;
+    private Categoria categoriaPadreBuscar;
 
     public CategoriaController() {
+    }
+
+    public List<Categoria> buscarPorIdCategoria() {
+        itemsBuscados = getFacade().finByid(idBuscar);
+        activaBuscar = null;
+        nombreBuscar = null;
+        categoriaPadreBuscar = null;
+        items = null;
+        return itemsBuscados;
+    }
+
+    public List<Categoria> buscarPorNombre() {
+        itemsBuscados = getFacade().findByNombre(nombreBuscar);
+        idBuscar = null;
+        activaBuscar = null;
+        categoriaPadreBuscar = null;
+        items = null;
+        return itemsBuscados;
+    }
+
+    public List<Categoria> buscarPorActivo() {
+        itemsBuscados = getFacade().findByActivo(activaBuscar);
+        idBuscar = null;
+        nombreBuscar = null;
+        categoriaPadreBuscar = null;
+        items = null;
+        return itemsBuscados;
+
+    }
+
+    public List<Categoria> buscarPoridPadre() {
+        itemsBuscados = getFacade().findByidPadre(categoriaPadreBuscar);
+        idBuscar = null;
+        nombreBuscar = null;
+        activaBuscar = null;
+        items = null;
+        return itemsBuscados;
+
     }
 
     public Categoria getSelected() {
@@ -68,21 +107,19 @@ public class CategoriaController implements Serializable {
         }
     }
 
-      public void update() {
+    public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CategoriaUpdated"));
         selectedBuscar = null;
         itemsBuscados = null;
 
     }
-      
-         public void updateBuscar() {
+
+    public void updateBuscar() {
         persist(PersistAction.UPDATEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("CategoriaUpdated"));
         selected = null;
         items = null;
 
     }
-         
-         
 
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CategoriaDeleted"));
@@ -90,10 +127,10 @@ public class CategoriaController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        
+
     }
-    
-      public void eliminarBuscado() {
+
+    public void eliminarBuscado() {
         persist(PersistAction.DELETEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("CategoriaDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
@@ -102,8 +139,6 @@ public class CategoriaController implements Serializable {
         selectedBuscar = null;
         itemsBuscados = null;
     }
-      
-      
 
     public List<Categoria> getItems() {
         if (items == null) {
@@ -112,9 +147,7 @@ public class CategoriaController implements Serializable {
         return items;
     }
 
-    
-    
- private void persist(PersistAction persistAction, String successMessage) {
+    private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
             try {
@@ -211,12 +244,20 @@ public class CategoriaController implements Serializable {
         this.nombreBuscar = nombreBuscar;
     }
 
-    public boolean isActivaBuscar() {
+    public Boolean getActivaBuscar() {
         return activaBuscar;
     }
 
-    public void setActivaBuscar(boolean activaBuscar) {
+    public void setActivaBuscar(Boolean activaBuscar) {
         this.activaBuscar = activaBuscar;
+    }
+
+    public Categoria getCategoriaPadreBuscar() {
+        return categoriaPadreBuscar;
+    }
+
+    public void setCategoriaPadreBuscar(Categoria categoriaPadreBuscar) {
+        this.categoriaPadreBuscar = categoriaPadreBuscar;
     }
 
     @FacesConverter(forClass = Categoria.class)

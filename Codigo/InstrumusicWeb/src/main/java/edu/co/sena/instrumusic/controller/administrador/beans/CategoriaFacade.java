@@ -41,10 +41,17 @@ public class CategoriaFacade extends AbstractFacade<Categoria> {
         return query2.getResultList();
     }
 
-    public List<Categoria> findByActiva(boolean activaCatBuscar) {
-        String sqlQuery = "SELECT * FROM categoria cat where cat.activa like '%" + activaCatBuscar + "%';";
-        Query query2 = getEntityManager().createNativeQuery(sqlQuery, Categoria.class);
-        return query2.getResultList();
+        public List<Categoria> findByActivo(Boolean activo) {
+        Query queryJPQL = getEntityManager().createNamedQuery("Categoria.findByActiva");
+        queryJPQL.setParameter("activo", activo);
+        return queryJPQL.getResultList();
     }
+    
+        public List<Categoria> findByidPadre(Categoria idCategoriaPadreBuscar) {
+        String sqlQuery = "SELECT * FROM categoria cat where cat.categoriaidCategoria like '%" + idCategoriaPadreBuscar + "%';";
+        Query queryJPQL = getEntityManager().createNativeQuery(sqlQuery, Categoria.class);
+        return queryJPQL.getResultList();
+    }
+ 
     
 }

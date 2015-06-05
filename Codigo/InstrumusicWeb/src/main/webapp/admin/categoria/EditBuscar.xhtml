@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CategoriaEditDlgBuscar" widgetVar="CategoriaEditDialogBuscar" modal="true" resizable="true" appendTo="@(body)" header="#{bundle.EditCategoriaTitle}">
+            <h:form id="CategoriaEditFormBuscar">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{categoriaController.selectedBuscar != null}">
+                       <p:outputLabel value="#{bundle.EditCategoriaLabel_nombreCategoria}" for="nombreCategoria" />
+                       <p:inputText id="nombreCategoria" value="#{categoriaController.selectedBuscar.nombreCategoria}" title="#{bundle.EditCategoriaTitle_nombreCategoria}" required="true" requiredMessage="#{bundle.EditCategoriaRequiredMessage_nombreCategoria}"/>
+                        <p:outputLabel value="#{bundle.EditCategoriaLabel_activa}" for="activa" />
+                        <p:selectBooleanCheckbox id="activa" value="#{categoriaController.selectedBuscar.activa}" required="true" requiredMessage="#{bundle.EditCategoriaRequiredMessage_activa}"/>
+                        <p:outputLabel value="#{bundle.EditCategoriaLabel_categoriaidCategoria}" for="categoriaidCategoria" />
+                        <p:selectOneMenu id="categoriaidCategoria" value="#{categoriaController.selectedBuscar.categoriaidCategoria}" required="true" requiredMessage="#{bundle.EditCategoriaRequiredMessage_categoriaidCategoria}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"
+                                           var="categoriaidCategoriaItem"
+                                           itemValue="#{categoriaidCategoriaItem}" itemLabel="#{categoriaidCategoriaItem.nombreCategoria}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{categoriaController.updateBuscar}" value="#{bundle.Save}" update="display,:CategoriaListForm:datalist,:BuscarCategoriaListForm:datalist2,:growl" oncomplete="handleSubmit(args, 'CategoriaEditDialogBuscar');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CategoriaEditDialogBuscar.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
