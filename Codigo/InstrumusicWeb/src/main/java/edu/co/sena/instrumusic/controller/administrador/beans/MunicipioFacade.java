@@ -6,9 +6,11 @@
 package edu.co.sena.instrumusic.controller.administrador.beans;
 
 import edu.co.sena.instrumusic.model.entities.Municipio;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +28,24 @@ public class MunicipioFacade extends AbstractFacade<Municipio> {
 
     public MunicipioFacade() {
         super(Municipio.class);
+    }
+    
+    public List<Municipio> findById(Object idMun){
+        Query queryBuscar = getEntityManager().createNamedQuery("Municipio.findByIdMunicipio");
+        queryBuscar.setParameter("idMunicipio", idMun);
+        return queryBuscar.getResultList();
+    }
+    
+    public List<Municipio> findByNombre(Object nomMun){
+        String querySql = "SELECT * FROM Municipio m where m.nombre like '%"+nomMun+"%';";
+        Query queryBuscarNom = getEntityManager().createNativeQuery(querySql, Municipio.class);
+        return queryBuscarNom.getResultList();
+    }
+    
+    public List<Municipio> findByDepartamento(Object nomDepart){
+        String querySql = "SELECT * FROM Municipio m where m.nombre like '%"+nomDepart+"%';";
+        Query queryBuscarNom = getEntityManager().createNativeQuery(querySql, Municipio.class);
+        return queryBuscarNom.getResultList();
     }
     
 }

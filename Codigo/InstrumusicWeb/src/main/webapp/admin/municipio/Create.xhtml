@@ -8,12 +8,12 @@
 
     <ui:composition>
 
-        <p:dialog id="MunicipioCreateDlg" widgetVar="MunicipioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMunicipioTitle}">
+        <p:dialog id="MunicipioCreateDlg" widgetVar="MunicipioCreateDialog" modal="true" resizable="true" appendTo="@(body)" header="#{bundle.CreateMunicipioTitle}">
             <h:form id="MunicipioCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{municipioController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateMunicipioLabel_idMunicipio}" for="idMunicipio" />
-                        <p:inputText id="idMunicipio" value="#{municipioController.selected.idMunicipio}" title="#{bundle.CreateMunicipioTitle_idMunicipio}" required="true" requiredMessage="#{bundle.CreateMunicipioRequiredMessage_idMunicipio}"/>
+                        <p:inputText id="idMunicipio" value="#{municipioController.selected.idMunicipio}" title="#{bundle.CreateMunicipioTitle_idMunicipio}" required="false" requiredMessage="#{bundle.CreateMunicipioRequiredMessage_idMunicipio}"/>
                         <p:outputLabel value="#{bundle.CreateMunicipioLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{municipioController.selected.nombre}" title="#{bundle.CreateMunicipioTitle_nombre}" required="true" requiredMessage="#{bundle.CreateMunicipioRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateMunicipioLabel_departamentoidDepartamento}" for="departamentoidDepartamento" />

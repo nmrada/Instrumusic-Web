@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MunicipioEditDlgBuscar" widgetVar="MunicipioEditDialogBuscar" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMunicipioTitle}">
+            <h:form id="MunicipioEditFormBuscar">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{municipioController.selectedBuscar != null}">
+                        <p:outputLabel value="#{bundle.EditMunicipioLabel_idMunicipio}" />
+                        <p:outputLabel value="#{municipioController.selectedBuscar.idMunicipio}" title="#{bundle.EditMunicipioTitle_idMunicipio}"/>
+                        <p:outputLabel value="#{bundle.EditMunicipioLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{municipioController.selectedBuscar.nombre}" title="#{bundle.EditMunicipioTitle_nombre}" required="true" requiredMessage="#{bundle.EditMunicipioRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditMunicipioLabel_departamentoidDepartamento}" for="departamentoidDepartamento" />
+                        <p:selectOneMenu id="departamentoidDepartamento" value="#{municipioController.selectedBuscar.departamentoidDepartamento}" required="true" requiredMessage="#{bundle.EditMunicipioRequiredMessage_departamentoidDepartamento}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{departamentoController.itemsAvailableSelectOne}"
+                                           var="departamentoidDepartamentoItemBuscar"
+                                           itemValue="#{departamentoidDepartamentoItemBuscar}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{municipioController.updateBuscar}" value="#{bundle.Save}" update="display,:MunicipioListForm:datalist,:BuscarMunicipioListForm:datalist2,:growl" oncomplete="handleSubmit(args, 'MunicipioEditDialogBuscar');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MunicipioEditDialogBuscar.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
