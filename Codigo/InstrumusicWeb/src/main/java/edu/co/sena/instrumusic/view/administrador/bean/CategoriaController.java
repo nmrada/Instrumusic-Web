@@ -26,7 +26,13 @@ public class CategoriaController implements Serializable {
     @EJB
     private edu.co.sena.instrumusic.controller.administrador.beans.CategoriaFacade ejbFacade;
     private List<Categoria> items = null;
+    private List<Categoria> itemsBuscados = null;
     private Categoria selected;
+    private Categoria selectedBuscar;
+
+    private Integer idBuscar;
+    private String nombreBuscar;
+    private boolean activaBuscar;
 
     public CategoriaController() {
     }
@@ -62,9 +68,21 @@ public class CategoriaController implements Serializable {
         }
     }
 
-    public void update() {
+      public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CategoriaUpdated"));
+        selectedBuscar = null;
+        itemsBuscados = null;
+
     }
+      
+         public void updateBuscar() {
+        persist(PersistAction.UPDATEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("CategoriaUpdated"));
+        selected = null;
+        items = null;
+
+    }
+         
+         
 
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CategoriaDeleted"));
@@ -72,7 +90,20 @@ public class CategoriaController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        
     }
+    
+      public void eliminarBuscado() {
+        persist(PersistAction.DELETEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("CategoriaDeleted"));
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        selectedBuscar = null;
+        itemsBuscados = null;
+    }
+      
+      
 
     public List<Categoria> getItems() {
         if (items == null) {
@@ -81,7 +112,9 @@ public class CategoriaController implements Serializable {
         return items;
     }
 
-    private void persist(PersistAction persistAction, String successMessage) {
+    
+    
+ private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
             try {
@@ -89,6 +122,31 @@ public class CategoriaController implements Serializable {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
+                }
+                JsfUtil.addSuccessMessage(successMessage);
+            } catch (EJBException ex) {
+                String msg = "";
+                Throwable cause = ex.getCause();
+                if (cause != null) {
+                    msg = cause.getLocalizedMessage();
+                }
+                if (msg.length() > 0) {
+                    JsfUtil.addErrorMessage(msg);
+                } else {
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            }
+        }
+        if (selectedBuscar != null) {
+            setEmbeddableKeys();
+            try {
+                if (persistAction != PersistAction.DELETEBUSCAR) {
+                    getFacade().edit(selectedBuscar);
+                } else {
+                    getFacade().remove(selectedBuscar);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -119,6 +177,46 @@ public class CategoriaController implements Serializable {
 
     public List<Categoria> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    public List<Categoria> getItemsBuscados() {
+        return itemsBuscados;
+    }
+
+    public void setItemsBuscados(List<Categoria> itemsBuscados) {
+        this.itemsBuscados = itemsBuscados;
+    }
+
+    public Categoria getSelectedBuscar() {
+        return selectedBuscar;
+    }
+
+    public void setSelectedBuscar(Categoria selectedBuscar) {
+        this.selectedBuscar = selectedBuscar;
+    }
+
+    public Integer getIdBuscar() {
+        return idBuscar;
+    }
+
+    public void setIdBuscar(Integer idBuscar) {
+        this.idBuscar = idBuscar;
+    }
+
+    public String getNombreBuscar() {
+        return nombreBuscar;
+    }
+
+    public void setNombreBuscar(String nombreBuscar) {
+        this.nombreBuscar = nombreBuscar;
+    }
+
+    public boolean isActivaBuscar() {
+        return activaBuscar;
+    }
+
+    public void setActivaBuscar(boolean activaBuscar) {
+        this.activaBuscar = activaBuscar;
     }
 
     @FacesConverter(forClass = Categoria.class)
