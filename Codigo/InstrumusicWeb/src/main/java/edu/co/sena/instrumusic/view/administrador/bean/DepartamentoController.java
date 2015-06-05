@@ -164,6 +164,8 @@ public class DepartamentoController implements Serializable {
                     getFacade().edit(selectedBuscar);
                 } else {
                     getFacade().remove(selectedBuscar);
+                    idBuscar = null;
+                    nombreBuscar = null;
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {

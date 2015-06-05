@@ -14,13 +14,14 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 @Named("tipoDocumentoController")
-@SessionScoped
+@ViewScoped
 public class TipoDocumentoController implements Serializable {
 
     @EJB
@@ -52,7 +53,7 @@ public class TipoDocumentoController implements Serializable {
         items = null;
         return itemBuscados;
     }
-    
+
     public List<TipoDocumento> buscarPorActivo() {
         itemBuscados = getFacade().findByActivo(activoBuscar);
         descripcionBuscar = null;
@@ -97,7 +98,7 @@ public class TipoDocumentoController implements Serializable {
         selectedBuscar = null;
         itemBuscados = null;
     }
-    
+
     public void updateBuscar() {
         persist(PersistAction.UPDATEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("TipoDocumentoUpdated"));
         selected = null;
@@ -113,7 +114,7 @@ public class TipoDocumentoController implements Serializable {
         itemBuscados = null;
         selectedBuscar = null;
     }
-    
+
     public void eliminarBuscado() {
         persist(PersistAction.DELETEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("TipoDocumentoDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -164,6 +165,9 @@ public class TipoDocumentoController implements Serializable {
                     getFacade().edit(selectedBuscar);
                 } else {
                     getFacade().remove(selectedBuscar);
+                    tipoDocumentoBuscar = null;
+                    descripcionBuscar = null;
+                    activoBuscar = null;
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
