@@ -110,6 +110,8 @@ public class TipoDocumentoController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        itemBuscados = null;
+        selectedBuscar = null;
     }
     
     public void eliminarBuscado() {

@@ -86,6 +86,8 @@ public class DepartamentoController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        itemsBuscados = null;
+        selectedBuscar = null;
     }
 
     public void eliminarBuscado() {
