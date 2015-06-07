@@ -8,27 +8,27 @@
 
     <ui:composition>
 
-        <p:dialog id="UsuarioEditDlg" widgetVar="UsuarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUsuarioTitle}">
-            <h:form id="UsuarioEditForm">
+        <p:dialog id="UsuarioEditDlgBuscar" widgetVar="UsuarioEditDialogBuscar" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUsuarioTitle}">
+            <h:form id="UsuarioEditFormBuscar">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selectedBuscar != null}">
                          <p:outputLabel value="#{bundle.CreateUsuarioLabel_rol}" for="usuarioRolEdit" />
-                        <p:selectOneMenu id="usuarioRolEdit" value="#{usuarioController.selected.rol}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_rol}">
+                         <p:selectOneMenu id="usuarioRolEdit" value="#{usuarioController.selectedBuscar.rol}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_rol}">
                             <f:selectItems value="#{usuarioController.listroles}"
                                            var="usuarioRolEditItem"
                                            itemValue="#{usuarioRolEditItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateUsuarioLabel_estado}" for="usuarioEstadoEdit" />
-                        <p:selectOneMenu id="usuarioEstadoEdit" value="#{usuarioController.selected.estado}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_estado}">
+                        <p:selectOneMenu id="usuarioEstadoEdit" value="#{usuarioController.selectedBuscar.estado}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_estado}">
                             <f:selectItems value="#{usuarioController.listEstados}"
                                            var="usuarioEstadoEditItem"
                                            itemValue="#{usuarioEstadoEditItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditUsuarioLabel_email}" for="email" />
-                        <p:inputText id="email" value="#{usuarioController.selected.email}" title="#{bundle.EditUsuarioTitle_email}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_email}"/>
+                        <p:inputText id="email" value="#{usuarioController.selectedBuscar.email}" title="#{bundle.EditUsuarioTitle_email}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_email}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{usuarioController.update}" value="#{bundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsuarioEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="UsuarioEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{usuarioController.updateBuscar}" value="#{bundle.Save}" update="display, :UsuarioListForm:datalist,:BuscarUsuarioListForm:datalist2,:growl" oncomplete="handleSubmit(args, 'UsuarioEditDialogBuscar');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UsuarioEditDialogBuscar.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
