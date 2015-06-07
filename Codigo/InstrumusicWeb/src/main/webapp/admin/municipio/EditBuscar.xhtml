@@ -13,7 +13,7 @@ and open the template in the editor.
 
     <ui:composition>
 
-        <p:dialog id="MunicipioEditDlgBuscar" widgetVar="MunicipioEditDialogBuscar" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMunicipioTitle}">
+        <p:dialog id="MunicipioEditDlgBuscar" widgetVar="MunicipioEditDialogBuscar" modal="true" resizable="true" appendTo="@(body)" header="#{bundle.EditMunicipioTitle}">
             <h:form id="MunicipioEditFormBuscar">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{municipioController.selectedBuscar != null}">

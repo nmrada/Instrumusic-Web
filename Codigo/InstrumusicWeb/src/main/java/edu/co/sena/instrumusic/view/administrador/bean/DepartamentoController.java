@@ -186,7 +186,7 @@ public class DepartamentoController implements Serializable {
         }
     }
 
-    public Departamento getDepartamento(java.lang.String id) {
+    public Departamento getDepartamento(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
@@ -243,13 +243,13 @@ public class DepartamentoController implements Serializable {
             return controller.getDepartamento(getKey(value));
         }
 
-        java.lang.String getKey(String value) {
-            java.lang.String key;
-            key = value;
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.String value) {
+        String getStringKey(java.lang.Integer value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -262,7 +262,7 @@ public class DepartamentoController implements Serializable {
             }
             if (object instanceof Departamento) {
                 Departamento o = (Departamento) object;
-                return getStringKey(o.getIdDepartamento().toString());
+                return getStringKey(o.getIdDepartamento());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Departamento.class.getName()});
                 return null;

@@ -4,6 +4,8 @@ import edu.co.sena.instrumusic.model.entities.Municipio;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil.PersistAction;
 import edu.co.sena.instrumusic.controller.administrador.beans.MunicipioFacade;
+import edu.co.sena.instrumusic.controller.administrador.beans.DepartamentoFacade;
+import edu.co.sena.instrumusic.model.entities.Departamento;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,6 +28,7 @@ public class MunicipioController implements Serializable {
 
     @EJB
     private edu.co.sena.instrumusic.controller.administrador.beans.MunicipioFacade ejbFacade;
+    private edu.co.sena.instrumusic.controller.administrador.beans.DepartamentoFacade ejbFacade2;
     private List<Municipio> items = null;
     private List<Municipio> itemsBuscados = null;
     private Municipio selected;
@@ -55,6 +58,9 @@ public class MunicipioController implements Serializable {
     private MunicipioFacade getFacade() {
         return ejbFacade;
     }
+    private DepartamentoFacade getFacade2() {
+        return ejbFacade2;
+    }
 
     public Municipio prepareCreate() {
         selected = new Municipio();
@@ -71,6 +77,8 @@ public class MunicipioController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MunicipioUpdated"));
+        selectedBuscar = null;
+        itemsBuscados = null;
     }
     
     public void updateBuscar() {
@@ -85,6 +93,8 @@ public class MunicipioController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        itemsBuscados = null;
+        selectedBuscar = null;
     }
     
     public void eliminarBuscado() {
@@ -122,10 +132,18 @@ public class MunicipioController implements Serializable {
     
     //buscar por el nombre del Departamento
     public List<Municipio> buscarPorDepartamento() {
-        itemsBuscados = getFacade().findByNombre(nombreDepart);
+        itemsBuscados = getFacade().findByDepartamento(nombreDepart);
         items = null;
         idBuscar = null;
         return itemsBuscados;
+    }
+    public List<Municipio> buscarPorDepartamentoVer2() {
+        Departamento deparTem = (Departamento)getFacade2().findByNombre(nombreDepart);
+        itemsBuscados = deparTem.getMunicipioList();
+        items = null;
+        idBuscar = null;
+        return itemsBuscados;
+        
     }
     
     public List<Municipio> getItemsMunEncontrados() {
@@ -160,9 +178,36 @@ public class MunicipioController implements Serializable {
                 JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
         }
+        if (selectedBuscar != null) {
+            setEmbeddableKeys();
+            try {
+                if (persistAction != PersistAction.DELETEBUSCAR) {
+                    getFacade().edit(selectedBuscar);
+                } else {
+                    getFacade().remove(selectedBuscar);
+                    idBuscar = null;
+                    nombreBuscar = null;
+                }
+                JsfUtil.addSuccessMessage(successMessage);
+            } catch (EJBException ex) {
+                String msg = "";
+                Throwable cause = ex.getCause();
+                if (cause != null) {
+                    msg = cause.getLocalizedMessage();
+                }
+                if (msg.length() > 0) {
+                    JsfUtil.addErrorMessage(msg);
+                } else {
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            }
+        }
     }
 
-    public Municipio getMunicipio(java.lang.String id) {
+    public Municipio getMunicipio(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
@@ -227,13 +272,13 @@ public class MunicipioController implements Serializable {
             return controller.getMunicipio(getKey(value));
         }
 
-        java.lang.String getKey(String value) {
-            java.lang.String key;
-            key = value;
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.String value) {
+        String getStringKey(java.lang.Integer value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -246,7 +291,7 @@ public class MunicipioController implements Serializable {
             }
             if (object instanceof Municipio) {
                 Municipio o = (Municipio) object;
-                return getStringKey(o.getIdMunicipio().toString());
+                return getStringKey(o.getIdMunicipio());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Municipio.class.getName()});
                 return null;

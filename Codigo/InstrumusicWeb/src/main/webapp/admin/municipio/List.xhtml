@@ -27,19 +27,19 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column sortBy="#{item.idMunicipio}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMunicipioTitle_idMunicipio}"/>
                             </f:facet>
                             <h:outputText value="#{item.idMunicipio}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.nombre}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMunicipioTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
-                        </p:column>
-                        <p:column>
+                        </p:column> 
+                        <p:column sortBy="#{bundle.ListMunicipioTitle_departamentoidDepartamento}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMunicipioTitle_departamentoidDepartamento}"/>
                             </f:facet>
@@ -49,7 +49,7 @@
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{municipioController.prepareCreate}" update=":MunicipioCreateForm" oncomplete="PF('MunicipioCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MunicipioViewForm" oncomplete="PF('MunicipioViewDialog').show()" disabled="#{empty municipioController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MunicipioEditForm" oncomplete="PF('MunicipioEditDialog').show()" disabled="#{empty municipioController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{municipioController.destroy}" update=":growl,datalist" disabled="#{empty municipioController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{municipioController.destroy}" update=":growl,:BuscarMunicipioListForm:datalist2,:MunicipioListForm:datalist" disabled="#{empty municipioController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
@@ -60,7 +60,7 @@
                     <h:panelGrid id="grid1" columns="5"  cellspacing="0">
                         <p:outputLabel value="#{bundle.BuscarMunicipioLabel_idMunicipio}" for="buscarIdMunicipio" />
                         <p:inputText id="buscarIdMunicipio" value="#{municipioController.idBuscar}" title="#{bundle.BuscarMunicipioTitle_idMunicipio}" required="true" requiredMessage="#{bundle.CreateMunicipioRequiredMessage_idMunicipio}"/>
-                        <p:commandButton id="botonIdDep" icon="ui-icon-search" actionListener="#{municipioController.buscarPorId()}" value="#{bundle.Buscar}" update=":BuscarMunicipioListForm,:panelBusqueda "/>
+                        <p:commandButton id="botonIdDep" icon="ui-icon-search" actionListener="#{municipioController.buscarPorId}" value="#{bundle.Buscar}" update=":BuscarMunicipioListForm,:panelBusqueda "/>
                         <p:message for="buscarIdMunicipio" />
                     </h:panelGrid>
                 </h:form>
@@ -68,8 +68,16 @@
                     <h:panelGrid id="grid1" columns="5" cellspacing="0">
                         <p:outputLabel value="#{bundle.BuscarMunicipioLabel_nombre}" for="buscarNomMunicipio" />
                         <p:inputText id="buscarNomMunicipio" value="#{municipioController.nombreBuscar}" title="#{bundle.BuscarMunicipioTitle_nombre}" required="true" requiredMessage="#{bundle.CreateMunicipioRequiredMessage_nombre}"/>
-                        <p:commandButton id="botonNomDep" icon="ui-icon-search" actionListener="#{municipioController.buscarPorMunicipio()}" value="#{bundle.Buscar}" update=":BuscarMunicipioListForm,:panelBusqueda "/>
+                        <p:commandButton id="botonNomMun" icon="ui-icon-search" actionListener="#{municipioController.buscarPorMunicipio}" value="#{bundle.Buscar}" update=":BuscarMunicipioListForm,:panelBusqueda "/>
                         <p:message for="buscarNomMunicipio" />
+                    </h:panelGrid>
+                </h:form>
+                <h:form id="BuscarMunicipioForm3">
+                    <h:panelGrid id="grid1" columns="5" cellspacing="0">
+                        <p:outputLabel value="#{bundle.BuscarMunicipioLabel_departamentoidDepartamento}" for="buscarNomDep" />
+                        <p:inputText id="buscarNomDep" value="#{municipioController.nombreDepart}" title="#{bundle.BuscarMunicipioTitle_nombre}" required="true" requiredMessage="#{bundle.CreateMunicipioRequiredMessage_departamentoidDepartamento}"/>
+                        <p:commandButton id="botonNomDep" icon="ui-icon-search" actionListener="#{municipioController.buscarPorDepartamento}" value="#{bundle.Buscar}" update=":BuscarMunicipioListForm,:panelBusqueda "/>
+                        <p:message for="buscarNomDep" />
                     </h:panelGrid>
                 </h:form>
             </p:panel>
@@ -90,17 +98,23 @@
                         <p:ajax event="rowSelect"   update="viewButtonBusc editButtonBusc deleteButtonBusc"/>
                         <p:ajax event="rowUnselect" update="viewButtonBusc editButtonBusc deleteButtonBusc"/>
 
-                        <p:column>
+                        <p:column sortBy="#{itemsEncontrados.idMunicipio}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMunicipioTitle_idMunicipio}"/>
                             </f:facet>
                             <h:outputText value="#{itemsEncontrados.idMunicipio}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{bundle.ListMunicipioTitle_nombre}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMunicipioTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{itemsEncontrados.nombre}"/>
+                        </p:column>
+                        <p:column sortBy="#{itemsEncontrados.departamentoidDepartamento.nombre}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMunicipioTitle_departamentoidDepartamento}"/>
+                            </f:facet>
+                            <h:outputText value="#{itemsEncontrados.departamentoidDepartamento.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="viewButtonBusc"   icon="ui-icon-search" value="#{bundle.View}" update=":MunicipioViewFormBuscar" oncomplete="PF('MunicipioViewDialogBuscar').show()" disabled="#{empty municipioController.selectedBuscar}"/>

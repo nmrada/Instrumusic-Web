@@ -36,14 +36,16 @@ public class MunicipioFacade extends AbstractFacade<Municipio> {
         return queryBuscar.getResultList();
     }
     
-    public List<Municipio> findByNombre(Object nomMun){
+    public List<Municipio> findByNombre(String nomMun){
         String querySql = "SELECT * FROM Municipio m where m.nombre like '%"+nomMun+"%';";
         Query queryBuscarNom = getEntityManager().createNativeQuery(querySql, Municipio.class);
         return queryBuscarNom.getResultList();
     }
     
-    public List<Municipio> findByDepartamento(Object nomDepart){
-        String querySql = "SELECT * FROM Municipio m where m.nombre like '%"+nomDepart+"%';";
+    public List<Municipio> findByDepartamento(String nomDepart){
+        String querySql = "select * from instrumusic.departamento d, instrumusic.municipio m WHERE "
+                + "d.idDepartamento = m.Departamento_idDepartamento " 
+                + "and d.nombre like '%"+ nomDepart +"%';";
         Query queryBuscarNom = getEntityManager().createNativeQuery(querySql, Municipio.class);
         return queryBuscarNom.getResultList();
     }
