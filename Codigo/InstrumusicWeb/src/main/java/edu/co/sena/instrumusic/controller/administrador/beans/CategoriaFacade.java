@@ -18,6 +18,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class CategoriaFacade extends AbstractFacade<Categoria> {
+
     @PersistenceContext(unitName = "edu.co.sena_InstrumusicWeb_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -29,7 +30,8 @@ public class CategoriaFacade extends AbstractFacade<Categoria> {
     public CategoriaFacade() {
         super(Categoria.class);
     }
-        public List<Categoria> finByid(Object id) {
+
+    public List<Categoria> finByid(Object id) {
         Query queryJPQL = getEntityManager().createNamedQuery("Categoria.findByIdCategoria");
         queryJPQL.setParameter("idCategoria", id);
         return queryJPQL.getResultList();
@@ -41,17 +43,17 @@ public class CategoriaFacade extends AbstractFacade<Categoria> {
         return query2.getResultList();
     }
 
-        public List<Categoria> findByActivo(Boolean activo) {
+    public List<Categoria> findByActivo(Boolean activo) {
         Query queryJPQL = getEntityManager().createNamedQuery("Categoria.findByActiva");
-        queryJPQL.setParameter("activo", activo);
+        queryJPQL.setParameter("activa", activo);
         return queryJPQL.getResultList();
     }
-    
-        public List<Categoria> findByidPadre(Categoria idCategoriaPadreBuscar) {
-        String sqlQuery = "SELECT * FROM categoria cat where cat.categoriaidCategoria like '%" + idCategoriaPadreBuscar + "%';";
+
+    public List<Categoria> findByidPadre(String nombreCategoriaPadreBuscar) {
+        String sqlQuery = "SELECT * FROM instrumusic.categoria ca, instrumusic.categoria cat\n"
+                + " where ca.Categoria_idCategoria = cat.idCategoria and cat.nombreCategoria like '%"+nombreCategoriaPadreBuscar +"%';";
         Query queryJPQL = getEntityManager().createNativeQuery(sqlQuery, Categoria.class);
         return queryJPQL.getResultList();
     }
- 
-    
+
 }

@@ -18,9 +18,10 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.view.ViewScoped;
 
 @Named("categoriaController")
-@SessionScoped
+@ViewScoped
 public class CategoriaController implements Serializable {
 
     @EJB
@@ -33,7 +34,7 @@ public class CategoriaController implements Serializable {
     private Integer idBuscar;
     private String nombreBuscar;
     private Boolean activaBuscar;
-    private Categoria categoriaPadreBuscar;
+    private String categoriaPadreBuscar;
 
     public CategoriaController() {
     }
@@ -252,13 +253,15 @@ public class CategoriaController implements Serializable {
         this.activaBuscar = activaBuscar;
     }
 
-    public Categoria getCategoriaPadreBuscar() {
+    public String getCategoriaPadreBuscar() {
         return categoriaPadreBuscar;
     }
 
-    public void setCategoriaPadreBuscar(Categoria categoriaPadreBuscar) {
+    public void setCategoriaPadreBuscar(String categoriaPadreBuscar) {
         this.categoriaPadreBuscar = categoriaPadreBuscar;
     }
+
+
 
     @FacesConverter(forClass = Categoria.class)
     public static class CategoriaControllerConverter implements Converter {

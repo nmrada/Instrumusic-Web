@@ -19,7 +19,7 @@
                         <h:outputText value="#{bundle.ViewCategoriaLabel_activa}"/>
                         <p:selectBooleanCheckbox value="#{categoriaController.selectedBuscar.activa}" disabled="true"/>
                         <h:outputText value="#{bundle.ViewCategoriaLabel_categoriaidCategoria}"/>
-                        <h:outputText value="#{categoriaController.selectedBuscar.categoriaidCategoria}" title="#{bundle.ViewCategoriaTitle_categoriaidCategoria}"/>
+                        <h:outputText value="#{categoriaController.selectedBuscar.categoriaidCategoria.nombreCategoria}" title="#{bundle.ViewCategoriaTitle_categoriaidCategoria}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="CategoriaViewDialogBuscar.hide()"/>
                 </h:panelGroup>

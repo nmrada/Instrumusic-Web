@@ -39,7 +39,7 @@
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column> 
-                        <p:column sortBy="#{bundle.ListMunicipioTitle_departamentoidDepartamento}">
+                        <p:column sortBy="#{item.departamentoidDepartamento.nombre}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMunicipioTitle_departamentoidDepartamento}"/>
                             </f:facet>
@@ -104,7 +104,7 @@
                             </f:facet>
                             <h:outputText value="#{itemsEncontrados.idMunicipio}"/>
                         </p:column>
-                        <p:column sortBy="#{bundle.ListMunicipioTitle_nombre}">
+                        <p:column sortBy="#{itemsEncontrados.nombre}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMunicipioTitle_nombre}"/>
                             </f:facet>
