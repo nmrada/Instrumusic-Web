@@ -79,7 +79,7 @@ public class DomicilioCuentaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.model.entities.DomicilioCuentaPK[ cuentaTipoDocumentotipoDocumento=" + cuentaTipoDocumentotipoDocumento + ", cuentanumeroDocumento=" + cuentanumeroDocumento + " ]";
+        return "" + cuentaTipoDocumentotipoDocumento + ": " + cuentanumeroDocumento + " ";
     }
     
 }

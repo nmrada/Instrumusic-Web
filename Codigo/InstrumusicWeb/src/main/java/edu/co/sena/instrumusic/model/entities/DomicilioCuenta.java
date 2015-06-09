@@ -164,7 +164,7 @@ public class DomicilioCuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.model.entities.DomicilioCuenta[ domicilioCuentaPK=" + domicilioCuentaPK + " ]";
+        return " " + domicilioCuentaPK + " ";
     }
     
 }

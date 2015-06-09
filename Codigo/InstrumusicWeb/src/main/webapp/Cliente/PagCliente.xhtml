@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:body>
+
+        <ui:composition template="./PagInicio.xhtml">
+            
+            <ui:define name="top">
+                
+                <h:graphicImage id="image" alt="jsf-sun" url="../Logo_1img.jpg" style="height: 200px; width: 200px;" ></h:graphicImage>  
+                <h:graphicImage id="ejemplo" alt="jsf-sun" url="../inicio.jpg" style="height: 200px; width: 1115px;" ></h:graphicImage>  
+
+                <h:form>
+                    <p:growl id="messages" showDetail="false"/>
+                    <p:menubar>
+
+                        <p:menuitem value="#{bundleDeCliente.Inicio}" url="/faces/Cliente/PagCliente.xhtml" icon="ui-icon-home" />
+                        
+                        <p:submenu label="Intrumentos de cuerda" >
+                            
+                            <p:menuitem value="#{categoriaController.items}" url="/faces/Cliente/intruCuerda.xhtml" />
+                            <p:menuitem value="Bajos" actionListener="#{bundle.Save}"  />
+                            <p:menuitem value="Violines" actionListener="#{bundle.Save}" />
+                        </p:submenu>
+                        <p:submenu label="Intrumentos de viento">
+                            <p:menuitem value="Trompetas" actionListener="#{bundle.Save}"  url=""/>
+                            <p:menuitem value="Saxofon" actionListener="#{bundle.Save}"  />
+                            <p:menuitem value="Trombon" actionListener="#{bundle.Save}"  />
+                        </p:submenu>
+                        <p:submenu label="Intrumentos de percusión">
+                            <p:menuitem value="Bateria" actionListener="#{bundle.Save}"  url=""/>
+                            <p:menuitem value="Tambores" actionListener="#{bundle.Save}"  />
+                            <p:menuitem value="Timbales" actionListener="#{bundle.Save}"  />
+                        </p:submenu>
+                        <p:submenu label="Intrumentos de percusión">
+                            <p:menuitem value="Sonido" actionListener="#{bundle.Save}"  url=""/>
+                        </p:submenu>
+
+                    </p:menubar>
+                </h:form>
+
+            </ui:define>
+
+            <ui:define name="left">
+                <h:form>
+                    <p:panel header="Ingresar">
+                        <p:messages autoUpdate="true"/>
+                   
+
+                        <h:panelGrid id="grid" columns="1" cellpadding="1">
+                            <h:outputLabel for="usuario" value="Usuario:" style="font-weight:bold"/>                    
+                            <p:inputText id="usuario" value="#{validationView.text}" required="true" label="Usuario" style="width: 90px;"/>
+                            <p:message for="usuario" />
+                            <h:outputText value="#{validationView.text}" />
+
+                            <h:outputLabel for="contraseña" value="Contraseña:" style="font-weight:bold; margin-right: 5px;"/>                    
+                            <p:password id="contraseña" value="#{validationView.integer}" required="true" label="Contraseña" style="width: 90px">
+                                <f:validateDoubleRange minimum="5" maximum="8" />
+                            </p:password>
+                            <p:message for="contraseña" />
+                            <h:outputText value="#{validationView.integer}" />
+                        </h:panelGrid>
+                        <p:commandButton value="Entrar" ajax="false" validateClient="true" style="margin-right:10px"/>
+                    </p:panel>
+                </h:form>
+
+                <h:form>
+                    <p:growl autoUpdate="true"/>
+
+                    <p:panelMenu style="width:150px">
+                        <p:submenu label="Ajax Menuitems">
+                            <p:menuitem value="Save" actionListener="#{menuView.save}" icon="ui-icon-disk" />
+                            <p:menuitem value="Update" actionListener="#{menuView.update}"  icon="ui-icon-arrowrefresh-1-w" />
+                        </p:submenu>
+                        <p:submenu label="Non-Ajax Menuitem">
+                            <p:menuitem value="Delete" actionListener="#{menuView.delete}"  ajax="false" icon="ui-icon-close"/>
+                        </p:submenu>
+                        <p:separator />
+                        <p:submenu label="Navigations" >
+                            <p:submenu label="Links" icon="ui-icon-extlink">
+                                <p:submenu label="PrimeFaces" icon="ui-icon-heart">
+                                    <p:menuitem value="Home" url="http://www.primefaces.org" icon="ui-icon-home" />
+                                    <p:menuitem value="Docs" url="http://www.primefaces.org/documentation" icon="ui-icon-document" />
+                                    <p:menuitem value="Download" url="http://www.primefaces.org/downloads" icon="ui-icon-arrowthick-1-s" />
+                                    <p:menuitem value="Support" url="http://www.primefaces.org/support" icon="ui-icon-wrench" />
+                                </p:submenu>
+                            </p:submenu>
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="right">
+                right
+                <h:form>
+                    <p:growl id="messages" />
+
+                    <p:splitButton value="Carrito" actionListener="#{buttonView.save}" update="messages" >
+                        <p:menuitem value="Actualizar" actionListener="#{buttonView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
+                        <p:menuitem value="Borrar" actionListener="#{buttonView.delete}" ajax="false" icon="ui-icon-close" />
+                        <p:separator />
+                        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink" />
+                    </p:splitButton>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                content<br/>
+                <p:galleria value="#{paginaInicio.images}" var="image" panelWidth="925" panelHeight="520" showCaption="true"> 
+                    <p:graphicImage name="/resources/imagenes/#{image}" alt="Intrumentos en descuento #{image}" title="#{image}"/>
+                </p:galleria>
+                
+                <h:graphicImage library="imagenes" name="acordion.jpg" />
+                
+                  
+            </ui:define>
+     
+
+        </ui:composition>
+
+    </h:body>
+</html>

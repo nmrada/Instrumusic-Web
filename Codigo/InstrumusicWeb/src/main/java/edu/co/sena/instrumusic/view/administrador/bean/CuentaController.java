@@ -26,7 +26,13 @@ public class CuentaController implements Serializable {
     @EJB
     private edu.co.sena.instrumusic.controller.administrador.beans.CuentaFacade ejbFacade;
     private List<Cuenta> items = null;
+    private List<Cuenta> itemsBuscados = null;
     private Cuenta selected;
+    private Cuenta selectedBuscados;
+    
+    private String tipBuscar;
+    private String numBuscar;
+    private String nombreBuscar;
 
     public CuentaController() {
     }
@@ -66,6 +72,13 @@ public class CuentaController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CuentaUpdated"));
+        selectedBuscados = null;
+        itemsBuscados = null;
+    }
+    public void updateBuscar() {
+        persist(PersistAction.UPDATEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("CuentaUpdated"));
+        selected = null;
+        items = null;
     }
 
     public void destroy() {
@@ -74,12 +87,30 @@ public class CuentaController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        itemsBuscados = null;
+        selectedBuscados = null;
+    }
+    public void eliminarBuscados() {
+        persist(PersistAction.DELETEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("CuentaDeleted"));
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        itemsBuscados = null;
+        selectedBuscados = null;
     }
 
     public List<Cuenta> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
+        return items;
+    }
+    
+    public List<Cuenta> buscarPorLlavePrim() {
+        itemsBuscados = getFacade().findByLlavePrimaria(tipBuscar, numBuscar);
+        nombreBuscar = null;
+        
         return items;
     }
 

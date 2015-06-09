@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition template="./PagInicio.xhtml">
+
+            <ui:define name="top">
+                <h:graphicImage id="image" alt="jsf-sun" url="../Logo_1img.jpg" style="height: 200px; width: 200px;" ></h:graphicImage>  
+                <h:graphicImage id="ejemplo" alt="jsf-sun" url="../inicio.jpg" style="height: 200px; width: 1115px;" ></h:graphicImage>  
+
+                <h:form>
+                    <p:growl id="messages" showDetail="false"/>
+                    <p:menubar>
+                        <p:menuitem value="Inicio" url="/faces/Cliente/PagCliente.xhtml" icon="ui-icon-home" />
+                        <p:submenu label="Intrumentos de cuerda" >
+                            <p:menuitem value="Guitarras" actionListener="#{bundle.Save}" url="/faces/Cliente/intruCuerda.xhtml" />
+                            <p:menuitem value="Bajos" actionListener="#{bundle.Save}"/>
+                            <p:menuitem value="Violines" actionListener="#{bundle.Save}" />
+                        </p:submenu>
+                        <p:submenu label="Intrumentos de viento">
+                            <p:menuitem value="Trompetas" actionListener="#{bundle.Save}"  url=""/>
+                            <p:menuitem value="Saxofon" actionListener="#{bundle.Save}"  />
+                            <p:menuitem value="Trombon" actionListener="#{bundle.Save}"  />
+                        </p:submenu>
+                        <p:submenu label="Intrumentos de percusión">
+                            <p:menuitem value="Bateria" actionListener="#{bundle.Save}"  url=""/>
+                            <p:menuitem value="Tambores" actionListener="#{bundle.Save}"  />
+                            <p:menuitem value="Timbales" actionListener="#{bundle.Save}"  />
+                        </p:submenu>
+                        <p:submenu label="Intrumentos de percusión">
+                            <p:menuitem value="Sonido" actionListener="#{bundle.Save}"  url=""/>
+                        </p:submenu>
+
+                    </p:menubar>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="right">
+                right
+            </ui:define>
+
+            <ui:define name="content">
+                <h1>Guitarras</h1>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

@@ -28,12 +28,6 @@
                         <p:inputText id="primerApellido" value="#{cuentaController.selected.primerApellido}" title="#{bundle.CreateCuentaTitle_primerApellido}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_primerApellido}"/>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_segundoApellido}" for="segundoApellido" />
                         <p:inputText id="segundoApellido" value="#{cuentaController.selected.segundoApellido}" title="#{bundle.CreateCuentaTitle_segundoApellido}" />
-                        <p:outputLabel value="#{bundle.CreateCuentaLabel_domicilioCuenta}" for="domicilioCuenta" />
-                        <p:selectOneMenu id="domicilioCuenta" value="#{cuentaController.selected.domicilioCuenta}" >
-                            <f:selectItems value="#{domicilioCuentaController.itemsAvailableSelectOne}"
-                                           var="domicilioCuentaItem"
-                                           itemValue="#{domicilioCuentaItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="usuarioidUsuario" />
                         <p:selectOneMenu id="usuarioidUsuario" value="#{cuentaController.selected.usuarioidUsuario}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}">
                             <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
