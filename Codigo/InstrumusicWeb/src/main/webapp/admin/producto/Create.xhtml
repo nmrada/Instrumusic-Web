@@ -24,10 +24,10 @@
                         <p:inputText id="descripcion" value="#{productoController.selected.descripcion}" title="#{bundle.CreateProductoTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_descripcion}"/>
                         <p:outputLabel value="#{bundle.CreateProductoLabel_material}" for="material" />
                         <p:inputText id="material" value="#{productoController.selected.material}" title="#{bundle.CreateProductoTitle_material}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_material}"/>
+                        <p:outputLabel value="#{bundle.CreateProductoLabel_foto}" for="foto" />
+                        <p:fileUpload id="foto" fileUploadListener="#{productoController.handleFileUpload}" mode="advanced" dragDropSupport="false" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
                         <p:outputLabel value="#{bundle.CreateProductoLabel_color}" for="color" />
                         <p:colorPicker id="color" value="#{productoController.selected.color}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_color}"/>
-                        <p:outputLabel value="#{bundle.CreateProductoLabel_foto}" for="foto" />
-                        <p:fileUpload id="foto" value="#{productoController.selected.foto}" mode="simple"/>
                         <p:outputLabel value="#{bundle.CreateProductoLabel_cantidad}" for="cantidad" />
                         <p:inputText id="cantidad" value="#{productoController.selected.cantidad}" title="#{bundle.CreateProductoTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_cantidad}" type="number"/>
                         <p:outputLabel value="#{bundle.CreateProductoLabel_activo}" for="activo" />

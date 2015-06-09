@@ -1,12 +1,11 @@
 package edu.co.sena.instrumusic.view.administrador.bean;
 
-import edu.co.sena.instrumusic.view.administrador.dto.ProductoDTO;
+import edu.co.sena.instrumusic.controller.administrador.dto.ProductoDTO;
 import edu.co.sena.instrumusic.model.entities.Producto;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil.PersistAction;
 import edu.co.sena.instrumusic.controller.administrador.beans.ProductoFacade;
-import java.awt.Color;
-
+import edu.co.sena.instrumusic.general.utils.ConversorDTO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +21,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.view.ViewScoped;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 @Named("productoController")
@@ -33,6 +33,8 @@ public class ProductoController implements Serializable {
     private List<ProductoDTO> items = null;
     private ProductoDTO selected;
     
+    private UploadedFile file;
+ 
     public ProductoController() {
     }
     
@@ -85,19 +87,7 @@ public class ProductoController implements Serializable {
             items= new ArrayList<>();
             if (!listaP.isEmpty()) {
                 for (Producto listaP1 : listaP) {
-                    ProductoDTO pt = new ProductoDTO();
-                    pt.setIdProducto(listaP1.getIdProducto());
-                    pt.setNombre(listaP1.getNombre());
-                    pt.setMaterial(listaP1.getMaterial());
-                    pt.setMarca(listaP1.getMarca());
-                    pt.setDescripcion(listaP1.getDescripcion());
-                    pt.setCantidad(listaP1.getCantidad());
-                    pt.setActivo(listaP1.getActivo());
-                    pt.setDescuento(listaP1.getDescuento());
-                    pt.setPrecioUnitario(listaP1.getPrecioUnitario());
-                    pt.setReferencia(listaP1.getReferencia());
-                    pt.setColor(Color.getColor(listaP1.getColor()));
-                    pt.setCategoriaidCategoria(listaP1.getCategoriaidCategoria());
+                    ProductoDTO pt = ConversorDTO.conversorProductoaProductoDTO(listaP1);
                     items.add(pt);
                 }
             } else {
@@ -107,49 +97,14 @@ public class ProductoController implements Serializable {
         return items;
     }
     
-    public Producto conversorProductoDTOaProducto(ProductoDTO recibida) {
-        Producto pt = new Producto();
-        pt.setColor(String.valueOf(recibida.getColor().getRGB()));
-        pt.setActivo(recibida.getActivo());
-        pt.setCantidad(recibida.getCantidad());
-        pt.setCategoriaidCategoria(recibida.getCategoriaidCategoria());
-        pt.setDescripcion(recibida.getDescripcion());
-        pt.setDescuento(recibida.getDescuento());
-        pt.setIdProducto(recibida.getIdProducto());
-        pt.setMarca(recibida.getMarca());
-        pt.setMaterial(recibida.getMaterial());
-        pt.setNombre(recibida.getNombre());
-        pt.setPrecioUnitario(recibida.getPrecioUnitario());
-        pt.setReferencia(recibida.getReferencia());
-        pt.setFoto(recibida.getFoto().getContents());
-        return pt;
-    }
-    
-    public ProductoDTO conversorProductoaProductoDTO(Producto recibida) {
-        ProductoDTO pt = new ProductoDTO();
-        pt.setColor(Color.getColor(recibida.getColor()));
-        pt.setActivo(recibida.getActivo());
-        pt.setCantidad(recibida.getCantidad());
-        pt.setCategoriaidCategoria(recibida.getCategoriaidCategoria());
-        pt.setDescripcion(recibida.getDescripcion());
-        pt.setDescuento(recibida.getDescuento());
-        pt.setIdProducto(recibida.getIdProducto());
-        pt.setMarca(recibida.getMarca());
-        pt.setMaterial(recibida.getMaterial());
-        pt.setNombre(recibida.getNombre());
-        pt.setPrecioUnitario(recibida.getPrecioUnitario());
-        pt.setReferencia(recibida.getReferencia());
-        return pt;
-    }
-    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(conversorProductoDTOaProducto(selected));
+                    getFacade().edit(ConversorDTO.conversorProductoDTOaProducto(selected));
                 } else {
-                    getFacade().remove(conversorProductoDTOaProducto(selected));
+                    getFacade().remove(ConversorDTO.conversorProductoDTOaProducto(selected));
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -180,6 +135,18 @@ public class ProductoController implements Serializable {
     
     public List<Producto> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+    
+    public void handleFileUpload(FileUploadEvent event) {
+        setFile(event.getFile());
     }
     
     @FacesConverter(forClass = ProductoDTO.class)

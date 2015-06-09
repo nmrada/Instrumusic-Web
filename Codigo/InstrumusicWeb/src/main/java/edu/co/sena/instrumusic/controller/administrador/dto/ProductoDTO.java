@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.instrumusic.view.administrador.dto;
+package edu.co.sena.instrumusic.controller.administrador.dto;
+
 
 import edu.co.sena.instrumusic.model.entities.Categoria;
-import java.awt.Color;
 import java.io.Serializable;
 import org.primefaces.model.UploadedFile;
 
@@ -23,7 +23,7 @@ public class ProductoDTO implements Serializable {
     private String referencia;
     private String descripcion;
     private String material;
-    private Color color;
+    private String color;
     private UploadedFile foto;
     private int cantidad;
     private boolean activo;
@@ -38,8 +38,6 @@ public class ProductoDTO implements Serializable {
     public ProductoDTO(String idProducto) {
         this.idProducto = idProducto;
     }
-
-    
 
     public String getIdProducto() {
         return idProducto;
@@ -88,10 +86,6 @@ public class ProductoDTO implements Serializable {
     public void setMaterial(String material) {
         this.material = material;
     }
-
-    
-
-    
 
     public int getCantidad() {
         return cantidad;
@@ -145,11 +139,11 @@ public class ProductoDTO implements Serializable {
         return true;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
@@ -167,8 +161,5 @@ public class ProductoDTO implements Serializable {
 
     public void setCategoriaidCategoria(Categoria categoriaidCategoria) {
         this.categoriaidCategoria = categoriaidCategoria;
-    }
-
-   
-    
+    }  
 }
