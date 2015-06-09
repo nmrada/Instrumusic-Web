@@ -4,6 +4,7 @@ import edu.co.sena.instrumusic.model.entities.Proveedor;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil.PersistAction;
 import edu.co.sena.instrumusic.controller.administrador.beans.ProveedorFacade;
+import edu.co.sena.instrumusic.model.entities.DomicilioProveedor;
 import edu.co.sena.instrumusic.model.entities.TipoDocumento;
 
 import java.io.Serializable;
@@ -28,6 +29,7 @@ public class ProveedorController implements Serializable {
     private edu.co.sena.instrumusic.controller.administrador.beans.ProveedorFacade ejbFacade;
     private List<Proveedor> items = null;
     private List<Proveedor> itemsBuscados = null;
+    private List<DomicilioProveedor> itemsBuscados2 = null;
 
     private Proveedor selected;
     private Proveedor selectedBuscar;
@@ -35,6 +37,19 @@ public class ProveedorController implements Serializable {
     private String numeroDocumentoBuscar;
     private String nombreBuscar;
     private String emailBuscar;
+    private String telefonoBuscar;
+    private String direccionBuscar;
+    private String barrioBuscar;
+    private String localidadBuscar;
+    private Integer idMunicipioBuscar;
+
+    public List<DomicilioProveedor> getItemsBuscados2() {
+        return itemsBuscados2;
+    }
+
+    public void setItemsBuscados2(List<DomicilioProveedor> itemsBuscados2) {
+        this.itemsBuscados2 = itemsBuscados2;
+    }
 
     public ProveedorController() {
     }
@@ -44,6 +59,11 @@ public class ProveedorController implements Serializable {
         numeroDocumentoBuscar = null;
         nombreBuscar = null;
         emailBuscar = null;
+        telefonoBuscar = null;
+        direccionBuscar = null;
+        barrioBuscar = null;
+        localidadBuscar = null;
+        idMunicipioBuscar = null;
         return itemsBuscados;
     }
 
@@ -52,6 +72,11 @@ public class ProveedorController implements Serializable {
         tipoDocumentoBuscar = null;
         nombreBuscar = null;
         emailBuscar = null;
+        telefonoBuscar = null;
+        direccionBuscar = null;
+        barrioBuscar = null;
+        localidadBuscar = null;
+        idMunicipioBuscar = null;
         return itemsBuscados;
     }
 
@@ -60,6 +85,11 @@ public class ProveedorController implements Serializable {
         numeroDocumentoBuscar = null;
         tipoDocumentoBuscar = null;
         emailBuscar = null;
+        telefonoBuscar = null;
+        direccionBuscar = null;
+        barrioBuscar = null;
+        localidadBuscar = null;
+        idMunicipioBuscar = null;
         return itemsBuscados;
     }
 
@@ -68,8 +98,78 @@ public class ProveedorController implements Serializable {
         numeroDocumentoBuscar = null;
         nombreBuscar = null;
         tipoDocumentoBuscar = null;
+        telefonoBuscar = null;
+        direccionBuscar = null;
+        barrioBuscar = null;
+        localidadBuscar = null;
+        idMunicipioBuscar = null;
         return itemsBuscados;
     }
+    
+    public List<DomicilioProveedor> buscarPorTelefono() {
+        itemsBuscados2 = getFacade().findByTelefono(telefonoBuscar);
+        numeroDocumentoBuscar = null;
+        nombreBuscar = null;
+        tipoDocumentoBuscar = null;
+        emailBuscar = null;
+        direccionBuscar = null;
+        barrioBuscar = null;
+        localidadBuscar = null;
+        idMunicipioBuscar = null;
+        return itemsBuscados2;
+    }
+    
+     public List<DomicilioProveedor> buscarPorDireccion() {
+        itemsBuscados2 = getFacade().findByDireccion(direccionBuscar);
+        numeroDocumentoBuscar = null;
+        nombreBuscar = null;
+        tipoDocumentoBuscar = null;
+        telefonoBuscar = null;
+        emailBuscar = null;
+        barrioBuscar = null;
+        localidadBuscar = null;
+        idMunicipioBuscar = null;
+        return itemsBuscados2;
+    }
+     
+     public List<DomicilioProveedor> buscarPorBarrio() {
+        itemsBuscados2 = getFacade().findByBarrio(barrioBuscar);
+        numeroDocumentoBuscar = null;
+        nombreBuscar = null;
+        tipoDocumentoBuscar = null;
+        telefonoBuscar = null;
+        direccionBuscar = null;
+        emailBuscar = null;
+        localidadBuscar = null;
+        idMunicipioBuscar = null;
+        return itemsBuscados2;
+    }
+     
+      public List<DomicilioProveedor> buscarPorLocalidad() {
+        itemsBuscados2 = getFacade().findByLocalidad(localidadBuscar);
+        numeroDocumentoBuscar = null;
+        nombreBuscar = null;
+        tipoDocumentoBuscar = null;
+        telefonoBuscar = null;
+        direccionBuscar = null;
+        barrioBuscar = null;
+        emailBuscar = null;
+        idMunicipioBuscar = null;
+        return itemsBuscados2;
+    }
+//     
+//       public List<DomicilioProveedor> buscarPorIdMunicipio() {
+//        itemsBuscados2 = getFacade().findByIdMunicipio(idMunicipioBuscar);
+//        numeroDocumentoBuscar = null;
+//        nombreBuscar = null;
+//        tipoDocumentoBuscar = null;
+//        telefonoBuscar = null;
+//        direccionBuscar = null;
+//        barrioBuscar = null;
+//        localidadBuscar = null;
+//        emailBuscar = null;
+//        return itemsBuscados2;
+//    }
 
     public Proveedor getSelected() {
         return selected;
@@ -106,14 +206,14 @@ public class ProveedorController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ProveedorUpdated"));
-        selectedBuscar= null;
-        itemsBuscados= null;
+        selectedBuscar = null;
+        itemsBuscados = null;
     }
-    
-     public void updateBuscar() {
+
+    public void updateBuscar() {
         persist(PersistAction.UPDATEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("ProveedorUpdated"));
-        selected= null;
-        items= null;
+        selected = null;
+        items = null;
     }
 
     public void destroy() {
@@ -125,8 +225,8 @@ public class ProveedorController implements Serializable {
         itemsBuscados = null;
         selectedBuscar = null;
     }
-    
-      public void eliminarBuscado() {
+
+    public void eliminarBuscado() {
         persist(PersistAction.DELETEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("ProveedorDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
@@ -135,8 +235,6 @@ public class ProveedorController implements Serializable {
         itemsBuscados = null;
         selectedBuscar = null;
     }
-    
-    
 
     public List<Proveedor> getItems() {
         if (items == null) {
@@ -145,7 +243,7 @@ public class ProveedorController implements Serializable {
         return items;
     }
 
-   private void persist(PersistAction persistAction, String successMessage) {
+    private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
             try {
@@ -260,6 +358,46 @@ public class ProveedorController implements Serializable {
 
     public void setTipoDocumentoBuscar(String tipoDocumentoBuscar) {
         this.tipoDocumentoBuscar = tipoDocumentoBuscar;
+    }
+
+    public String getTelefonoBuscar() {
+        return telefonoBuscar;
+    }
+
+    public void setTelefonoBuscar(String telefonoBuscar) {
+        this.telefonoBuscar = telefonoBuscar;
+    }
+
+    public String getDireccionBuscar() {
+        return direccionBuscar;
+    }
+
+    public void setDireccionBuscar(String direccionBuscar) {
+        this.direccionBuscar = direccionBuscar;
+    }
+
+    public String getBarrioBuscar() {
+        return barrioBuscar;
+    }
+
+    public void setBarrioBuscar(String barrioBuscar) {
+        this.barrioBuscar = barrioBuscar;
+    }
+
+    public String getLocalidadBuscar() {
+        return localidadBuscar;
+    }
+
+    public void setLocalidadBuscar(String localidadBuscar) {
+        this.localidadBuscar = localidadBuscar;
+    }
+
+    public Integer getIdMunicipioBuscar() {
+        return idMunicipioBuscar;
+    }
+
+    public void setIdMunicipioBuscar(Integer idMunicipioBuscar) {
+        this.idMunicipioBuscar = idMunicipioBuscar;
     }
 
     @FacesConverter(forClass = Proveedor.class)

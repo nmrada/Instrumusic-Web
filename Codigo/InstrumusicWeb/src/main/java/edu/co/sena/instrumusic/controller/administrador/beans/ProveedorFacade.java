@@ -5,6 +5,7 @@
  */
 package edu.co.sena.instrumusic.controller.administrador.beans;
 
+import edu.co.sena.instrumusic.model.entities.DomicilioProveedor;
 import edu.co.sena.instrumusic.model.entities.Proveedor;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -55,4 +56,34 @@ public class ProveedorFacade extends AbstractFacade<Proveedor> {
         Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, Proveedor.class);
         return queryJQL.getResultList();
     }
+     
+          public List<DomicilioProveedor> findByTelefono(String telefono) {
+        String sqlQuery = "SELECT * FROM DomicilioProveedor po where po.telefono like '%" + telefono + "%';";
+        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, DomicilioProveedor.class);
+        return queryJQL.getResultList();
+    }
+          
+        public List<DomicilioProveedor> findByDireccion(String direccion) {
+        String sqlQuery = "SELECT * FROM DomicilioProveedor po where po.direcion like '%" + direccion + "%';";
+        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, DomicilioProveedor.class);
+        return queryJQL.getResultList();
+    }
+    
+        public List<DomicilioProveedor> findByBarrio(String barrio) {
+        String sqlQuery = "SELECT * FROM DomicilioProveedor po where po.barrio like '%" + barrio + "%';";
+        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, DomicilioProveedor.class);
+        return queryJQL.getResultList();
+    }
+        
+          public List<DomicilioProveedor> findByLocalidad(String localidad) {
+        String sqlQuery = "SELECT * FROM DomicilioProveedor po where po.localidad like '%" + localidad + "%';";
+        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, DomicilioProveedor.class);
+        return queryJQL.getResultList();
+    }
+          
+         public List<DomicilioProveedor> findByIdMunicipio(String idMunicipio) {
+        String sqlQuery = "SELECT * FROM DomicilioProveedor po where po.Municipio_idMunicipio like '%" + idMunicipio + "%';";
+        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, DomicilioProveedor.class);
+        return queryJQL.getResultList();
+    }   
 }

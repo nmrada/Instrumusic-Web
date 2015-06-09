@@ -51,7 +51,7 @@ public class Municipio implements Serializable {
     private String nombre;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "municipioidMunicipio", fetch = FetchType.EAGER)
     private List<DomicilioCuenta> domicilioCuentaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "municipioidMunicipio", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "municipioidMunicipio", fetch = FetchType.LAZY)
     private List<DomicilioProveedor> domicilioProveedorList;
     @JoinColumn(name = "Departamento_idDepartamento", referencedColumnName = "idDepartamento" )
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
