@@ -147,7 +147,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.model.entities.Categoria[ idCategoria=" + idCategoria + " ]";
+        return " "+nombreCategoria+" ";
     }
     
 }
