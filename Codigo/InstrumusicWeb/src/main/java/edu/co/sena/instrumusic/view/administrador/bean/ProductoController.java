@@ -22,6 +22,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.view.ViewScoped;
+import org.primefaces.model.UploadedFile;
 
 @Named("productoController")
 @ViewScoped
@@ -120,6 +121,7 @@ public class ProductoController implements Serializable {
         pt.setNombre(recibida.getNombre());
         pt.setPrecioUnitario(recibida.getPrecioUnitario());
         pt.setReferencia(recibida.getReferencia());
+        pt.setFoto(recibida.getFoto().getContents());
         return pt;
     }
     
