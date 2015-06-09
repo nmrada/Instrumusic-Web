@@ -8,18 +8,18 @@
 
     <ui:composition>
 
-        <p:dialog id="ProveedorViewDlg" widgetVar="ProveedorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProveedorTitle}">
-            <h:form id="ProveedorViewForm">
+        <p:dialog id="ProveedorViewDlgBuscar" widgetVar="ProveedorViewDialogBuscar" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProveedorTitle}">
+            <h:form id="ProveedorViewFormBuscar">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{proveedorController.selectedBuscar != null}">
                         <h:outputText value="#{bundle.ViewProveedorLabel_tipoDocumento}"/>
-                        <h:outputText value="#{proveedorController.selected.tipoDocumento}" title="#{bundle.ViewProveedorTitle_tipoDocumento}"/>
+                        <h:outputText value="#{proveedorController.selectedBuscar.tipoDocumento}" title="#{bundle.ViewProveedorTitle_tipoDocumento}"/>
                         <h:outputText value="#{bundle.ViewProveedorLabel_proveedorPK_numeroDocumento}"/>
-                        <h:outputText value="#{proveedorController.selected.proveedorPK.numeroDocumento}" title="#{bundle.ViewProveedorTitle_proveedorPK_numeroDocumento}"/>
+                        <h:outputText value="#{proveedorController.selectedBuscar.proveedorPK.numeroDocumento}" title="#{bundle.ViewProveedorTitle_proveedorPK_numeroDocumento}"/>
                         <h:outputText value="#{bundle.ViewProveedorLabel_nombre}"/>
-                        <h:outputText value="#{proveedorController.selected.nombre}" title="#{bundle.ViewProveedorTitle_nombre}"/>
+                        <h:outputText value="#{proveedorController.selectedBuscar.nombre}" title="#{bundle.ViewProveedorTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewProveedorLabel_email}"/>
-                        <h:outputText value="#{proveedorController.selected.email}" title="#{bundle.ViewProveedorTitle_email}"/> 
+                        <h:outputText value="#{proveedorController.selectedBuscar.email}" title="#{bundle.ViewProveedorTitle_email}"/> 
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProveedorViewDialog.hide()"/>
                 </h:panelGroup>
