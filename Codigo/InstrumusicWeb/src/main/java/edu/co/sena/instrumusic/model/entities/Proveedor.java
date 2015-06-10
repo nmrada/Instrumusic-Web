@@ -53,9 +53,9 @@ public class Proveedor implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "email")
     private String email;
-    @OneToOne(cascade ={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH }, mappedBy = "proveedor", fetch = FetchType.LAZY)
+    @OneToOne(cascade =CascadeType.ALL, mappedBy = "proveedor", fetch = FetchType.LAZY)
     private DomicilioProveedor domicilioProveedor;
-    @OneToMany(cascade ={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH }, mappedBy = "proveedor", fetch = FetchType.EAGER)
+    @OneToMany(cascade =CascadeType.ALL, mappedBy = "proveedor", fetch = FetchType.EAGER)
     private List<Inventario> inventarioList;
     @JoinColumn(name = "Tipo_Documento_tipoDocumento", referencedColumnName = "tipoDocumento", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER )

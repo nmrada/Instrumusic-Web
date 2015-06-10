@@ -8,7 +8,6 @@ import edu.co.sena.instrumusic.view.general.util.JsfUtil.PersistAction;
 import edu.co.sena.instrumusic.controller.administrador.beans.ProveedorFacade;
 import edu.co.sena.instrumusic.model.entities.DomicilioProveedor;
 import edu.co.sena.instrumusic.model.entities.Municipio;
-import edu.co.sena.instrumusic.model.entities.TipoDocumento;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
@@ -25,7 +25,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 @Named("proveedorController")
-@ViewScoped
+@SessionScoped
 public class ProveedorController implements Serializable {
 
     @EJB
@@ -114,71 +114,71 @@ public class ProveedorController implements Serializable {
         return itemsBuscados;
     }
 
-    public List<DomicilioProveedor> buscarPorTelefono() {
-        itemsBuscadosDom = getFacade().findByTelefono(telefonoBuscar);
-        numeroDocumentoBuscar = null;
-        nombreBuscar = null;
-        tipoDocumentoBuscar = null;
-        emailBuscar = null;
-        direccionBuscar = null;
-        barrioBuscar = null;
-        localidadBuscar = null;
-        idMunicipioBuscar = null;
-        return itemsBuscadosDom;
-    }
-
-    public List<DomicilioProveedor> buscarPorDireccion() {
-        itemsBuscadosDom = getFacade().findByDireccion(direccionBuscar);
-        numeroDocumentoBuscar = null;
-        nombreBuscar = null;
-        tipoDocumentoBuscar = null;
-        telefonoBuscar = null;
-        emailBuscar = null;
-        barrioBuscar = null;
-        localidadBuscar = null;
-        idMunicipioBuscar = null;
-        return itemsBuscadosDom;
-    }
-
-    public List<DomicilioProveedor> buscarPorBarrio() {
-        itemsBuscadosDom = getFacade().findByBarrio(barrioBuscar);
-        numeroDocumentoBuscar = null;
-        nombreBuscar = null;
-        tipoDocumentoBuscar = null;
-        telefonoBuscar = null;
-        direccionBuscar = null;
-        emailBuscar = null;
-        localidadBuscar = null;
-        idMunicipioBuscar = null;
-        return itemsBuscadosDom;
-    }
-
-    public List<DomicilioProveedor> buscarPorLocalidad() {
-        itemsBuscadosDom = getFacade().findByLocalidad(localidadBuscar);
-        numeroDocumentoBuscar = null;
-        nombreBuscar = null;
-        tipoDocumentoBuscar = null;
-        telefonoBuscar = null;
-        direccionBuscar = null;
-        barrioBuscar = null;
-        emailBuscar = null;
-        idMunicipioBuscar = null;
-        return itemsBuscadosDom;
-    }
-
-    public List<Municipio> buscarPorIdMunicipio() {
-        Municipio munTem = (Municipio) getFacadeMun().findById(idMunicipioBuscar);
-        itemsBuscadosDom = munTem.getDomicilioProveedorList();
-        numeroDocumentoBuscar = null;
-        nombreBuscar = null;
-        tipoDocumentoBuscar = null;
-        telefonoBuscar = null;
-        direccionBuscar = null;
-        barrioBuscar = null;
-        localidadBuscar = null;
-        emailBuscar = null;
-        return itemsBuscadosMun;
-    }
+//    public List<DomicilioProveedor> buscarPorTelefono() {
+//        itemsBuscadosDom = getFacade().findByTelefono(telefonoBuscar);
+//        numeroDocumentoBuscar = null;
+//        nombreBuscar = null;
+//        tipoDocumentoBuscar = null;
+//        emailBuscar = null;
+//        direccionBuscar = null;
+//        barrioBuscar = null;
+//        localidadBuscar = null;
+//        idMunicipioBuscar = null;
+//        return itemsBuscadosDom;
+//    }
+//
+//    public List<DomicilioProveedor> buscarPorDireccion() {
+//        itemsBuscadosDom = getFacade().findByDireccion(direccionBuscar);
+//        numeroDocumentoBuscar = null;
+//        nombreBuscar = null;
+//        tipoDocumentoBuscar = null;
+//        telefonoBuscar = null;
+//        emailBuscar = null;
+//        barrioBuscar = null;
+//        localidadBuscar = null;
+//        idMunicipioBuscar = null;
+//        return itemsBuscadosDom;
+//    }
+//
+//    public List<DomicilioProveedor> buscarPorBarrio() {
+//        itemsBuscadosDom = getFacade().findByBarrio(barrioBuscar);
+//        numeroDocumentoBuscar = null;
+//        nombreBuscar = null;
+//        tipoDocumentoBuscar = null;
+//        telefonoBuscar = null;
+//        direccionBuscar = null;
+//        emailBuscar = null;
+//        localidadBuscar = null;
+//        idMunicipioBuscar = null;
+//        return itemsBuscadosDom;
+//    }
+//
+//    public List<DomicilioProveedor> buscarPorLocalidad() {
+//        itemsBuscadosDom = getFacade().findByLocalidad(localidadBuscar);
+//        numeroDocumentoBuscar = null;
+//        nombreBuscar = null;
+//        tipoDocumentoBuscar = null;
+//        telefonoBuscar = null;
+//        direccionBuscar = null;
+//        barrioBuscar = null;
+//        emailBuscar = null;
+//        idMunicipioBuscar = null;
+//        return itemsBuscadosDom;
+//    }
+//
+//    public List<Municipio> buscarPorIdMunicipio() {
+//        Municipio munTem = (Municipio) getFacadeMun().findById(idMunicipioBuscar);
+//        itemsBuscadosDom = munTem.getDomicilioProveedorList();
+//        numeroDocumentoBuscar = null;
+//        nombreBuscar = null;
+//        tipoDocumentoBuscar = null;
+//        telefonoBuscar = null;
+//        direccionBuscar = null;
+//        barrioBuscar = null;
+//        localidadBuscar = null;
+//        emailBuscar = null;
+//        return itemsBuscadosMun;
+//    }
 
     public Proveedor getSelected() {
         return selected;
@@ -198,15 +198,15 @@ public class ProveedorController implements Serializable {
 
     private ProveedorFacade getFacade() {
         return ejbFacade;
-    }
-
-    private MunicipioFacade getFacadeMun() {
-        return facedeMun;
-    }
-
-    private DomicilioProveedorFacade getFacadeDom() {
-        return facadeDom;
-    }
+   }
+//
+//    private MunicipioFacade getFacadeMun() {
+//        return facedeMun;
+//    }
+//
+//    private DomicilioProveedorFacade getFacadeDom() {
+//        return facadeDom;
+//    }
 
     public Proveedor prepareCreate() {
         selected = new Proveedor();
