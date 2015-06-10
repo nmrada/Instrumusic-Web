@@ -1,10 +1,13 @@
 package edu.co.sena.instrumusic.view.administrador.bean;
 
+import edu.co.sena.instrumusic.controller.administrador.beans.DomicilioProveedorFacade;
+import edu.co.sena.instrumusic.controller.administrador.beans.MunicipioFacade;
 import edu.co.sena.instrumusic.model.entities.Proveedor;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil.PersistAction;
 import edu.co.sena.instrumusic.controller.administrador.beans.ProveedorFacade;
 import edu.co.sena.instrumusic.model.entities.DomicilioProveedor;
+import edu.co.sena.instrumusic.model.entities.Municipio;
 import edu.co.sena.instrumusic.model.entities.TipoDocumento;
 
 import java.io.Serializable;
@@ -15,21 +18,26 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 @Named("proveedorController")
-@SessionScoped
+@ViewScoped
 public class ProveedorController implements Serializable {
 
     @EJB
     private edu.co.sena.instrumusic.controller.administrador.beans.ProveedorFacade ejbFacade;
+    @EJB
+    private edu.co.sena.instrumusic.controller.administrador.beans.MunicipioFacade facedeMun;
+    @EJB
+    private edu.co.sena.instrumusic.controller.administrador.beans.DomicilioProveedorFacade facadeDom;
     private List<Proveedor> items = null;
     private List<Proveedor> itemsBuscados = null;
-    private List<DomicilioProveedor> itemsBuscados2 = null;
+    private List<DomicilioProveedor> itemsBuscadosDom = null;
+    private List<Municipio> itemsBuscadosMun = null;
 
     private Proveedor selected;
     private Proveedor selectedBuscar;
@@ -44,11 +52,11 @@ public class ProveedorController implements Serializable {
     private Integer idMunicipioBuscar;
 
     public List<DomicilioProveedor> getItemsBuscados2() {
-        return itemsBuscados2;
+        return itemsBuscadosDom;
     }
 
     public void setItemsBuscados2(List<DomicilioProveedor> itemsBuscados2) {
-        this.itemsBuscados2 = itemsBuscados2;
+        this.itemsBuscadosDom = itemsBuscados2;
     }
 
     public ProveedorController() {
@@ -105,9 +113,9 @@ public class ProveedorController implements Serializable {
         idMunicipioBuscar = null;
         return itemsBuscados;
     }
-    
+
     public List<DomicilioProveedor> buscarPorTelefono() {
-        itemsBuscados2 = getFacade().findByTelefono(telefonoBuscar);
+        itemsBuscadosDom = getFacade().findByTelefono(telefonoBuscar);
         numeroDocumentoBuscar = null;
         nombreBuscar = null;
         tipoDocumentoBuscar = null;
@@ -116,11 +124,11 @@ public class ProveedorController implements Serializable {
         barrioBuscar = null;
         localidadBuscar = null;
         idMunicipioBuscar = null;
-        return itemsBuscados2;
+        return itemsBuscadosDom;
     }
-    
-     public List<DomicilioProveedor> buscarPorDireccion() {
-        itemsBuscados2 = getFacade().findByDireccion(direccionBuscar);
+
+    public List<DomicilioProveedor> buscarPorDireccion() {
+        itemsBuscadosDom = getFacade().findByDireccion(direccionBuscar);
         numeroDocumentoBuscar = null;
         nombreBuscar = null;
         tipoDocumentoBuscar = null;
@@ -129,11 +137,11 @@ public class ProveedorController implements Serializable {
         barrioBuscar = null;
         localidadBuscar = null;
         idMunicipioBuscar = null;
-        return itemsBuscados2;
+        return itemsBuscadosDom;
     }
-     
-     public List<DomicilioProveedor> buscarPorBarrio() {
-        itemsBuscados2 = getFacade().findByBarrio(barrioBuscar);
+
+    public List<DomicilioProveedor> buscarPorBarrio() {
+        itemsBuscadosDom = getFacade().findByBarrio(barrioBuscar);
         numeroDocumentoBuscar = null;
         nombreBuscar = null;
         tipoDocumentoBuscar = null;
@@ -142,11 +150,11 @@ public class ProveedorController implements Serializable {
         emailBuscar = null;
         localidadBuscar = null;
         idMunicipioBuscar = null;
-        return itemsBuscados2;
+        return itemsBuscadosDom;
     }
-     
-      public List<DomicilioProveedor> buscarPorLocalidad() {
-        itemsBuscados2 = getFacade().findByLocalidad(localidadBuscar);
+
+    public List<DomicilioProveedor> buscarPorLocalidad() {
+        itemsBuscadosDom = getFacade().findByLocalidad(localidadBuscar);
         numeroDocumentoBuscar = null;
         nombreBuscar = null;
         tipoDocumentoBuscar = null;
@@ -155,21 +163,22 @@ public class ProveedorController implements Serializable {
         barrioBuscar = null;
         emailBuscar = null;
         idMunicipioBuscar = null;
-        return itemsBuscados2;
+        return itemsBuscadosDom;
     }
-//     
-//       public List<DomicilioProveedor> buscarPorIdMunicipio() {
-//        itemsBuscados2 = getFacade().findByIdMunicipio(idMunicipioBuscar);
-//        numeroDocumentoBuscar = null;
-//        nombreBuscar = null;
-//        tipoDocumentoBuscar = null;
-//        telefonoBuscar = null;
-//        direccionBuscar = null;
-//        barrioBuscar = null;
-//        localidadBuscar = null;
-//        emailBuscar = null;
-//        return itemsBuscados2;
-//    }
+
+    public List<Municipio> buscarPorIdMunicipio() {
+        Municipio munTem = (Municipio) getFacadeMun().findById(idMunicipioBuscar);
+        itemsBuscadosDom = munTem.getDomicilioProveedorList();
+        numeroDocumentoBuscar = null;
+        nombreBuscar = null;
+        tipoDocumentoBuscar = null;
+        telefonoBuscar = null;
+        direccionBuscar = null;
+        barrioBuscar = null;
+        localidadBuscar = null;
+        emailBuscar = null;
+        return itemsBuscadosMun;
+    }
 
     public Proveedor getSelected() {
         return selected;
@@ -189,6 +198,14 @@ public class ProveedorController implements Serializable {
 
     private ProveedorFacade getFacade() {
         return ejbFacade;
+    }
+
+    private MunicipioFacade getFacadeMun() {
+        return facedeMun;
+    }
+
+    private DomicilioProveedorFacade getFacadeDom() {
+        return facadeDom;
     }
 
     public Proveedor prepareCreate() {

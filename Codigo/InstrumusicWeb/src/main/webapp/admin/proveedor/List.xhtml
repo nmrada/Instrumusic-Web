@@ -27,11 +27,11 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column sortBy="#{item.tipoDocumento}" >
+                        <p:column sortBy="#{item.proveedorPK.tipoDocumentotipoDocumento}" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_tipoDocumento}"/>
                             </f:facet>
-                            <h:outputText value="#{item.tipoDocumento}"/>
+                            <h:outputText value="#{item.proveedorPK.tipoDocumentotipoDocumento}"/>
                         </p:column>
                         <p:column sortBy="#{item.proveedorPK}">
                             <f:facet name="header">
@@ -51,30 +51,7 @@
                             </f:facet>
                             <h:outputText value="#{item.email}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDomicilioProveedorTitle_telefono}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.telefono}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDomicilioProveedorTitle_direccion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.direccion}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDomicilioProveedorTitle_barrio}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.barrio}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDomicilioProveedorTitle_localidad}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.localidad}"/>
-                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{proveedorController.prepareCreate}" update=":ProveedorCreateForm" oncomplete="PF('ProveedorCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProveedorViewForm" oncomplete="PF('ProveedorViewDialog').show()" disabled="#{empty proveedorController.selected}"/>

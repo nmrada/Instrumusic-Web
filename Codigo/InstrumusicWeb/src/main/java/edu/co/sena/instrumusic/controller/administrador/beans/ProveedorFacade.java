@@ -6,6 +6,7 @@
 package edu.co.sena.instrumusic.controller.administrador.beans;
 
 import edu.co.sena.instrumusic.model.entities.DomicilioProveedor;
+import edu.co.sena.instrumusic.model.entities.Municipio;
 import edu.co.sena.instrumusic.model.entities.Proveedor;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -46,44 +47,50 @@ public class ProveedorFacade extends AbstractFacade<Proveedor> {
     }
 
     public List<Proveedor> findByNombre(String nombre) {
-        String sqlQuery = "SELECT * FROM proveedor pro where pro.nombre like '%" + nombre + "%';";
-        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, Proveedor.class);
-        return queryJQL.getResultList();
+        Query queryJPQL = getEntityManager().createNamedQuery("Proveedor.findByNombre");
+        queryJPQL.setParameter("nombre", nombre);
+        return queryJPQL.getResultList();
     }
-    
-       public List<Proveedor> findByEmail(String email) {
-        String sqlQuery = "SELECT * FROM proveedor pro where pro.email like '%" + email + "%';";
-        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, Proveedor.class);
-        return queryJQL.getResultList();
+
+    public List<Proveedor> findByEmail(String email) {
+        Query queryJPQL = getEntityManager().createNamedQuery("Proveedor.findByEmail");
+        queryJPQL.setParameter("email", email);
+        return queryJPQL.getResultList();
     }
-     
-          public List<DomicilioProveedor> findByTelefono(String telefono) {
-        String sqlQuery = "SELECT * FROM DomicilioProveedor po where po.telefono like '%" + telefono + "%';";
-        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, DomicilioProveedor.class);
-        return queryJQL.getResultList();
+
+    public List<DomicilioProveedor> findByTelefono(String telefono) {
+        Query queryJPQL = getEntityManager().createNamedQuery("DomicilioProveedor.findByTelefono");
+        queryJPQL.setParameter("telefono", telefono);
+        return queryJPQL.getResultList();
     }
-          
-        public List<DomicilioProveedor> findByDireccion(String direccion) {
-        String sqlQuery = "SELECT * FROM DomicilioProveedor po where po.direcion like '%" + direccion + "%';";
-        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, DomicilioProveedor.class);
-        return queryJQL.getResultList();
+
+    public List<DomicilioProveedor> findByDireccion(String direccion) {
+        Query queryJPQL = getEntityManager().createNamedQuery("DomicilioProveedor.findByDireccion");
+        queryJPQL.setParameter("direccion", direccion);
+        return queryJPQL.getResultList();
     }
-    
-        public List<DomicilioProveedor> findByBarrio(String barrio) {
-        String sqlQuery = "SELECT * FROM DomicilioProveedor po where po.barrio like '%" + barrio + "%';";
-        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, DomicilioProveedor.class);
-        return queryJQL.getResultList();
+
+    public List<DomicilioProveedor> findByBarrio(String barrio) {
+        Query queryJPQL = getEntityManager().createNamedQuery("DomicilioProveedor.findByBarrio");
+        queryJPQL.setParameter("barrio", barrio);
+        return queryJPQL.getResultList();
     }
-        
-          public List<DomicilioProveedor> findByLocalidad(String localidad) {
-        String sqlQuery = "SELECT * FROM DomicilioProveedor po where po.localidad like '%" + localidad + "%';";
-        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, DomicilioProveedor.class);
-        return queryJQL.getResultList();
+
+    public List<DomicilioProveedor> findByLocalidad(String localidad) {
+        Query queryJPQL = getEntityManager().createNamedQuery("DomicilioProveedor.findByLocalidad");
+        queryJPQL.setParameter("barrio", localidad);
+        return queryJPQL.getResultList();
     }
-          
-         public List<DomicilioProveedor> findByIdMunicipio(String idMunicipio) {
-        String sqlQuery = "SELECT * FROM DomicilioProveedor po where po.Municipio_idMunicipio like '%" + idMunicipio + "%';";
-        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, DomicilioProveedor.class);
-        return queryJQL.getResultList();
-    }   
+
+//         public List<DomicilioProveedor> findByIdMunicipio(String idMunicipio) {
+//        String sqlQuery = "SELECT * FROM DomicilioProveedor po where po.Municipio_idMunicipio like '%" + idMunicipio + "%';";
+//        Query queryJQL = getEntityManager().createNativeQuery(sqlQuery, DomicilioProveedor.class);
+//        return queryJQL.getResultList();
+//    }   
+    public List<Municipio> findByIdMunicipio(String IdMun) {
+        Query queryJPQL = getEntityManager().createNamedQuery("Municipio.findByIdMunicipio");
+        queryJPQL.setParameter("idMunicipio", IdMun);
+        return queryJPQL.getResultList();
+
+    }
 }

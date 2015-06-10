@@ -24,21 +24,11 @@
                         <p:inputText id="nombre" value="#{proveedorController.selected.nombre}" title="#{bundle.CreateProveedorTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateProveedorLabel_email}" for="email" />
                         <p:inputText id="email" value="#{proveedorController.selected.email}" title="#{bundle.CreateProveedorTitle_email}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_email}"/>
-                        <p:outputLabel value="#{bundle.CreateProveedorLabel_telefono}" for="telefono" />
-                        <p:inputText id="telefono" value="#{proveedorController.selected.domicilioProveedor.telefono}" title="#{bundle.CreateProveedorTitle_telefono}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_telefono}"/>
-                        <p:outputLabel value="#{bundle.CreateProveedorLabel_direccion}" for="direccion" />
-                        <p:inputText id="direccion" value="#{proveedorController.selected.domicilioProveedor.direccion}" title="#{bundle.CreateProveedorTitle_direccion}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_direccion}"/>
-                        <p:outputLabel value="#{bundle.CreateProveedorLabel_barrio}" for="barrio" />
-                        <p:inputText id="barrio" value="#{proveedorController.selected.domicilioProveedor.barrio}" title="#{bundle.CreateProveedorTitle_barrio}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_email}"/>
-                        <p:outputLabel value="#{bundle.CreateProveedorLabel_localidad}" for="localidad" />
-                        <p:inputText id="localidad" value="#{proveedorController.selected.domicilioProveedor.localidad}" title="#{bundle.CreateProveedorTitle_localidad}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_localidad}"/>
-
                     </p:panelGrid>
                     <p:commandButton actionListener="#{proveedorController.create}" value="#{bundle.Save}" update="display,:ProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProveedorCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ProveedorCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>
