@@ -51,6 +51,28 @@
 
             <ui:define name="content">
                 <h1>Guitarras</h1>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <f:facet name="header">
+                        <p:graphicImage name="..//Imagenes/Saxo.jpg" />
+                    </f:facet>                    
+                    <h:outputText value="#{bundleDeCliente.InstrumentoCuerda_Guitarra_Id}" style="font-weight: bold" />
+                    <h:outputText value="#{productoController.items}" />
+
+                    <h:outputText value="#{bundleDeCliente.InstrumentoCuerda_Guitarra_Nombre}" style="font-weight: bold" />
+                    <h:outputText value="#{productoController.items}" />
+
+                    <h:outputText value="#{bundleDeCliente.InstrumentoCuerda_Guitarra_Precio}" style="font-weight: bold" />
+                    <h:outputText value="#{productoController.items}" />
+                    
+                    <h:outputText value="#{bundleDeCliente.InstrumentoCuerda_Guitarra_Marca}" style="font-weight: bold" />
+                    <h:outputText value="#{productoController.items}" />
+
+                    <h:outputText value="#{bundleDeCliente.InstrumentoCuerda_Guitarra_Cantidad}" style="font-weight: bold" />
+                    <h:outputText value="#{productoController.items}" />
+                    
+                    <h:outputText value="#{bundleDeCliente.InstrumentoCuerda_Guitarra_Color}" style="font-weight: bold" />
+                    <h:outputText value="#{productoController.items}" />
+                </h:panelGrid>
             </ui:define>
 
         </ui:composition>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.instrumusic.model.cliente;
+package edu.co.sena.instrumusic.view.cliente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,5 +30,6 @@ public class PaginaInicio {
     public List<String> getImages() {
         return images;
     }
+    
     
 }
