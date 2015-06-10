@@ -60,12 +60,12 @@ public class Cuenta implements Serializable {
     @Size(max = 45)
     @Column(name = "segundoApellido")
     private String segundoApellido;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.LAZY)
     private DomicilioCuenta domicilioCuenta;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.EAGER)
     private List<Factura> facturaList;
     @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario usuarioidUsuario;
     @JoinColumn(name = "Tipo_Documento_tipoDocumento", referencedColumnName = "tipoDocumento", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
