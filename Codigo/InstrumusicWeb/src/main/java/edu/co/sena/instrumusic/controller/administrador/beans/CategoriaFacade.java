@@ -55,5 +55,11 @@ public class CategoriaFacade extends AbstractFacade<Categoria> {
         Query queryJPQL = getEntityManager().createNativeQuery(sqlQuery, Categoria.class);
         return queryJPQL.getResultList();
     }
+    
+    public Categoria findByidPadreCli(int idCatPad) {
+        Query queryJPQL = getEntityManager().createNamedQuery("Categoria.findByIdCategoria");
+        queryJPQL.setParameter("idCategoria", idCatPad);
+        return (Categoria)queryJPQL.getSingleResult();
+    }
 
 }

@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <h:body>
 
@@ -18,27 +19,26 @@
                 <h:form>
                     <p:growl id="messages" showDetail="false"/>
                     <p:menubar>
-
                         <p:menuitem value="#{bundleDeCliente.Inicio}" url="/faces/Cliente/PagCliente.xhtml" icon="ui-icon-home" />
                         
-                        <p:submenu label="Intrumentos de cuerda" >
-                            <p:menuitem value="#{categoriaController.items}" url="/faces/Cliente/intruCuerda.xhtml" />
-                            <p:menuitem value="Bajos" actionListener="#{bundle.Save}"  />
-                            <p:menuitem value="Violines" actionListener="#{bundle.Save}" />
+                        <p:submenu label="#{categoriaClienteController.getcategoriaPadre().nombreCategoria}" >
+                            
+                            <p:menuitem value="#{categoriaClienteController.categoriaHijos[1].nombreCategoria}" url="/faces/Cliente/#{bundleDeCliente.LinkDeGuitarras}" />
+                           
+                            
                         </p:submenu>
-                        <p:submenu label="Intrumentos de viento">
-                            <p:menuitem value="Trompetas" actionListener="#{bundle.Save}"  url=""/>
-                            <p:menuitem value="Saxofon" actionListener="#{bundle.Save}"  />
-                            <p:menuitem value="Trombon" actionListener="#{bundle.Save}"  />
+                        
+                        
+                        <!--<p:submenu label="#{categoriaClienteController.getcategoriaPadre(1).nombreCategoria}" >
+                            <c:forEach var="i" begin="1" end="##{categoriaClienteController.categoriaHijos[i]}">
+                                <p:menuitem value="#{categoriaClienteController.categoriaHijos[i].nombreCategoria}" url="/faces/Cliente/#{bundleDeCliente.LinkDeGuitarras}" />
+                            </c:forEach>-->
+                            
+                           
+                            
                         </p:submenu>
-                        <p:submenu label="Intrumentos de percusión">
-                            <p:menuitem value="Bateria" actionListener="#{bundle.Save}"  url=""/>
-                            <p:menuitem value="Tambores" actionListener="#{bundle.Save}"  />
-                            <p:menuitem value="Timbales" actionListener="#{bundle.Save}"  />
-                        </p:submenu>
-                        <p:submenu label="Intrumentos de percusión">
-                            <p:menuitem value="Sonido" actionListener="#{bundle.Save}"  url=""/>
-                        </p:submenu>
+                        
+                       
 
                     </p:menubar>
                 </h:form>
