@@ -42,5 +42,11 @@ public class DepartamentoFacade extends AbstractFacade<Departamento> {
         Query query2 = getEntityManager().createNativeQuery(sqlQuery, Departamento.class);
         return query2.getResultList();
     }
+    
+    public Departamento findByNombreCompleto(String nombreDepBuscar) {
+        Query query2 = getEntityManager().createNamedQuery("Departamento.findByNombre");
+        query2.setParameter("nombre", nombreDepBuscar);
+        return (Departamento)query2.getSingleResult();
+    }
 
 }

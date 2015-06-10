@@ -54,7 +54,7 @@ public class Municipio implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "municipioidMunicipio", fetch = FetchType.LAZY)
     private List<DomicilioProveedor> domicilioProveedorList;
     @JoinColumn(name = "Departamento_idDepartamento", referencedColumnName = "idDepartamento" )
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Departamento departamentoidDepartamento;
 
     public Municipio() {
@@ -133,7 +133,7 @@ public class Municipio implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.instrumusic.model.entities.Municipio[ idMunicipio=" + idMunicipio + " ]";
+        return " " + idMunicipio + " ";
     }
     
 }
