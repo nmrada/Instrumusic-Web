@@ -4,6 +4,11 @@ import edu.co.sena.instrumusic.model.entities.Cuenta;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil.PersistAction;
 import edu.co.sena.instrumusic.controller.administrador.beans.CuentaFacade;
+import edu.co.sena.instrumusic.controller.administrador.beans.DepartamentoFacade;
+import edu.co.sena.instrumusic.model.entities.Departamento;
+import edu.co.sena.instrumusic.model.entities.DomicilioCuenta;
+import edu.co.sena.instrumusic.model.entities.DomicilioCuentaPK;
+import edu.co.sena.instrumusic.model.entities.Municipio;
 
 import java.io.Serializable;
 import java.util.List;
@@ -25,16 +30,44 @@ public class CuentaController implements Serializable {
 
     @EJB
     private edu.co.sena.instrumusic.controller.administrador.beans.CuentaFacade ejbFacade;
-    private List<Cuenta> items = null;
-    private List<Cuenta> itemsBuscados = null;
-    private Cuenta selected;
-    private Cuenta selectedBuscados;
     
+    @EJB
+    private edu.co.sena.instrumusic.controller.administrador.beans.DepartamentoFacade ejbFacadeDepartamento;
+    private List<Cuenta> items = null;
+    private List<Departamento> itemsDepartamentos = null;
+    private List<Municipio> itemsMunicipio = null;
+    private Cuenta selected;
+    private String departamentoSeleccionado;
+    private DomicilioCuenta domicilio;
+    
+    //Atributos para poder crear DomicilioCuenta
+    private String telefonoCrear;
+    private String direccionCrear;
+    private String barrioCrear;
+    private String localidadCrear;
+    private Municipio municipioCrear;
+    
+    //Atributos creados para buscar
+    private List<Cuenta> itemsBuscados = null;
+    private Cuenta selectedBuscados;
     private String tipBuscar;
     private String numBuscar;
     private String nombreBuscar;
+    
 
     public CuentaController() {
+        domicilio= new DomicilioCuenta();
+        domicilio.setDomicilioCuentaPK(new DomicilioCuentaPK());
+    }
+    public void obtenedorDepartamentos() {
+        if(itemsDepartamentos == null){
+             itemsDepartamentos = getFacadeDepartamento().findAll();
+        }   
+    }
+    
+    public void obtenedorMunicipios() {
+          Departamento dt = getFacadeDepartamento().findByNombreCompleto(departamentoSeleccionado);
+          itemsMunicipio = dt.getMunicipioList();
     }
 
     public Cuenta getSelected() {
@@ -46,7 +79,7 @@ public class CuentaController implements Serializable {
     }
 
     protected void setEmbeddableKeys() {
-        selected.getCuentaPK().setTipoDocumentotipoDocumento(selected.getTipoDocumento().getTipoDocumento());
+        //selected.getCuentaPK().setTipoDocumentotipoDocumento(selected.getTipoDocumento().getTipoDocumento());
     }
 
     protected void initializeEmbeddableKey() {
@@ -56,10 +89,16 @@ public class CuentaController implements Serializable {
     private CuentaFacade getFacade() {
         return ejbFacade;
     }
+    
+    private DepartamentoFacade getFacadeDepartamento() {
+        return ejbFacadeDepartamento;
+    }
 
     public Cuenta prepareCreate() {
         selected = new Cuenta();
+        selected.setDomicilioCuenta(new DomicilioCuenta());
         initializeEmbeddableKey();
+        obtenedorDepartamentos();
         return selected;
     }
 
@@ -152,6 +191,78 @@ public class CuentaController implements Serializable {
 
     public List<Cuenta> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    public List<Departamento> getItemsDepartamentos() {
+        return itemsDepartamentos;
+    }
+
+    public void setItemsDepartamentos(List<Departamento> itemsDepartamentos) {
+        this.itemsDepartamentos = itemsDepartamentos;
+    }
+
+    public List<Municipio> getItemsMunicipio() {
+        return itemsMunicipio;
+    }
+
+    public void setItemsMunicipio(List<Municipio> itemsMunicipio) {
+        this.itemsMunicipio = itemsMunicipio;
+    }
+
+    public String getDepartamentoSeleccionado() {
+        return departamentoSeleccionado;
+    }
+
+    public void setDepartamentoSeleccionado(String departamentoSeleccionado) {
+        this.departamentoSeleccionado = departamentoSeleccionado;
+    }
+
+    public DomicilioCuenta getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(DomicilioCuenta domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public String getTelefonoCrear() {
+        return telefonoCrear;
+    }
+
+    public void setTelefonoCrear(String telefonoCrear) {
+        this.telefonoCrear = telefonoCrear;
+    }
+
+    public String getDireccionCrear() {
+        return direccionCrear;
+    }
+
+    public void setDireccionCrear(String direccionCrear) {
+        this.direccionCrear = direccionCrear;
+    }
+
+    public String getBarrioCrear() {
+        return barrioCrear;
+    }
+
+    public void setBarrioCrear(String barrioCrear) {
+        this.barrioCrear = barrioCrear;
+    }
+
+    public String getLocalidadCrear() {
+        return localidadCrear;
+    }
+
+    public void setLocalidadCrear(String localidadCrear) {
+        this.localidadCrear = localidadCrear;
+    }
+
+    public Municipio getMunicipioCrear() {
+        return municipioCrear;
+    }
+
+    public void setMunicipioCrear(Municipio municipioCrear) {
+        this.municipioCrear = municipioCrear;
     }
 
     @FacesConverter(forClass = Cuenta.class)

@@ -133,7 +133,7 @@ public class Municipio implements Serializable {
 
     @Override
     public String toString() {
-        return " " + idMunicipio + " ";
+        return " " + nombre + " ";
     }
     
 }

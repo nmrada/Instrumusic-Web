@@ -12,8 +12,14 @@
             <h:form id="CuentaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cuentaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="usuarioidUsuario" />
+                        <p:selectOneMenu id="usuarioidUsuario" value="#{cuentaController.selected.usuarioidUsuario}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="usuarioidUsuarioItem"
+                                           itemValue="#{usuarioidUsuarioItem}"/>
+                        </p:selectOneMenu>  
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_tipoDocumento}" for="tipoDocumento" />
-                        <p:selectOneMenu id="tipoDocumento" value="#{cuentaController.selected.tipoDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_tipoDocumento}">
+                        <p:selectOneMenu id="tipoDocumento" value="#{cuentaController.selected.cuentaPK.tipoDocumentotipoDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_tipoDocumento}">
                             <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"
                                            var="tipoDocumentoItem"
                                            itemValue="#{tipoDocumentoItem}"/>
@@ -27,14 +33,40 @@
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_primerApellido}" for="primerApellido" />
                         <p:inputText id="primerApellido" value="#{cuentaController.selected.primerApellido}" title="#{bundle.CreateCuentaTitle_primerApellido}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_primerApellido}"/>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_segundoApellido}" for="segundoApellido" />
-                        <p:inputText id="segundoApellido" value="#{cuentaController.selected.segundoApellido}" title="#{bundle.CreateCuentaTitle_segundoApellido}" />
-                        <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="usuarioidUsuario" />
-                        <p:selectOneMenu id="usuarioidUsuario" value="#{cuentaController.selected.usuarioidUsuario}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}">
-                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
-                                           var="usuarioidUsuarioItem"
-                                           itemValue="#{usuarioidUsuarioItem}"/>
+                        <p:inputText id="segundoApellido" value="#{cuentaController.selected.segundoApellido}" title="#{bundle.CreateCuentaTitle_segundoApellido}" /> 
+                        <p:outputLabel value="#{bundle.CreateCuentaLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{cuentaController.telefonoCrear}" title="#{bundle.CreateCuentaTitle_telefono}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_telefono}"/>
+                        <p:outputLabel value="#{bundle.CreateCuentaLabel_direcccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{cuentaController.direccionCrear}" title="#{bundle.CreateCuentaTitle_direcccion}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_direccion}"/>
+                        <p:outputLabel value="#{bundle.CreateCuentaLabel_barrio}" for="barrio" />
+                        <p:inputText id="barrio" value="#{cuentaController.barrioCrear}" title="#{bundle.CreateCuentaTitle_barrio}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_barrio}"/>
+                        <p:outputLabel value="#{bundle.CreateCuentaLabel_localidad}" for="localidad" />
+                        <p:inputText id="localidad" value="#{cuentaController.localidadCrear}" title="#{bundle.CreateCuentaTitle_localidad}"/>
+                        <p:outputLabel value="#{bundle.CreateCuentaLabel_departamento}" for="departamentos" />
+                        <p:selectOneMenu id="departamentos" 
+                                         value="#{cuentaController.departamentoSeleccionado}" 
+                                         requiredMessage="#{bundle.CreateCuentaRequiredMessage_departamento}"
+                                         required="true"
+                                         >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{cuentaController.itemsDepartamentos}"
+                                           var="itemDep"
+                                           itemValue="#{itemDep.nombre}"
+                                           actionListener="#{cuentaController.obtenedorMunicipios}"
+                                           />
+                             <p:ajax  update=":CuentaCreateForm:municipios"  listener="#{cuentaController.obtenedorMunicipios}" event="change"/>
                         </p:selectOneMenu>
-                        
+                        <p:outputLabel value="#{bundle.CreateCuentaLabel_municipio}" for="municipios"/>
+                        <p:selectOneMenu id="municipios" value="#{cuentaController.municipioCrear}"
+                                         requiredMessage="#{bundle.CreateCuentaRequiredMessage_municipio}"
+                                         required="true"
+                                         >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="" />
+                            <f:selectItems value="#{cuentaController.itemsMunicipio}"
+                                           var="itemMun"
+                                           itemValue="#{itemMun.nombre}"
+                                           />
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{cuentaController.create}" value="#{bundle.Save}" update="display,:CuentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'CuentaCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="CuentaCreateDialog.hide()"/>
