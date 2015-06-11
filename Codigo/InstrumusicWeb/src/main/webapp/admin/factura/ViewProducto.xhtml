@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VerProductoFactura" widgetVar="VerProductoFacturaDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProductoTitle}">
+            <h:form id="VerProductoFacturaForm">
+                <p:panel header="#{bundle.ListProductoTitle}">
+                    <p:dataTable id="datalist" value="#{facturaController.selected.pedido.itemList}" var="item"
+                                 selectionMode="single" selection="#{productoController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.producto.nombre}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.producto.nombre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_marca}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.producto.marca}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_referencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.producto.referencia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.producto.descripcion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_material}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.producto.material}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_color}"/>
+                            </f:facet>
+                            <h:outputText value="Sin color" style="background-color: \##{item.producto.color}; color: \##{item.producto.color}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_cantidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_activo}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.producto.activo}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_precioUnitario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.costoUnitario}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_descuento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.producto.descuento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_descuento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.costoTotal}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

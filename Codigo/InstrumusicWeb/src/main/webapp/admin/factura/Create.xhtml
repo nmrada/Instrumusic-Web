@@ -12,29 +12,15 @@
             <h:form id="FacturaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{facturaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateFacturaLabel_idFactura}" for="idFactura" />
-                        <p:inputText id="idFactura" value="#{facturaController.selected.idFactura}" title="#{bundle.CreateFacturaTitle_idFactura}" required="true" requiredMessage="#{bundle.CreateFacturaRequiredMessage_idFactura}"/>
                         <p:outputLabel value="#{bundle.CreateFacturaLabel_fecha}" for="fecha" />
                         <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{facturaController.selected.fecha}" title="#{bundle.EditFacturaTitle_fecha}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_fecha}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateFacturaLabel_total}" for="total" />
-                        <p:inputText id="total" value="#{facturaController.selected.total}" title="#{bundle.CreateFacturaTitle_total}" required="true" requiredMessage="#{bundle.CreateFacturaRequiredMessage_total}"/>
-                        <p:outputLabel value="#{bundle.CreateFacturaLabel_pago}" for="pago" />
-                        <p:selectOneMenu id="pago" value="#{facturaController.selected.pago}" >
-                            <f:selectItems value="#{pagoController.itemsAvailableSelectOne}"
-                                           var="pagoItem"
-                                           itemValue="#{pagoItem}"/>
-                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFacturaLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{facturaController.selected.estado}" title="#{bundle.CreateFacturaTitle_estado}" required="true" requiredMessage="#{bundle.CreateFacturaRequiredMessage_estado}"/>
                         <p:outputLabel value="#{bundle.CreateFacturaLabel_cuenta}" for="cuenta" />
                         <p:selectOneMenu id="cuenta" value="#{facturaController.selected.cuenta}" required="true" requiredMessage="#{bundle.EditFacturaRequiredMessage_cuenta}">
                             <f:selectItems value="#{cuentaController.itemsAvailableSelectOne}"
                                            var="cuentaItem"
                                            itemValue="#{cuentaItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateFacturaLabel_pedido}" for="pedido" />
-                        <p:selectOneMenu id="pedido" value="#{facturaController.selected.pedido}" >
-                            <f:selectItems value="#{pedidoController.itemsAvailableSelectOne}"
-                                           var="pedidoItem"
-                                           itemValue="#{pedidoItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{facturaController.create}" value="#{bundle.Save}" update="display,:FacturaListForm:datalist,:growl" oncomplete="handleSubmit(args,'FacturaCreateDialog');"/>

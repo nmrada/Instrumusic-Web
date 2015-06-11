@@ -38,7 +38,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f"),
     @NamedQuery(name = "Factura.findByIdFactura", query = "SELECT f FROM Factura f WHERE f.idFactura = :idFactura"),
     @NamedQuery(name = "Factura.findByFecha", query = "SELECT f FROM Factura f WHERE f.fecha = :fecha"),
-    @NamedQuery(name = "Factura.findByTotal", query = "SELECT f FROM Factura f WHERE f.total = :total")})
+    @NamedQuery(name = "Factura.findByTotal", query = "SELECT f FROM Factura f WHERE f.total = :total"),
+    @NamedQuery(name = "Factura.findByEstado", query = "SELECT f FROM Factura f WHERE f.estado = :estado")})
 public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -57,6 +58,9 @@ public class Factura implements Serializable {
     private float total;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "factura", fetch = FetchType.EAGER)
     private Pago pago;
+    @NotNull
+    @Column(name = "estado")
+    private String estado;
     @JoinColumns({
         @JoinColumn(name = "Cuenta_Tipo_Documento_tipoDocumento", referencedColumnName = "Tipo_Documento_tipoDocumento"),
         @JoinColumn(name = "Cuenta_numeroDocumento", referencedColumnName = "numeroDocumento")})
@@ -149,6 +153,14 @@ public class Factura implements Serializable {
     @Override
     public String toString() {
         return "edu.co.sena.instrumusic.model.entities.Factura[ idFactura=" + idFactura + " ]";
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
 }

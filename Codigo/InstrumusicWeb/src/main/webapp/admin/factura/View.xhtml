@@ -27,10 +27,11 @@
                         <h:outputText value="#{bundle.ViewFacturaLabel_pedido}"/>
                         <h:outputText value="#{facturaController.selected.pedido}" title="#{bundle.ViewFacturaTitle_pedido}"/>
                     </p:panelGrid>
+                    <p:commandButton value="#{bundle.Save}" update=":VerProductoFacturaForm" oncomplete="PF('VerProductoFacturaDialog').show();"/>
                     <p:commandButton value="#{bundle.Close}" onclick="FacturaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
+        <ui:include src="ViewProducto.xhtml"/>
     </ui:composition>
 </html>
