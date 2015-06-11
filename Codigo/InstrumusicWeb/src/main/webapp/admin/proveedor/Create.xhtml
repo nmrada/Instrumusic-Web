@@ -32,6 +32,31 @@
                         <p:inputText id="barrio" value="#{proveedorController.selected.domicilioProveedor.barrio}" title="#{bundle.CreateProveedorTitle_barrio}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_email}"/>
                         <p:outputLabel value="#{bundle.CreateProveedorLabel_localidad}" for="localidad" />
                         <p:inputText id="localidad" value="#{proveedorController.selected.domicilioProveedor.localidad}" title="#{bundle.CreateProveedorTitle_localidad}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_localidad}"/>
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_departamento}" for="departamentos" />
+                        <p:selectOneMenu id="departamentos" 
+                                         value="#{proveedorController.departamentoSeleccionado}" 
+                                         requiredMessage="#{bundle.CreateProveedorRequiredMessage_departamento}"
+                                         required="true"
+                                         >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{proveedorController.itemsDepartamentos}"
+                                           var="itemDep"
+                                           itemValue="#{itemDep.nombre}"
+                                           actionListener="#{proveedorController.obtenerMunicipios}"
+                                           />
+                            <p:ajax  update=":ProveedorCreateForm:municipios"  listener="#{proveedorController.obtenerMunicipios}" event="change"/>
+                        </p:selectOneMenu>        
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_municipio}" for="municipios" />
+                        <p:selectOneMenu id="municipios" value="#{proveedorController.municipioCrear}"
+                                         requiredMessage="#{bundle.CreateProveedorRequiredMessage_municipio}"
+                                         required="true"
+                                         >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="" />
+                            <f:selectItems value="#{proveedorController.itemsMunicipio}"
+                                           var="itemMun"
+                                           itemValue="#{itemMun.nombre}"
+                                           />
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{proveedorController.create}" value="#{bundle.Save}" update="display,:ProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProveedorCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ProveedorCreateDialog.hide()"/>

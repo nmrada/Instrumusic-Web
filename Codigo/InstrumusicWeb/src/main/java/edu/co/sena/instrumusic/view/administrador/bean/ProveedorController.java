@@ -1,12 +1,15 @@
 package edu.co.sena.instrumusic.view.administrador.bean;
 
+import edu.co.sena.instrumusic.controller.administrador.beans.DepartamentoFacade;
 import edu.co.sena.instrumusic.controller.administrador.beans.DomicilioProveedorFacade;
 import edu.co.sena.instrumusic.controller.administrador.beans.MunicipioFacade;
 import edu.co.sena.instrumusic.model.entities.Proveedor;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil.PersistAction;
 import edu.co.sena.instrumusic.controller.administrador.beans.ProveedorFacade;
+import edu.co.sena.instrumusic.model.entities.Departamento;
 import edu.co.sena.instrumusic.model.entities.DomicilioProveedor;
+import edu.co.sena.instrumusic.model.entities.DomicilioProveedorPK;
 import edu.co.sena.instrumusic.model.entities.Municipio;
 
 import java.io.Serializable;
@@ -15,8 +18,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.ejb.EJBException;
-import javax.enterprise.context.SessionScoped;
+import javax.ejb.EJBException;  
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.component.UIComponent;
@@ -27,20 +29,22 @@ import javax.faces.convert.FacesConverter;
 @Named("proveedorController")
 @ViewScoped
 public class ProveedorController implements Serializable {
-
+    
     @EJB
     private edu.co.sena.instrumusic.controller.administrador.beans.ProveedorFacade ejbFacade;
     @EJB
     private edu.co.sena.instrumusic.controller.administrador.beans.MunicipioFacade facedeMun;
     @EJB
     private edu.co.sena.instrumusic.controller.administrador.beans.DomicilioProveedorFacade facadeDom;
+    @EJB
+    private edu.co.sena.instrumusic.controller.administrador.beans.DepartamentoFacade ejbFacadeDepartamento;
     private List<Proveedor> items = null;
-    private List<Proveedor> itemsBuscados = null;
-    private List<DomicilioProveedor> itemsBuscadosDom = null;
-    private List<Municipio> itemsBuscadosMun = null;
-
+    private List<Departamento> itemsDepartamentos = null;
+    private List<Municipio> itemsMunicipio = null;
     private Proveedor selected;
-    private Proveedor selectedBuscar;
+    private String departamentoSeleccionado;
+    private DomicilioProveedor domiPro;
+       // atributos de crear Domicilio proveedor
     private String tipoDocumentoBuscar;
     private String numeroDocumentoBuscar;
     private String nombreBuscar;
@@ -50,18 +54,40 @@ public class ProveedorController implements Serializable {
     private String barrioBuscar;
     private String localidadBuscar;
     private Integer idMunicipioBuscar;
-
+    private Municipio municipioCrear;
+    
+    //atributos creados para buscar
+    
+    private List<Proveedor> itemsBuscados = null;
+    private List<DomicilioProveedor> itemsBuscadosDom = null;
+    private List<Municipio> itemsBuscadosMun = null;
+    private Proveedor selectedBuscar;
+    
+    
+    public ProveedorController() {
+        
+        domiPro = new DomicilioProveedor();
+        domiPro.setDomicilioProveedorPK(new DomicilioProveedorPK());
+    }
+    
+    public void obtenedorDepartamentos() {
+        if(itemsDepartamentos == null){
+             itemsDepartamentos = getFacadeDepartamento().findAll();
+        }  
+    }
+      public void obtenerMunicipios() {
+          Departamento dto = getFacadeDepartamento().findByNombreCompleto(departamentoSeleccionado);
+          itemsMunicipio = dto.getMunicipioList();         
+    }
+      
     public List<DomicilioProveedor> getItemsBuscados2() {
         return itemsBuscadosDom;
     }
-
+    
     public void setItemsBuscados2(List<DomicilioProveedor> itemsBuscados2) {
         this.itemsBuscadosDom = itemsBuscados2;
     }
-
-    public ProveedorController() {
-    }
-
+        
     public List<Proveedor> buscarPorTipoDocumento() {
         itemsBuscados = getFacade().findByTipoDocumento(tipoDocumentoBuscar);
         numeroDocumentoBuscar = null;
@@ -74,7 +100,7 @@ public class ProveedorController implements Serializable {
         idMunicipioBuscar = null;
         return itemsBuscados;
     }
-
+    
     public List<Proveedor> buscarPorNumeroDocumento() {
         itemsBuscados = getFacade().findByNumeroDocumento(numeroDocumentoBuscar);
         tipoDocumentoBuscar = null;
@@ -87,7 +113,7 @@ public class ProveedorController implements Serializable {
         idMunicipioBuscar = null;
         return itemsBuscados;
     }
-
+    
     public List<Proveedor> buscarPorNombre() {
         itemsBuscados = getFacade().findByNombre(nombreBuscar);
         numeroDocumentoBuscar = null;
@@ -100,7 +126,7 @@ public class ProveedorController implements Serializable {
         idMunicipioBuscar = null;
         return itemsBuscados;
     }
-
+    
     public List<Proveedor> buscarPorEmail() {
         itemsBuscados = getFacade().findByEmail(emailBuscar);
         numeroDocumentoBuscar = null;
@@ -179,26 +205,25 @@ public class ProveedorController implements Serializable {
 //        emailBuscar = null;
 //        return itemsBuscadosMun;
 //    }
-
     public Proveedor getSelected() {
         return selected;
     }
-
+    
     public void setSelected(Proveedor selected) {
         this.selected = selected;
     }
-
+    
     protected void setEmbeddableKeys() {
         selected.getProveedorPK().setTipoDocumentotipoDocumento(selected.getTipoDocumento().getTipoDocumento());
     }
-
+    
     protected void initializeEmbeddableKey() {
         selected.setProveedorPK(new edu.co.sena.instrumusic.model.entities.ProveedorPK());
     }
-
+    
     private ProveedorFacade getFacade() {
         return ejbFacade;
-   }
+    }
 //
 //    private MunicipioFacade getFacadeMun() {
 //        return facedeMun;
@@ -208,31 +233,37 @@ public class ProveedorController implements Serializable {
 //        return facadeDom;
 //    }
 
+    private DepartamentoFacade getFacadeDepartamento() {
+        return ejbFacadeDepartamento;
+    }
+    
     public Proveedor prepareCreate() {
         selected = new Proveedor();
+        selected.setDomicilioProveedor(new DomicilioProveedor());
         initializeEmbeddableKey();
+        obtenedorDepartamentos();
         return selected;
     }
-
+    
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ProveedorCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-
+    
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ProveedorUpdated"));
         selectedBuscar = null;
         itemsBuscados = null;
     }
-
+    
     public void updateBuscar() {
         persist(PersistAction.UPDATEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("ProveedorUpdated"));
         selected = null;
         items = null;
     }
-
+    
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ProveedorDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -242,7 +273,7 @@ public class ProveedorController implements Serializable {
         itemsBuscados = null;
         selectedBuscar = null;
     }
-
+    
     public void eliminarBuscado() {
         persist(PersistAction.DELETEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("ProveedorDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -252,14 +283,14 @@ public class ProveedorController implements Serializable {
         itemsBuscados = null;
         selectedBuscar = null;
     }
-
+    
     public List<Proveedor> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
         return items;
     }
-
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -316,113 +347,169 @@ public class ProveedorController implements Serializable {
             }
         }
     }
-
+    
     public Proveedor getProveedor(edu.co.sena.instrumusic.model.entities.ProveedorPK id) {
         return getFacade().find(id);
     }
-
+    
     public List<Proveedor> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
-
+    
     public List<Proveedor> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-
+    
     public List<Proveedor> getItemsBuscados() {
         return itemsBuscados;
     }
-
+    
     public void setItemsBuscados(List<Proveedor> itemsBuscados) {
         this.itemsBuscados = itemsBuscados;
     }
-
+    
     public Proveedor getSelectedBuscar() {
         return selectedBuscar;
     }
-
+    
     public void setSelectedBuscar(Proveedor selectedBuscar) {
         this.selectedBuscar = selectedBuscar;
     }
-
+    
     public String getNumeroDocumentoBuscar() {
         return numeroDocumentoBuscar;
     }
-
+    
     public void setNumeroDocumentoBuscar(String numeroDocumentoBuscar) {
         this.numeroDocumentoBuscar = numeroDocumentoBuscar;
     }
-
+    
     public String getNombreBuscar() {
         return nombreBuscar;
     }
-
+    
     public void setNombreBuscar(String nombreBuscar) {
         this.nombreBuscar = nombreBuscar;
     }
-
+    
     public String getEmailBuscar() {
         return emailBuscar;
     }
-
+    
     public void setEmailBuscar(String emailBuscar) {
         this.emailBuscar = emailBuscar;
     }
-
+    
     public String getTipoDocumentoBuscar() {
         return tipoDocumentoBuscar;
     }
-
+    
     public void setTipoDocumentoBuscar(String tipoDocumentoBuscar) {
         this.tipoDocumentoBuscar = tipoDocumentoBuscar;
     }
-
+    
     public String getTelefonoBuscar() {
         return telefonoBuscar;
     }
-
+    
     public void setTelefonoBuscar(String telefonoBuscar) {
         this.telefonoBuscar = telefonoBuscar;
     }
-
+    
     public String getDireccionBuscar() {
         return direccionBuscar;
     }
-
+    
     public void setDireccionBuscar(String direccionBuscar) {
         this.direccionBuscar = direccionBuscar;
     }
-
+    
     public String getBarrioBuscar() {
         return barrioBuscar;
     }
-
+    
     public void setBarrioBuscar(String barrioBuscar) {
         this.barrioBuscar = barrioBuscar;
     }
-
+    
     public String getLocalidadBuscar() {
         return localidadBuscar;
     }
-
+    
     public void setLocalidadBuscar(String localidadBuscar) {
         this.localidadBuscar = localidadBuscar;
     }
-
+    
     public Integer getIdMunicipioBuscar() {
         return idMunicipioBuscar;
     }
-
+    
     public void setIdMunicipioBuscar(Integer idMunicipioBuscar) {
         this.idMunicipioBuscar = idMunicipioBuscar;
     }
+    
+    public DomicilioProveedor getDomiPro() {
+        return domiPro;
+    }
+    
+    public void setDomiPro(DomicilioProveedor domiPro) {
+        this.domiPro = domiPro;
+    }
 
+    public List<Departamento> getItemsDepartamentos() {
+        return itemsDepartamentos;
+    }
+
+    public void setItemsDepartamentos(List<Departamento> itemsDepartamentos) {
+        this.itemsDepartamentos = itemsDepartamentos;
+    }
+
+    public List<Municipio> getItemsMunicipio() {
+        return itemsMunicipio;
+    }
+
+    public void setItemsMunicipio(List<Municipio> itemsMunicipio) {
+        this.itemsMunicipio = itemsMunicipio;
+    }
+
+    public Municipio getMunicipioCrear() {
+        return municipioCrear;
+    }
+
+    public void setMunicipioCrear(Municipio municipioCrear) {
+        this.municipioCrear = municipioCrear;
+    }
+
+    public String getDepartamentoSeleccionado() {
+        return departamentoSeleccionado;
+    }
+
+    public void setDepartamentoSeleccionado(String departamentoSeleccionado) {
+        this.departamentoSeleccionado = departamentoSeleccionado;
+    }
+
+    public List<DomicilioProveedor> getItemsBuscadosDom() {
+        return itemsBuscadosDom;
+    }
+
+    public void setItemsBuscadosDom(List<DomicilioProveedor> itemsBuscadosDom) {
+        this.itemsBuscadosDom = itemsBuscadosDom;
+    }
+
+    public List<Municipio> getItemsBuscadosMun() {
+        return itemsBuscadosMun;
+    }
+
+    public void setItemsBuscadosMun(List<Municipio> itemsBuscadosMun) {
+        this.itemsBuscadosMun = itemsBuscadosMun;
+    }
+    
     @FacesConverter(forClass = Proveedor.class)
     public static class ProveedorControllerConverter implements Converter {
-
+        
         private static final String SEPARATOR = "#";
         private static final String SEPARATOR_ESCAPED = "\\#";
-
+        
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
@@ -432,7 +519,7 @@ public class ProveedorController implements Serializable {
                     getValue(facesContext.getELContext(), null, "proveedorController");
             return controller.getProveedor(getKey(value));
         }
-
+        
         edu.co.sena.instrumusic.model.entities.ProveedorPK getKey(String value) {
             edu.co.sena.instrumusic.model.entities.ProveedorPK key;
             String values[] = value.split(SEPARATOR_ESCAPED);
@@ -441,7 +528,7 @@ public class ProveedorController implements Serializable {
             key.setNumeroDocumento(values[1]);
             return key;
         }
-
+        
         String getStringKey(edu.co.sena.instrumusic.model.entities.ProveedorPK value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value.getTipoDocumentotipoDocumento());
@@ -449,7 +536,7 @@ public class ProveedorController implements Serializable {
             sb.append(value.getNumeroDocumento());
             return sb.toString();
         }
-
+        
         @Override
         public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
             if (object == null) {
@@ -463,7 +550,7 @@ public class ProveedorController implements Serializable {
                 return null;
             }
         }
-
+        
     }
-
+    
 }
