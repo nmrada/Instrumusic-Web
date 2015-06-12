@@ -12,16 +12,23 @@
             <h:form id="CuentaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cuentaController.selectedDTO != null}">
-                        <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="usuarioidUsuario" />
-                        <p:inputText id="usuarioidUsuario" value="#{cuentaController.selectedDTO.idUsuario}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}"/>
-                        <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="contrasena" />
-                        <p:inputText id="contrasena" value="#{cuentaController.selectedDTO.contrasena}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}"/>
-                        <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="rol" />
-                        <p:inputText id="rol" value="#{cuentaController.selectedDTO.rolUsuario}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}"/>
-                        <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="estado" />
-                        <p:inputText id="estado" value="#{cuentaController.selectedDTO.estadoUsuario}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}"/>
-                        <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="email" />
-                        <p:inputText id="email" value="#{cuentaController.selectedDTO.email}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_idUsuario}" for="idUsuario" />
+                        <p:inputText id="idUsuario" value="#{cuentaController.selectedDTO.idUsuario}" title="#{bundle.CreateUsuarioTitle_idUsuario}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_idUsuario}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_contrasena}" for="contrasena" />
+                        <p:inputText id="contrasena" value="#{cuentaController.selectedDTO.contrasena}" title="#{bundle.CreateUsuarioTitle_contrasena}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_contrasena}"/>
+                         <p:outputLabel value="#{bundle.CreateUsuarioLabel_rol}" for="usuarioRolEdit" />
+                        <p:selectOneMenu id="usuarioRolEdit" value="#{cuentaController.selectedDTO.rolUsuario}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_rol}">
+                            <f:selectItems value="#{usuarioController.listroles}"
+                                           var="usuarioRolEditItem"
+                                           itemValue="#{usuarioRolEditItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_estado}" for="usuarioEstadoEdit" />
+                        <p:selectOneMenu id="usuarioEstadoEdit" value="#{cuentaController.selectedDTO.estadoUsuario}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_estado}">
+                            <f:selectItems value="#{usuarioController.listEstados}"
+                                           var="usuarioEstadoEditItem"
+                                           itemValue="#{usuarioEstadoEditItem}"/>
+                        </p:selectOneMenu> <p:outputLabel value="#{bundle.CreateUsuarioLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{cuentaController.selectedDTO.email}" title="#{bundle.CreateUsuarioTitle_email}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_email}"/>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_tipoDocumento}" for="tipoDocumento" />
                         <p:selectOneMenu id="tipoDocumento" value="#{cuentaController.selected}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_tipoDocumento}">
                             <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"
