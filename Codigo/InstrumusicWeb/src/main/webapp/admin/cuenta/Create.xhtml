@@ -11,37 +11,41 @@
         <p:dialog id="CuentaCreateDlg" widgetVar="CuentaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCuentaTitle}">
             <h:form id="CuentaCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{cuentaController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{cuentaController.selectedDTO != null}">
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="usuarioidUsuario" />
-                        <p:selectOneMenu id="usuarioidUsuario" value="#{cuentaController.selected.usuarioidUsuario}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}">
-                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
-                                           var="usuarioidUsuarioItem"
-                                           itemValue="#{usuarioidUsuarioItem}"/>
-                        </p:selectOneMenu>  
+                        <p:inputText id="usuarioidUsuario" value="#{cuentaController.selectedDTO.idUsuario}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}"/>
+                        <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="contrasena" />
+                        <p:inputText id="contrasena" value="#{cuentaController.selectedDTO.contrasena}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}"/>
+                        <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="rol" />
+                        <p:inputText id="rol" value="#{cuentaController.selectedDTO.rolUsuario}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}"/>
+                        <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="estado" />
+                        <p:inputText id="estado" value="#{cuentaController.selectedDTO.estadoUsuario}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}"/>
+                        <p:outputLabel value="#{bundle.CreateCuentaLabel_usuarioidUsuario}" for="email" />
+                        <p:inputText id="email" value="#{cuentaController.selectedDTO.email}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}"/>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_tipoDocumento}" for="tipoDocumento" />
-                        <p:selectOneMenu id="tipoDocumento" value="#{cuentaController.selected.cuentaPK.tipoDocumentotipoDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_tipoDocumento}">
+                        <p:selectOneMenu id="tipoDocumento" value="#{cuentaController.selected}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_tipoDocumento}">
                             <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"
                                            var="tipoDocumentoItem"
                                            itemValue="#{tipoDocumentoItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_cuentaPK_numeroDocumento}" for="cuentaPK_numeroDocumento" />
-                        <p:inputText id="cuentaPK_numeroDocumento" value="#{cuentaController.selected.cuentaPK.numeroDocumento}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_cuentaPK_numeroDocumento}"/>
+                        <p:inputText id="cuentaPK_numeroDocumento" value="#{cuentaController.selectedDTO.numeroDocumento}" title="#{bundle.CreateCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_cuentaPK_numeroDocumento}"/>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_primerNombre}" for="primerNombre" />
-                        <p:inputText id="primerNombre" value="#{cuentaController.selected.primerNombre}" title="#{bundle.CreateCuentaTitle_primerNombre}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_primerNombre}"/>
+                        <p:inputText id="primerNombre" value="#{cuentaController.selectedDTO.primerNombre}" title="#{bundle.CreateCuentaTitle_primerNombre}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_primerNombre}"/>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_segundoNombre}" for="segundoNombre" />
-                        <p:inputText id="segundoNombre" value="#{cuentaController.selected.segundoNombre}" title="#{bundle.CreateCuentaTitle_segundoNombre}" />
+                        <p:inputText id="segundoNombre" value="#{cuentaController.selectedDTO.segundoNombre}" title="#{bundle.CreateCuentaTitle_segundoNombre}" />
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_primerApellido}" for="primerApellido" />
-                        <p:inputText id="primerApellido" value="#{cuentaController.selected.primerApellido}" title="#{bundle.CreateCuentaTitle_primerApellido}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_primerApellido}"/>
+                        <p:inputText id="primerApellido" value="#{cuentaController.selectedDTO.primerApellido}" title="#{bundle.CreateCuentaTitle_primerApellido}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_primerApellido}"/>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_segundoApellido}" for="segundoApellido" />
-                        <p:inputText id="segundoApellido" value="#{cuentaController.selected.segundoApellido}" title="#{bundle.CreateCuentaTitle_segundoApellido}" /> 
+                        <p:inputText id="segundoApellido" value="#{cuentaController.selectedDTO.segundoApellido}" title="#{bundle.CreateCuentaTitle_segundoApellido}" /> 
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_telefono}" for="telefono" />
-                        <p:inputText id="telefono" value="#{cuentaController.telefonoCrear}" title="#{bundle.CreateCuentaTitle_telefono}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_telefono}"/>
+                        <p:inputText id="telefono" value="#{cuentaController.selectedDTO.telefono}" title="#{bundle.CreateCuentaTitle_telefono}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_telefono}"/>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_direcccion}" for="direccion" />
-                        <p:inputText id="direccion" value="#{cuentaController.direccionCrear}" title="#{bundle.CreateCuentaTitle_direcccion}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_direccion}"/>
+                        <p:inputText id="direccion" value="#{cuentaController.selectedDTO.direccion}" title="#{bundle.CreateCuentaTitle_direcccion}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_direccion}"/>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_barrio}" for="barrio" />
-                        <p:inputText id="barrio" value="#{cuentaController.barrioCrear}" title="#{bundle.CreateCuentaTitle_barrio}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_barrio}"/>
+                        <p:inputText id="barrio" value="#{cuentaController.selectedDTO.barrio}" title="#{bundle.CreateCuentaTitle_barrio}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_barrio}"/>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_localidad}" for="localidad" />
-                        <p:inputText id="localidad" value="#{cuentaController.localidadCrear}" title="#{bundle.CreateCuentaTitle_localidad}"/>
+                        <p:inputText id="localidad" value="#{cuentaController.selectedDTO.localidad}" title="#{bundle.CreateCuentaTitle_localidad}"/>
                         <p:outputLabel value="#{bundle.CreateCuentaLabel_departamento}" for="departamentos" />
                         <p:selectOneMenu id="departamentos" 
                                          value="#{cuentaController.departamentoSeleccionado}" 

@@ -65,10 +65,10 @@ public class Cuenta implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.EAGER)
     private List<Factura> facturaList;
     @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     private Usuario usuarioidUsuario;
     @JoinColumn(name = "Tipo_Documento_tipoDocumento", referencedColumnName = "tipoDocumento", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TipoDocumento tipoDocumento;
 
     public Cuenta() {

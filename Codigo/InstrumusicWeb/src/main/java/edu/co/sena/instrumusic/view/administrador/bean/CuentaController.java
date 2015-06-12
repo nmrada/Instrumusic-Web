@@ -5,6 +5,10 @@ import edu.co.sena.instrumusic.view.general.util.JsfUtil;
 import edu.co.sena.instrumusic.view.general.util.JsfUtil.PersistAction;
 import edu.co.sena.instrumusic.controller.administrador.beans.CuentaFacade;
 import edu.co.sena.instrumusic.controller.administrador.beans.DepartamentoFacade;
+import edu.co.sena.instrumusic.controller.administrador.beans.MunicipioFacade;
+import edu.co.sena.instrumusic.controller.administrador.dto.CuentaDTO;
+import edu.co.sena.instrumusic.general.utils.ConversorDTO;
+import edu.co.sena.instrumusic.model.entities.CuentaPK;
 import edu.co.sena.instrumusic.model.entities.Departamento;
 import edu.co.sena.instrumusic.model.entities.DomicilioCuenta;
 import edu.co.sena.instrumusic.model.entities.DomicilioCuentaPK;
@@ -33,26 +37,26 @@ public class CuentaController implements Serializable {
     
     @EJB
     private edu.co.sena.instrumusic.controller.administrador.beans.DepartamentoFacade ejbFacadeDepartamento;
+    
+     @EJB
+    private edu.co.sena.instrumusic.controller.administrador.beans.MunicipioFacade ejbFacadeMunicipio;
     private List<Cuenta> items = null;
     private List<Departamento> itemsDepartamentos = null;
     private List<Municipio> itemsMunicipio = null;
     private Cuenta selected;
+    private CuentaDTO selectedDTO;
     private String departamentoSeleccionado;
     private DomicilioCuenta domicilio;
     
-    //Atributos para poder crear DomicilioCuenta
-    private String telefonoCrear;
-    private String direccionCrear;
-    private String barrioCrear;
-    private String localidadCrear;
-    private Municipio municipioCrear;
     
-    //Atributos creados para buscar
+    //Atributos creados para buscar cuenta.getDomicilio().setTipodocumentotipodocumento()
     private List<Cuenta> itemsBuscados = null;
     private Cuenta selectedBuscados;
     private String tipBuscar;
     private String numBuscar;
     private String nombreBuscar;
+    
+    private String municipioCrear;
     
 
     public CuentaController() {
@@ -68,6 +72,11 @@ public class CuentaController implements Serializable {
     public void obtenedorMunicipios() {
           Departamento dt = getFacadeDepartamento().findByNombreCompleto(departamentoSeleccionado);
           itemsMunicipio = dt.getMunicipioList();
+    }
+    
+    public void obtenedorMunicipioCrear() {
+          Municipio dt = getFacadeMunicipio().findByNombreCompleto(municipioCrear);
+          selectedDTO.setMunicipio(dt);
     }
 
     public Cuenta getSelected() {
@@ -93,10 +102,15 @@ public class CuentaController implements Serializable {
     private DepartamentoFacade getFacadeDepartamento() {
         return ejbFacadeDepartamento;
     }
+    
+    private MunicipioFacade getFacadeMunicipio() {
+        return ejbFacadeMunicipio;
+    }
 
     public Cuenta prepareCreate() {
         selected = new Cuenta();
-        selected.setDomicilioCuenta(new DomicilioCuenta());
+        selectedDTO = new CuentaDTO();
+        selected.setDomicilioCuenta(new DomicilioCuenta(new DomicilioCuentaPK()));
         initializeEmbeddableKey();
         obtenedorDepartamentos();
         return selected;
@@ -148,19 +162,20 @@ public class CuentaController implements Serializable {
     
     public List<Cuenta> buscarPorLlavePrim() {
         itemsBuscados = getFacade().findByLlavePrimaria(tipBuscar, numBuscar);
-        nombreBuscar = null;
-        
+        nombreBuscar = null;        
         return items;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
-        if (selected != null) {
+        
+        if (selectedDTO != null) {
             setEmbeddableKeys();
+            obtenedorMunicipioCrear();
             try {
                 if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
+                    getFacade().edit(ConversorDTO.conversorCuentaDTOaCuenta(selectedDTO));
                 } else {
-                    getFacade().remove(selected);
+                    getFacade().remove(ConversorDTO.conversorCuentaDTOaCuenta(selectedDTO));
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -225,43 +240,19 @@ public class CuentaController implements Serializable {
         this.domicilio = domicilio;
     }
 
-    public String getTelefonoCrear() {
-        return telefonoCrear;
+    public CuentaDTO getSelectedDTO() {
+        return selectedDTO;
     }
 
-    public void setTelefonoCrear(String telefonoCrear) {
-        this.telefonoCrear = telefonoCrear;
+    public void setSelectedDTO(CuentaDTO selectedDTO) {
+        this.selectedDTO = selectedDTO;
     }
 
-    public String getDireccionCrear() {
-        return direccionCrear;
-    }
-
-    public void setDireccionCrear(String direccionCrear) {
-        this.direccionCrear = direccionCrear;
-    }
-
-    public String getBarrioCrear() {
-        return barrioCrear;
-    }
-
-    public void setBarrioCrear(String barrioCrear) {
-        this.barrioCrear = barrioCrear;
-    }
-
-    public String getLocalidadCrear() {
-        return localidadCrear;
-    }
-
-    public void setLocalidadCrear(String localidadCrear) {
-        this.localidadCrear = localidadCrear;
-    }
-
-    public Municipio getMunicipioCrear() {
+    public String getMunicipioCrear() {
         return municipioCrear;
     }
 
-    public void setMunicipioCrear(Municipio municipioCrear) {
+    public void setMunicipioCrear(String municipioCrear) {
         this.municipioCrear = municipioCrear;
     }
 

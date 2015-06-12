@@ -50,4 +50,10 @@ public class MunicipioFacade extends AbstractFacade<Municipio> {
         return queryBuscarNom.getResultList();
     }
     
+    public Municipio findByNombreCompleto(String nombreMunBuscar) {
+        Query query2 = getEntityManager().createNamedQuery("Municipio.findByNombre");
+        query2.setParameter("nombre", nombreMunBuscar);
+        return (Municipio)query2.getSingleResult();
+    }
+    
 }
