@@ -12,26 +12,14 @@
             <h:form id="ProveedorEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditProveedorLabel_proveedorPK_numeroDocumento}" for="proveedorPK_numeroDocumento" />
-                        <p:inputText id="proveedorPK_numeroDocumento" value="#{proveedorController.selected.proveedorPK.numeroDocumento}" title="#{bundle.EditProveedorTitle_proveedorPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_proveedorPK_numeroDocumento}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_tipoDocumento}"/>
+                        <h:outputText value="#{proveedorController.selected.tipoDocumento}" title="#{bundle.ViewProveedorTitle_tipoDocumento}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_proveedorPK_numeroDocumento}"/>
+                        <h:outputText value="#{proveedorController.selected.proveedorPK.numeroDocumento}" title="#{bundle.ViewProveedorTitle_proveedorPK_numeroDocumento}"/>
                         <p:outputLabel value="#{bundle.EditProveedorLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{proveedorController.selected.nombre}" title="#{bundle.EditProveedorTitle_nombre}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditProveedorLabel_email}" for="email" />
                         <p:inputText id="email" value="#{proveedorController.selected.email}" title="#{bundle.EditProveedorTitle_email}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_email}"/>
-                        <p:outputLabel value="#{bundle.EditProveedorLabel_domicilioProveedor}" for="domicilioProveedor" />
-                        <p:selectOneMenu id="domicilioProveedor" value="#{proveedorController.selected.domicilioProveedor}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{domicilioProveedorController.itemsAvailableSelectOne}"
-                                           var="domicilioProveedorItem"
-                                           itemValue="#{domicilioProveedorItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditProveedorLabel_tipoDocumento}" for="tipoDocumento" />
-                        <p:selectOneMenu id="tipoDocumento" value="#{proveedorController.selected.tipoDocumento}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_tipoDocumento}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"
-                                           var="tipoDocumentoItem"
-                                           itemValue="#{tipoDocumentoItem}"/>
-                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{proveedorController.update}" value="#{bundle.Save}" update="display,:ProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProveedorEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ProveedorEditDialog.hide()"/>

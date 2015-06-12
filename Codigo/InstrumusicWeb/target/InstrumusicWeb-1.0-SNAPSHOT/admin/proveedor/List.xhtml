@@ -27,36 +27,31 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column sortBy="#{item.proveedorPK.tipoDocumentotipoDocumento}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_tipoDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveedorPK.tipoDocumentotipoDocumento}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.proveedorPK}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_proveedorPK_numeroDocumento}"/>
                             </f:facet>
                             <h:outputText value="#{item.proveedorPK.numeroDocumento}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.nombre}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.email}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_email}"/>
                             </f:facet>
                             <h:outputText value="#{item.email}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_domicilioProveedor}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.domicilioProveedor}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedorTitle_tipoDocumento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tipoDocumento}"/>
-                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{proveedorController.prepareCreate}" update=":ProveedorCreateForm" oncomplete="PF('ProveedorCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProveedorViewForm" oncomplete="PF('ProveedorViewDialog').show()" disabled="#{empty proveedorController.selected}"/>
@@ -66,10 +61,93 @@
                     </p:dataTable>
                 </p:panel>
             </h:form>
+            <p:panel header="#{bundle.BuscarProveedorTitle}" id="panelBusqueda">
+                <h:form id="BuscarProveedorForm">
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel value="#{bundle.BuscarProveedorLabel_tipoDocumento}" for="buscartipoDocumento" />
+                        <p:inputText id="buscartipoDocumento" value="#{proveedorController.tipoDocumentoBuscar}" title="#{bundle.BuscarProveedorTitle_tipoDocumento}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_tipoDocumento}"/>
+                        <p:commandButton id="botonTipoDoc" icon="ui-icon-search" actionListener="#{proveedorController.buscarPorTipoDocumento}" value="#{bundle.Buscar}" update=":BuscarProveedorListForm,:panelBusqueda "/>
+                        <p:message for="buscartipoDocumento" />
+                    </h:panelGrid>
+                </h:form>
+                <h:form id="BuscarProveedorForm2">
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel value="#{bundle.BuscarProveedorLabel_numeroDocumento}" for="buscarNumeroDocumento" />
+                        <p:inputText id="buscarNumeroDocumento" value="#{proveedorController.numeroDocumentoBuscar}" title="#{bundle.BuscarProveedorTitle_numeroDocumento}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_numeroDocumento}"/>
+                        <p:commandButton id="botonNumDoc" icon="ui-icon-search" actionListener="#{proveedorController.buscarPorNumeroDocumento}" value="#{bundle.Buscar}" update=":BuscarProveedorListForm,:panelBusqueda "/>
+                        <p:message for="buscarNumeroDocumento" />
+                    </h:panelGrid>
+                </h:form>
+                <h:form id="BuscarProveedorForm3">
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel value="#{bundle.BuscarProveedorLabel_nombre}" for="buscarNombre" />
+                        <p:inputText id="buscarNombre" value="#{proveedorController.nombreBuscar}" title="#{bundle.BuscarProveedorTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_nombre}"/>
+                        <p:commandButton id="botonNombr" icon="ui-icon-search" actionListener="#{proveedorController.buscarPorNombre}" value="#{bundle.Buscar}" update=":BuscarProveedorListForm,:panelBusqueda "/>
+                        <p:message for="buscarNombre" />
+                    </h:panelGrid>
+                </h:form>
+
+                <h:form id="BuscarProveedorForm4">
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel value="#{bundle.BuscarProveedorLabel_email}" for="buscarEmail" />
+                        <p:inputText id="buscarEmail" value="#{proveedorController.emailBuscar}" title="#{bundle.BuscarProveedorTitle_email}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_email}"/>
+                        <p:commandButton id="botonNombr" icon="ui-icon-search" actionListener="#{proveedorController.buscarPorEmail}" value="#{bundle.Buscar}" update=":BuscarProveedorListForm,:panelBusqueda "/>
+                        <p:message for="buscarEmail" />
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+            <h:form id="BuscarProveedorListForm">
+                <p:panel header="#{bundle.BuscarListProveedorTitle}">
+                    <p:dataTable id="datalist2" value="#{proveedorController.itemsBuscados}" var="itemBuscados"
+                                 selectionMode="single" selection="#{proveedorController.selectedBuscar }"
+                                 paginator="true"
+                                 rowKey="#{itemBuscados.proveedorPK}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="viewButton2 editButton2 deleteButton2"/>
+                        <p:ajax event="rowUnselect" update="viewButton2 editButton2 deleteButton2"/>
+                        <p:column sortBy="#{itemBuscados.tipoDocumento}" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_tipoDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{itemBuscados.tipoDocumento}"/>
+                        </p:column>
+                        <p:column sortBy="#{itemBuscados.proveedorPK}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_proveedorPK_numeroDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{itemBuscados.proveedorPK.numeroDocumento}"/>
+                        </p:column>
+                        <p:column sortBy="#{itemBuscados.nombre}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{itemBuscados.nombre}"/>
+                        </p:column>
+                        <p:column sortBy="#{itemBuscados.email}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{itemBuscados.email}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="viewButton2"   icon="ui-icon-search" value="#{bundle.View}" update=":ProveedorViewFormBuscar" oncomplete="PF('ProveedorViewDialogBuscar').show()" disabled="#{empty proveedorController.selectedBuscar}"/>
+                            <p:commandButton id="editButton2"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProveedorEditFormBuscar" oncomplete="PF('ProveedorEditDialogBuscar').show()" disabled="#{empty proveedorController.selectedBuscar}"/>
+                            <p:commandButton id="deleteButton2" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{proveedorController.eliminarBuscado}" update=":growl, :ProveedorListForm:datalist,:BuscarProveedorListForm:datalist2, :panelBusqueda" disabled="#{empty proveedorController.selectedBuscar}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
+            <ui:include src="ViewBuscar.xhtml"/>
+            <ui:include src="EditBuscar.xhtml"/>
         </ui:define>
     </ui:composition>
 

@@ -27,19 +27,19 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column sortBy="#{item.tipoDocumento}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoDocumentoTitle_tipoDocumento}"/>
                             </f:facet>
                             <h:outputText value="#{item.tipoDocumento}"/>
                         </p:column>
-                        <p:column>
+                        <p:column  sortBy="#{item.descripcion}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoDocumentoTitle_descripcion}"/>
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.activo}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoDocumentoTitle_activo}"/>
                             </f:facet>
@@ -49,15 +49,81 @@
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipoDocumentoController.prepareCreate}" update=":TipoDocumentoCreateForm" oncomplete="PF('TipoDocumentoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TipoDocumentoViewForm" oncomplete="PF('TipoDocumentoViewDialog').show()" disabled="#{empty tipoDocumentoController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipoDocumentoEditForm" oncomplete="PF('TipoDocumentoEditDialog').show()" disabled="#{empty tipoDocumentoController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipoDocumentoController.destroy}" update=":growl,datalist" disabled="#{empty tipoDocumentoController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipoDocumentoController.destroy}" update=":growl, :TipoDocumentoListForm:datalist,:BuscarTipoDocumentoListForm:datalist2" disabled="#{empty tipoDocumentoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
             </h:form>
+            <p:panel header="#{bundle.BuscarTipoDocumentoTitle}" id="panelBusqueda">
+                <h:form id="BuscarTipoDocumentoForm">
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel value="#{bundle.BuscarTipoDocumentoLabel_idTipoDocumento}" for="buscarIdTipoDocumento" />
+                        <p:inputText id="buscarIdTipoDocumento" value="#{tipoDocumentoController.tipoDocumentoBuscar}" title="#{bundle.BuscarTipoDocumentoTitle_tipoDocumento}" required="true" requiredMessage="#{bundle.CreateTipoDocumentoRequiredMessage_tipoDocumento}"/>
+                        <p:commandButton id="botonTipoDoc" icon="ui-icon-search" actionListener="#{tipoDocumentoController.buscarPorTipoDocumento}" value="#{bundle.Buscar}" update=":BuscarTipoDocumentoListForm,:panelBusqueda "/>
+                        <p:message for="buscarIdTipoDocumento" />
+                    </h:panelGrid>
+                </h:form>
+                <h:form id="BuscarTipoDocumentoForm2">
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel value="#{bundle.BuscarTipoDocumentoLabel_descripcion}" for="buscarDescripcion" />
+                        <p:inputText id="buscarDescripcion" value="#{tipoDocumentoController.descripcionBuscar}" title="#{bundle.BuscarTipoDocumentoTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateTipoDocumentoRequiredMessage_descripcion}"/>
+                        <p:commandButton id="botonDescripcion" icon="ui-icon-search" actionListener="#{tipoDocumentoController.buscarPorDescripcion}" value="#{bundle.Buscar}" update=":BuscarTipoDocumentoListForm,:panelBusqueda "/>
+                        <p:message for="buscarDescripcion" />
+                    </h:panelGrid>
+                </h:form>
+                <h:form id="BuscarTipoDocumentoForm3">
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel value="#{bundle.BuscarTipoDocumentoLabel_activo}" for="buscarActivo" />
+                        <p:selectBooleanCheckbox id="buscarActivo" value="#{tipoDocumentoController.activoBuscar}" required="false" requiredMessage="#{bundle.CreateTipoDocumentoRequiredMessage_activo}"/>
+                        <p:commandButton id="botonActivo" icon="ui-icon-search" actionListener="#{tipoDocumentoController.buscarPorActivo}" value="#{bundle.Buscar}" update=":BuscarTipoDocumentoListForm,:panelBusqueda "/>
+                        <p:message for="buscarActivo" />
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+            <h:form id="BuscarTipoDocumentoListForm">
+                <p:panel header="#{bundle.BuscarListTipoDocumentoTitle}">
+                    <p:dataTable id="datalist2" value="#{tipoDocumentoController.itemBuscados}" var="itemBuscados"
+                                 selectionMode="single" selection="#{tipoDocumentoController.selectedBuscar}"
+                                 paginator="true"
+                                 rowKey="#{itemBuscados.tipoDocumento}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
 
+                        <p:ajax event="rowSelect"   update="viewButton2 editButton2 deleteButton2"/>
+                        <p:ajax event="rowUnselect" update="viewButton2 editButton2 deleteButton2"/>
+
+                        <p:column sortBy="#{itemBuscados.tipoDocumento}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoDocumentoTitle_tipoDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{itemBuscados.tipoDocumento}"/>
+                        </p:column>
+                        <p:column  sortBy="#{itemBuscados.descripcion}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoDocumentoTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{itemBuscados.descripcion}"/>
+                        </p:column>
+                        <p:column sortBy="#{itemBuscados.activo}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoDocumentoTitle_activo}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{itemBuscados.activo}" disabled="true"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="viewButton2"   icon="ui-icon-search" value="#{bundle.View}" update=":TipoDocumentoViewFormBuscar" oncomplete="PF('TipoDocumentoViewDialogBuscar').show()" disabled="#{empty tipoDocumentoController.selectedBuscar}"/>
+                            <p:commandButton id="editButton2"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipoDocumentoEditFormBuscar" oncomplete="PF('TipoDocumentoEditDialogBuscar').show()" disabled="#{empty tipoDocumentoController.selectedBuscar}"/>
+                            <p:commandButton id="deleteButton2" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipoDocumentoController.eliminarBuscado}" update=":growl, :TipoDocumentoListForm:datalist,:BuscarTipoDocumentoListForm:datalist2, :panelBusqueda" disabled="#{empty tipoDocumentoController.selectedBuscar}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
+            <ui:include src="ViewBuscar.xhtml"/>
+            <ui:include src="EditBuscar.xhtml"/>
         </ui:define>
     </ui:composition>
 

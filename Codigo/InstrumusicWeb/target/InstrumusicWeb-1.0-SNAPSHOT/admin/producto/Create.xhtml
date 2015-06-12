@@ -25,17 +25,15 @@
                         <p:outputLabel value="#{bundle.CreateProductoLabel_material}" for="material" />
                         <p:inputText id="material" value="#{productoController.selected.material}" title="#{bundle.CreateProductoTitle_material}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_material}"/>
                         <p:outputLabel value="#{bundle.CreateProductoLabel_color}" for="color" />
-                        <p:inputText id="color" value="#{productoController.selected.color}" title="#{bundle.CreateProductoTitle_color}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_color}"/>
-                        <p:outputLabel value="#{bundle.CreateProductoLabel_foto}" for="foto" />
-                        <p:inputTextarea rows="4" cols="30" id="foto" value="#{productoController.selected.foto}" title="#{bundle.CreateProductoTitle_foto}" />
+                        <p:colorPicker id="color" value="#{productoController.selected.color}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_color}"/>
                         <p:outputLabel value="#{bundle.CreateProductoLabel_cantidad}" for="cantidad" />
-                        <p:inputText id="cantidad" value="#{productoController.selected.cantidad}" title="#{bundle.CreateProductoTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_cantidad}"/>
+                        <p:inputText id="cantidad" value="#{productoController.selected.cantidad}" title="#{bundle.CreateProductoTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_cantidad}" type="number"/>
                         <p:outputLabel value="#{bundle.CreateProductoLabel_activo}" for="activo" />
-                        <p:selectBooleanCheckbox id="activo" value="#{productoController.selected.activo}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_activo}"/>
+                        <p:selectBooleanCheckbox id="activo" value="#{productoController.selected.activo}" required="false" requiredMessage="#{bundle.EditProductoRequiredMessage_activo}"/>
                         <p:outputLabel value="#{bundle.CreateProductoLabel_precioUnitario}" for="precioUnitario" />
                         <p:inputText id="precioUnitario" value="#{productoController.selected.precioUnitario}" title="#{bundle.CreateProductoTitle_precioUnitario}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_precioUnitario}"/>
                         <p:outputLabel value="#{bundle.CreateProductoLabel_descuento}" for="descuento" />
-                        <p:inputText id="descuento" value="#{productoController.selected.descuento}" title="#{bundle.CreateProductoTitle_descuento}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_descuento}"/>
+                        <p:inputText id="descuento" value="#{productoController.selected.descuento}" title="#{bundle.CreateProductoTitle_descuento}" required="false" requiredMessage="#{bundle.CreateProductoRequiredMessage_descuento}"/>
                         <p:outputLabel value="#{bundle.CreateProductoLabel_categoriaidCategoria}" for="categoriaidCategoria" />
                         <p:selectOneMenu id="categoriaidCategoria" value="#{productoController.selected.categoriaidCategoria}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_categoriaidCategoria}">
                             <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"

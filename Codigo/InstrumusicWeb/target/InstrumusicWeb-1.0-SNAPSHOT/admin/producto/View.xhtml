@@ -25,9 +25,9 @@
                         <h:outputText value="#{bundle.ViewProductoLabel_material}"/>
                         <h:outputText value="#{productoController.selected.material}" title="#{bundle.ViewProductoTitle_material}"/>
                         <h:outputText value="#{bundle.ViewProductoLabel_color}"/>
-                        <h:outputText value="#{productoController.selected.color}" title="#{bundle.ViewProductoTitle_color}"/>
+                        <h:outputText value="Sin color" style="background-color: \##{productoController.selected.color}; color: \##{productoController.selected.color}"/>
                         <h:outputText value="#{bundle.ViewProductoLabel_foto}"/>
-                        <h:outputText value="#{productoController.selected.foto}" title="#{bundle.ViewProductoTitle_foto}"/>
+                        <p:graphicImage value="#{productoController.selected.foto}" title="#{bundle.ViewProductoTitle_foto}"/>
                         <h:outputText value="#{bundle.ViewProductoLabel_cantidad}"/>
                         <h:outputText value="#{productoController.selected.cantidad}" title="#{bundle.ViewProductoTitle_cantidad}"/>
                         <h:outputText value="#{bundle.ViewProductoLabel_activo}"/>
@@ -37,7 +37,7 @@
                         <h:outputText value="#{bundle.ViewProductoLabel_descuento}"/>
                         <h:outputText value="#{productoController.selected.descuento}" title="#{bundle.ViewProductoTitle_descuento}"/>
                         <h:outputText value="#{bundle.ViewProductoLabel_categoriaidCategoria}"/>
-                        <h:outputText value="#{productoController.selected.categoriaidCategoria}" title="#{bundle.ViewProductoTitle_categoriaidCategoria}"/>
+                        <h:outputText value="#{productoController.selected.categoriaidCategoria.nombreCategoria}" title="#{bundle.ViewProductoTitle_categoriaidCategoria}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProductoViewDialog.hide()"/>
                 </h:panelGroup>

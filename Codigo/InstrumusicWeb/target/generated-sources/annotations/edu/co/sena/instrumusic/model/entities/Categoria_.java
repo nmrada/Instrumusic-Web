@@ -7,15 +7,15 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-06-01T17:45:49")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-06-10T20:59:10")
 @StaticMetamodel(Categoria.class)
 public class Categoria_ { 
 
-    public static volatile SingularAttribute<Categoria, Integer> idCategoria;
-    public static volatile SingularAttribute<Categoria, String> nombreCategoria;
-    public static volatile ListAttribute<Categoria, Categoria> categoriaList;
     public static volatile ListAttribute<Categoria, Producto> productoList;
-    public static volatile SingularAttribute<Categoria, Boolean> activa;
     public static volatile SingularAttribute<Categoria, Categoria> categoriaidCategoria;
+    public static volatile SingularAttribute<Categoria, Integer> idCategoria;
+    public static volatile SingularAttribute<Categoria, Boolean> activa;
+    public static volatile ListAttribute<Categoria, Categoria> categoriaList;
+    public static volatile SingularAttribute<Categoria, String> nombreCategoria;
 
 }

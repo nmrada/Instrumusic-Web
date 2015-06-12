@@ -12,12 +12,12 @@
             <h:form id="TipoDocumentoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoDocumentoController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditTipoDocumentoLabel_tipoDocumento}" for="tipoDocumento" />
-                        <p:inputText id="tipoDocumento" value="#{tipoDocumentoController.selected.tipoDocumento}" title="#{bundle.EditTipoDocumentoTitle_tipoDocumento}" required="true" requiredMessage="#{bundle.EditTipoDocumentoRequiredMessage_tipoDocumento}"/>
+                        <p:outputLabel value="#{bundle.EditTipoDocumentoLabel_tipoDocumento}"/>
+                        <p:outputLabel value="#{tipoDocumentoController.selected.tipoDocumento}" title="#{bundle.EditTipoDocumentoTitle_tipoDocumento}"/>
                         <p:outputLabel value="#{bundle.EditTipoDocumentoLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{tipoDocumentoController.selected.descripcion}" title="#{bundle.EditTipoDocumentoTitle_descripcion}" required="true" requiredMessage="#{bundle.EditTipoDocumentoRequiredMessage_descripcion}"/>
                         <p:outputLabel value="#{bundle.EditTipoDocumentoLabel_activo}" for="activo" />
-                        <p:selectBooleanCheckbox id="activo" value="#{tipoDocumentoController.selected.activo}" required="true" requiredMessage="#{bundle.EditTipoDocumentoRequiredMessage_activo}"/>
+                        <p:selectBooleanCheckbox id="activo" value="#{tipoDocumentoController.selected.activo}" required="false" requiredMessage="#{bundle.EditTipoDocumentoRequiredMessage_activo}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{tipoDocumentoController.update}" value="#{bundle.Save}" update="display,:TipoDocumentoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoDocumentoEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="TipoDocumentoEditDialog.hide()"/>

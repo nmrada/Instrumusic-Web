@@ -67,7 +67,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductoTitle_color}"/>
                             </f:facet>
-                            <h:outputText value="#{item.color}"/>
+                            <h:outputText value="Sin color" style="background-color: \##{item.color}; color: \##{item.color}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -103,7 +103,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductoTitle_categoriaidCategoria}"/>
                             </f:facet>
-                            <h:outputText value="#{item.categoriaidCategoria}"/>
+                            <h:outputText value="#{item.categoriaidCategoria.nombreCategoria}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productoController.prepareCreate}" update=":ProductoCreateForm" oncomplete="PF('ProductoCreateDialog').show()"/>
