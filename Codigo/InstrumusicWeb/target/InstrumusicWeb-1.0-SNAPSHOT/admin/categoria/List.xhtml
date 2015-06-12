@@ -27,131 +27,43 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column sortBy="#{item.idCategoria}">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCategoriaTitle_idCategoria}"/>
                             </f:facet>
                             <h:outputText value="#{item.idCategoria}"/>
                         </p:column>
-                        <p:column sortBy="#{item.nombreCategoria}">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCategoriaTitle_nombreCategoria}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombreCategoria}"/>
                         </p:column>
-                        <p:column sortBy="#{item.activa}">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCategoriaTitle_activa}"/>
                             </f:facet>
                             <p:selectBooleanCheckbox value="#{item.activa}" disabled="true"/>
                         </p:column>
-                        <p:column sortBy="#{item.categoriaidCategoria.nombreCategoria}">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCategoriaTitle_categoriaidCategoria}"/>
                             </f:facet>
-                            <h:outputText value="#{item.categoriaidCategoria.nombreCategoria}"/>
+                            <h:outputText value="#{item.categoriaidCategoria}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{categoriaController.prepareCreate}" update=":CategoriaCreateForm" oncomplete="PF('CategoriaCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CategoriaViewForm" oncomplete="PF('CategoriaViewDialog').show()" disabled="#{empty categoriaController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CategoriaEditForm" oncomplete="PF('CategoriaEditDialog').show()" disabled="#{empty categoriaController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{categoriaController.destroy}" update=":growl, :CategoriaListForm:datalist, :BuscarCategoriaListForm:datalist2" disabled="#{empty categoriaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{categoriaController.destroy}" update=":growl,datalist" disabled="#{empty categoriaController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
             </h:form>
-              <p:panel header="#{bundle.BuscarListCategoriaTitle}" id="panelBusqueda">
-                <h:form id="BuscarCategoriaForm">
-                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
-                        <p:outputLabel value="#{bundle.BuscarCategoriaLabel_idCategoria}" for="buscarIdCategoria" />
-                        <p:inputText id="buscarIdCategoria" value="#{categoriaController.idBuscar}" title="#{bundle.BuscarCategoriaTitle_IdCategoria}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_IdCategoria}"/>
-                        <p:commandButton id="botonCateIdCategoria" icon="ui-icon-search" actionListener="#{categoriaController.buscarPorIdCategoria}" value="#{bundle.Buscar}" update=":BuscarCategoriaListForm,:panelBusqueda "/>
-                        <p:message for="buscarIdCategoria" />
-                    </h:panelGrid>
-                </h:form>
-                  <h:form id="BuscarCategoriaForm2">
-                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
-                        <p:outputLabel value="#{bundle.BuscarCategoriaLabel_nombreCategoria}" for="buscarNombreCategoria" />
-                        <p:inputText id="buscarNombreCategoria" value="#{categoriaController.nombreBuscar}" title="#{bundle.BuscarCategoriaTitle_nombreCategoria}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_nombreCategoria}"/>
-                        <p:commandButton id="botonCateNombre" icon="ui-icon-search" actionListener="#{categoriaController.buscarPorNombre}" value="#{bundle.Buscar}" update=":BuscarCategoriaListForm,:panelBusqueda "/>
-                        <p:message for="buscarNombreCategoria" />
-                    </h:panelGrid>
-                </h:form>
-                 
-                  
-                  <h:form id="BuscarCategoriaForm3">
-                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
-                        <p:outputLabel value="#{bundle.BuscarCategoriaLabel_activo}" for="buscarActivo" />
-                        <p:selectBooleanCheckbox id="buscarActivo" value="#{categoriaController.activaBuscar}" required="false" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_activo}"/>
-                        <p:commandButton id="botonActivo" icon="ui-icon-search" actionListener="#{categoriaController.buscarPorActivo}" value="#{bundle.Buscar}" update=":BuscarCategoriaListForm,:panelBusqueda "/>
-                        <p:message for="buscarActivo" />
-                    </h:panelGrid>
-                </h:form>
-                  
-                        <h:form id="BuscarCategoriaForm4">
-                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
-                        <p:outputLabel value="#{bundle.BuscarCategoriaLabel_idCategoriaPadre}" for="buscarIdPadre" />
-                        <p:inputText id="buscarIdPadre" value="#{categoriaController.categoriaPadreBuscar}" title="#{bundle.BuscarCategoriaTitle_idPadre}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_idPadre}"/>
-                        <p:commandButton id="botonCateIdPadre" icon="ui-icon-search" actionListener="#{categoriaController.buscarPoridPadre}" value="#{bundle.Buscar}" update=":BuscarCategoriaListForm,:panelBusqueda "/>
-                        <p:message for="buscarIdPadre" />
-                    </h:panelGrid>
-                </h:form>
-                     </p:panel>
-             
-            
-            <h:form id="BuscarCategoriaListForm">
-                <p:panel header="#{bundle.BuscarListCategoriaTitle}">
-                    <p:dataTable id="datalist2" value="#{categoriaController.itemsBuscados}" var="itemBuscados"
-                                 selectionMode="single" selection="#{categoriaController.selectedBuscar}"
-                                 paginator="true"
-                                 rowKey="#{itemBuscados.idCategoria}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
-
-                        <p:ajax event="rowSelect"   update="viewButton2 editButton2 deleteButton2"/>
-                        <p:ajax event="rowUnselect" update="viewButton2 editButton2 deleteButton2"/>
-
-                        <p:column sortBy="#{itemBuscados.idCategoria}">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCategoriaTitle_idCategoria}"/>
-                            </f:facet>
-                            <h:outputText value="#{itemBuscados.idCategoria}"/>
-                        </p:column>
-                        <p:column sortBy="#{itemBuscados.nombreCategoria}">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCategoriaTitle_nombreCategoria}"/>
-                            </f:facet>
-                            <h:outputText value="#{itemBuscados.nombreCategoria}"/>
-                        </p:column>
-                        <p:column sortBy="#{itemBuscados.activa}">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCategoriaTitle_activa}"/>
-                            </f:facet>
-                            <p:selectBooleanCheckbox value="#{itemBuscados.activa}" disabled="true"/>
-                        </p:column>
-                        <p:column sortBy="#{itemBuscados.categoriaidCategoria.nombreCategoria}">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCategoriaTitle_categoriaPadreCategoria1}"/>
-                            </f:facet>
-                            <h:outputText value="#{itemBuscados.categoriaidCategoria.nombreCategoria}"/>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="viewButton2"   icon="ui-icon-search" value="#{bundle.View}" update=":CategoriaViewFormBuscar" oncomplete="PF('CategoriaViewDialogBuscar').show()" disabled="#{empty categoriaController.selectedBuscar}"/>
-                            <p:commandButton id="editButton2"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CategoriaEditFormBuscar" oncomplete="PF('CategoriaEditDialogBuscar').show()" disabled="#{empty categoriaController.selectedBuscar}"/>
-                            <p:commandButton id="deleteButton2" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{categoriaController.eliminarBuscado}" update=":growl,:CategoriaListForm:datalist,:BuscarCategoriaListForm:datalist2,:panelBusqueda " disabled="#{empty categoriaController.selectedBuscar}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
-            
-            
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
-            <ui:include src="viewBuscar.xhtml"/>
-            <ui:include src="EditBuscar.xhtml"/>
         </ui:define>
     </ui:composition>
 

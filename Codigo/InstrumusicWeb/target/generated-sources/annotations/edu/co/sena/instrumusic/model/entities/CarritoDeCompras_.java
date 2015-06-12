@@ -6,14 +6,14 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-06-10T20:59:10")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-06-01T17:45:49")
 @StaticMetamodel(CarritoDeCompras.class)
 public class CarritoDeCompras_ { 
 
-    public static volatile ListAttribute<CarritoDeCompras, ItemCarrito> itemCarritoList;
-    public static volatile SingularAttribute<CarritoDeCompras, Float> subtotal;
-    public static volatile SingularAttribute<CarritoDeCompras, Float> impuestos;
     public static volatile SingularAttribute<CarritoDeCompras, Float> precioTotal;
+    public static volatile SingularAttribute<CarritoDeCompras, Float> impuestos;
+    public static volatile SingularAttribute<CarritoDeCompras, Float> subtotal;
+    public static volatile ListAttribute<CarritoDeCompras, ItemCarrito> itemCarritoList;
     public static volatile SingularAttribute<CarritoDeCompras, String> idCarritoDeCompras;
 
 }

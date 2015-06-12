@@ -13,7 +13,7 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productoController.selected != null}">
                         <p:outputLabel value="#{bundle.EditProductoLabel_idProducto}" for="idProducto" />
-                        <p:outputLabel id="idProducto" value="#{productoController.selected.idProducto}" title="#{bundle.EditProductoTitle_idProducto}"/>
+                        <p:inputText id="idProducto" value="#{productoController.selected.idProducto}" title="#{bundle.EditProductoTitle_idProducto}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_idProducto}"/>
                         <p:outputLabel value="#{bundle.EditProductoLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{productoController.selected.nombre}" title="#{bundle.EditProductoTitle_nombre}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditProductoLabel_marca}" for="marca" />
@@ -25,19 +25,19 @@
                         <p:outputLabel value="#{bundle.EditProductoLabel_material}" for="material" />
                         <p:inputText id="material" value="#{productoController.selected.material}" title="#{bundle.EditProductoTitle_material}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_material}"/>
                         <p:outputLabel value="#{bundle.EditProductoLabel_color}" for="color" />
-                        <p:colorPicker id="color" value="#{productoController.selected.color}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_color}"/>
+                        <p:inputText id="color" value="#{productoController.selected.color}" title="#{bundle.EditProductoTitle_color}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_color}"/>
                         <p:outputLabel value="#{bundle.EditProductoLabel_foto}" for="foto" />
-                        <p:fileUpload id="foto" value="#{productoController.selected.foto}" mode="simple"/>
+                        <p:inputTextarea rows="4" cols="30" id="foto" value="#{productoController.selected.foto}" title="#{bundle.EditProductoTitle_foto}" />
                         <p:outputLabel value="#{bundle.EditProductoLabel_cantidad}" for="cantidad" />
                         <p:inputText id="cantidad" value="#{productoController.selected.cantidad}" title="#{bundle.EditProductoTitle_cantidad}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_cantidad}"/>
                         <p:outputLabel value="#{bundle.EditProductoLabel_activo}" for="activo" />
-                        <p:selectBooleanCheckbox id="activo" value="#{productoController.selected.activo}" required="false" requiredMessage="#{bundle.EditProductoRequiredMessage_activo}"/>
+                        <p:selectBooleanCheckbox id="activo" value="#{productoController.selected.activo}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_activo}"/>
                         <p:outputLabel value="#{bundle.EditProductoLabel_precioUnitario}" for="precioUnitario" />
                         <p:inputText id="precioUnitario" value="#{productoController.selected.precioUnitario}" title="#{bundle.EditProductoTitle_precioUnitario}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_precioUnitario}"/>
                         <p:outputLabel value="#{bundle.EditProductoLabel_descuento}" for="descuento" />
-                        <p:inputText id="descuento" value="#{productoController.selected.descuento}" title="#{bundle.EditProductoTitle_descuento}" required="false" requiredMessage="#{bundle.EditProductoRequiredMessage_descuento}"/>
+                        <p:inputText id="descuento" value="#{productoController.selected.descuento}" title="#{bundle.EditProductoTitle_descuento}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_descuento}"/>
                         <p:outputLabel value="#{bundle.EditProductoLabel_categoriaidCategoria}" for="categoriaidCategoria" />
-                        <p:selectOneMenu id="categoriaidCategoria" value="#{productoController.selected.categoriaidCategoria.nombreCategoria}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_categoriaidCategoria}">
+                        <p:selectOneMenu id="categoriaidCategoria" value="#{productoController.selected.categoriaidCategoria}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_categoriaidCategoria}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"
                                            var="categoriaidCategoriaItem"

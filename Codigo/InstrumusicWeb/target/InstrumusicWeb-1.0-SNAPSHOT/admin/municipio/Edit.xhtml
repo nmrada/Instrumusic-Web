@@ -12,8 +12,8 @@
             <h:form id="MunicipioEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{municipioController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditMunicipioLabel_idMunicipio}" />
-                        <p:outputLabel value="#{municipioController.selected.idMunicipio}" title="#{bundle.EditMunicipioTitle_idMunicipio}"/>
+                        <p:outputLabel value="#{bundle.EditMunicipioLabel_idMunicipio}" for="idMunicipio" />
+                        <p:inputText id="idMunicipio" value="#{municipioController.selected.idMunicipio}" title="#{bundle.EditMunicipioTitle_idMunicipio}" required="true" requiredMessage="#{bundle.EditMunicipioRequiredMessage_idMunicipio}"/>
                         <p:outputLabel value="#{bundle.EditMunicipioLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{municipioController.selected.nombre}" title="#{bundle.EditMunicipioTitle_nombre}" required="true" requiredMessage="#{bundle.EditMunicipioRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditMunicipioLabel_departamentoidDepartamento}" for="departamentoidDepartamento" />

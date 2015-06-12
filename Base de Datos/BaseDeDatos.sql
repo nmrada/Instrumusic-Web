@@ -87,7 +87,6 @@ CREATE TABLE IF NOT EXISTS `instrumusic`.`Factura` (
   `idFactura` INT NOT NULL AUTO_INCREMENT COMMENT 'Llave primaria de la factura',
   `fecha` DATE NOT NULL COMMENT 'Fecha y Hora de la factura',
   `total` FLOAT NOT NULL COMMENT 'Total de la factura',
-  `estado` VARCHAR(45) NOT NULL,
   `Cuenta_Tipo_Documento_tipoDocumento` VARCHAR(40) NOT NULL,
   `Cuenta_numeroDocumento` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idFactura`),

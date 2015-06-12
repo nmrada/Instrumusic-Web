@@ -12,18 +12,21 @@
             <h:form id="ProveedorViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
-                        <h:outputText value="#{bundle.ViewProveedorLabel_tipoDocumento}"/>
-                        <h:outputText value="#{proveedorController.selected.tipoDocumento}" title="#{bundle.ViewProveedorTitle_tipoDocumento}"/>
                         <h:outputText value="#{bundle.ViewProveedorLabel_proveedorPK_numeroDocumento}"/>
                         <h:outputText value="#{proveedorController.selected.proveedorPK.numeroDocumento}" title="#{bundle.ViewProveedorTitle_proveedorPK_numeroDocumento}"/>
                         <h:outputText value="#{bundle.ViewProveedorLabel_nombre}"/>
                         <h:outputText value="#{proveedorController.selected.nombre}" title="#{bundle.ViewProveedorTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewProveedorLabel_email}"/>
-                        <h:outputText value="#{proveedorController.selected.email}" title="#{bundle.ViewProveedorTitle_email}"/> 
+                        <h:outputText value="#{proveedorController.selected.email}" title="#{bundle.ViewProveedorTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_domicilioProveedor}"/>
+                        <h:outputText value="#{proveedorController.selected.domicilioProveedor}" title="#{bundle.ViewProveedorTitle_domicilioProveedor}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_tipoDocumento}"/>
+                        <h:outputText value="#{proveedorController.selected.tipoDocumento}" title="#{bundle.ViewProveedorTitle_tipoDocumento}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProveedorViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
+
     </ui:composition>
 </html>

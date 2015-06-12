@@ -12,13 +12,6 @@
             <h:form id="CuentaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cuentaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditCuentaLabel_tipoDocumento}" />
-                        <p:selectOneMenu value="#{cuentaController.selected.tipoDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_tipoDocumento}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"
-                                           var="tipoDocumentoItem"
-                                           itemValue="#{tipoDocumentoItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditCuentaLabel_cuentaPK_numeroDocumento}" for="cuentaPK_numeroDocumento" />
                         <p:inputText id="cuentaPK_numeroDocumento" value="#{cuentaController.selected.cuentaPK.numeroDocumento}" title="#{bundle.EditCuentaTitle_cuentaPK_numeroDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_cuentaPK_numeroDocumento}"/>
                         <p:outputLabel value="#{bundle.EditCuentaLabel_primerNombre}" for="primerNombre" />
@@ -29,10 +22,28 @@
                         <p:inputText id="primerApellido" value="#{cuentaController.selected.primerApellido}" title="#{bundle.EditCuentaTitle_primerApellido}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_primerApellido}"/>
                         <p:outputLabel value="#{bundle.EditCuentaLabel_segundoApellido}" for="segundoApellido" />
                         <p:inputText id="segundoApellido" value="#{cuentaController.selected.segundoApellido}" title="#{bundle.EditCuentaTitle_segundoApellido}" />
-                        <p:outputLabel value="#{bundle.EditCuentaLabel_usuarioidUsuario}"/>
-                        <p:outputLabel value="#{cuentaController.selected.usuarioidUsuario}" title="#{bundle.EditCuentaTitle_usuarioidUsuario}"/><br/>
+                        <p:outputLabel value="#{bundle.EditCuentaLabel_domicilioCuenta}" for="domicilioCuenta" />
+                        <p:selectOneMenu id="domicilioCuenta" value="#{cuentaController.selected.domicilioCuenta}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{domicilioCuentaController.itemsAvailableSelectOne}"
+                                           var="domicilioCuentaItem"
+                                           itemValue="#{domicilioCuentaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCuentaLabel_usuarioidUsuario}" for="usuarioidUsuario" />
+                        <p:selectOneMenu id="usuarioidUsuario" value="#{cuentaController.selected.usuarioidUsuario}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_usuarioidUsuario}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="usuarioidUsuarioItem"
+                                           itemValue="#{usuarioidUsuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCuentaLabel_tipoDocumento}" for="tipoDocumento" />
+                        <p:selectOneMenu id="tipoDocumento" value="#{cuentaController.selected.tipoDocumento}" required="true" requiredMessage="#{bundle.EditCuentaRequiredMessage_tipoDocumento}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"
+                                           var="tipoDocumentoItem"
+                                           itemValue="#{tipoDocumentoItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
-                   
                     <p:commandButton actionListener="#{cuentaController.update}" value="#{bundle.Save}" update="display,:CuentaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CuentaEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="CuentaEditDialog.hide()"/>
                 </h:panelGroup>

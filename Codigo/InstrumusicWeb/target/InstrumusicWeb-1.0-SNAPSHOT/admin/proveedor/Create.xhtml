@@ -12,50 +12,23 @@
             <h:form id="ProveedorCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateProveedorLabel_tipoDocumento}" for="tipoDocumento" />
-                        <p:selectOneMenu id="tipoDocumento" value="#{proveedorController.selected.tipoDocumento}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_tipoDocumento}">
-                            <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"
-                                           var="tipoDocumentoItem"
-                                           itemValue="#{tipoDocumentoItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateProveedorLabel_proveedorPK_numeroDocumento}" for="proveedorPK_numeroDocumento" />
                         <p:inputText id="proveedorPK_numeroDocumento" value="#{proveedorController.selected.proveedorPK.numeroDocumento}" title="#{bundle.CreateProveedorTitle_proveedorPK_numeroDocumento}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_proveedorPK_numeroDocumento}"/>
                         <p:outputLabel value="#{bundle.CreateProveedorLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{proveedorController.selected.nombre}" title="#{bundle.CreateProveedorTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateProveedorLabel_email}" for="email" />
                         <p:inputText id="email" value="#{proveedorController.selected.email}" title="#{bundle.CreateProveedorTitle_email}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_email}"/>
-                        <p:outputLabel value="#{bundle.CreateProveedorLabel_telefono}" for="telefono" />
-                        <p:inputText id="telefono" value="#{proveedorController.selected.domicilioProveedor.telefono}" title="#{bundle.CreateProveedorTitle_telefono}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_telefono}"/>
-                        <p:outputLabel value="#{bundle.CreateProveedorLabel_direccion}" for="direccion" />
-                        <p:inputText id="direccion" value="#{proveedorController.selected.domicilioProveedor.direccion}" title="#{bundle.CreateProveedorTitle_direccion}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_direccion}"/>
-                        <p:outputLabel value="#{bundle.CreateProveedorLabel_barrio}" for="barrio" />
-                        <p:inputText id="barrio" value="#{proveedorController.selected.domicilioProveedor.barrio}" title="#{bundle.CreateProveedorTitle_barrio}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_email}"/>
-                        <p:outputLabel value="#{bundle.CreateProveedorLabel_localidad}" for="localidad" />
-                        <p:inputText id="localidad" value="#{proveedorController.selected.domicilioProveedor.localidad}" title="#{bundle.CreateProveedorTitle_localidad}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_localidad}"/>
-                        <p:outputLabel value="#{bundle.CreateProveedorLabel_departamento}" for="departamentos" />
-                        <p:selectOneMenu id="departamentos" 
-                                         value="#{proveedorController.departamentoSeleccionado}" 
-                                         requiredMessage="#{bundle.CreateProveedorRequiredMessage_departamento}"
-                                         required="true"
-                                         >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{proveedorController.itemsDepartamentos}"
-                                           var="itemDep"
-                                           itemValue="#{itemDep.nombre}"
-                                           actionListener="#{proveedorController.obtenerMunicipios}"
-                                           />
-                            <p:ajax  update=":ProveedorCreateForm:municipios"  listener="#{proveedorController.obtenerMunicipios}" event="change"/>
-                        </p:selectOneMenu>        
-                        <p:outputLabel value="#{bundle.CreateProveedorLabel_municipio}" for="municipios" />
-                        <p:selectOneMenu id="municipios" value="#{proveedorController.municipioCrear}"
-                                         requiredMessage="#{bundle.CreateProveedorRequiredMessage_municipio}"
-                                         required="true"
-                                         >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="" />
-                            <f:selectItems value="#{proveedorController.itemsMunicipio}"
-                                           var="itemMun"
-                                           itemValue="#{itemMun.nombre}"
-                                           />
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_domicilioProveedor}" for="domicilioProveedor" />
+                        <p:selectOneMenu id="domicilioProveedor" value="#{proveedorController.selected.domicilioProveedor}" >
+                            <f:selectItems value="#{domicilioProveedorController.itemsAvailableSelectOne}"
+                                           var="domicilioProveedorItem"
+                                           itemValue="#{domicilioProveedorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_tipoDocumento}" for="tipoDocumento" />
+                        <p:selectOneMenu id="tipoDocumento" value="#{proveedorController.selected.tipoDocumento}" required="true" requiredMessage="#{bundle.EditProveedorRequiredMessage_tipoDocumento}">
+                            <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"
+                                           var="tipoDocumentoItem"
+                                           itemValue="#{tipoDocumentoItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{proveedorController.create}" value="#{bundle.Save}" update="display,:ProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProveedorCreateDialog');"/>
@@ -63,5 +36,6 @@
                 </h:panelGroup>
             </h:form>
         </p:dialog>
+
     </ui:composition>
 </html>

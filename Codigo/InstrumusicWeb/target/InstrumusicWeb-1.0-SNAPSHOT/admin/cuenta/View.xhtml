@@ -12,8 +12,6 @@
             <h:form id="CuentaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cuentaController.selected != null}">
-                         <h:outputText value="#{bundle.ViewCuentaLabel_tipoDocumento}"/>
-                        <h:outputText value="#{cuentaController.selected.tipoDocumento}" title="#{bundle.ViewCuentaTitle_tipoDocumento}"/>
                         <h:outputText value="#{bundle.ViewCuentaLabel_cuentaPK_numeroDocumento}"/>
                         <h:outputText value="#{cuentaController.selected.cuentaPK.numeroDocumento}" title="#{bundle.ViewCuentaTitle_cuentaPK_numeroDocumento}"/>
                         <h:outputText value="#{bundle.ViewCuentaLabel_primerNombre}"/>
@@ -24,8 +22,12 @@
                         <h:outputText value="#{cuentaController.selected.primerApellido}" title="#{bundle.ViewCuentaTitle_primerApellido}"/>
                         <h:outputText value="#{bundle.ViewCuentaLabel_segundoApellido}"/>
                         <h:outputText value="#{cuentaController.selected.segundoApellido}" title="#{bundle.ViewCuentaTitle_segundoApellido}"/>
+                        <h:outputText value="#{bundle.ViewCuentaLabel_domicilioCuenta}"/>
+                        <h:outputText value="#{cuentaController.selected.domicilioCuenta}" title="#{bundle.ViewCuentaTitle_domicilioCuenta}"/>
                         <h:outputText value="#{bundle.ViewCuentaLabel_usuarioidUsuario}"/>
                         <h:outputText value="#{cuentaController.selected.usuarioidUsuario}" title="#{bundle.ViewCuentaTitle_usuarioidUsuario}"/>
+                        <h:outputText value="#{bundle.ViewCuentaLabel_tipoDocumento}"/>
+                        <h:outputText value="#{cuentaController.selected.tipoDocumento}" title="#{bundle.ViewCuentaTitle_tipoDocumento}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="CuentaViewDialog.hide()"/>
                 </h:panelGroup>

@@ -8,10 +8,5 @@
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
-        <resource-bundle>
-            <base-name>/BundleDeCliente</base-name>
-            <var>bundleDeCliente</var>
-        </resource-bundle>
     </application>
-    
 </faces-config>

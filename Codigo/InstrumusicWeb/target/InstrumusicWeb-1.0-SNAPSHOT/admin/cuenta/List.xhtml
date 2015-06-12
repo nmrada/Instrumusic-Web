@@ -27,47 +27,53 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column sortBy="#{item.cuentaPK.tipoDocumentotipoDocumento}">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCuentaTitle_tipoDocumento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.cuentaPK.tipoDocumentotipoDocumento}"/>
-                        </p:column>
-                        <p:column sortBy="#{item.cuentaPK.numeroDocumento}">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCuentaTitle_cuentaPK_numeroDocumento}"/>
                             </f:facet>
                             <h:outputText value="#{item.cuentaPK.numeroDocumento}"/>
                         </p:column>
-                        <p:column sortBy="#{item.primerNombre}">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCuentaTitle_primerNombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.primerNombre}"/>
                         </p:column>
-                        <p:column sortBy="#{item.segundoNombre}">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCuentaTitle_segundoNombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.segundoNombre}"/>
                         </p:column>
-                        <p:column sortBy="#{item.primerApellido}">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCuentaTitle_primerApellido}"/>
                             </f:facet>
                             <h:outputText value="#{item.primerApellido}"/>
                         </p:column>
-                        <p:column sortBy="#{item.segundoApellido}">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCuentaTitle_segundoApellido}"/>
                             </f:facet>
                             <h:outputText value="#{item.segundoApellido}"/>
                         </p:column>
-                        <p:column sortBy="#{item.usuarioidUsuario}">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaTitle_domicilioCuenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.domicilioCuenta}"/>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCuentaTitle_usuarioidUsuario}"/>
                             </f:facet>
                             <h:outputText value="#{item.usuarioidUsuario}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaTitle_tipoDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoDocumento}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cuentaController.prepareCreate}" update=":CuentaCreateForm" oncomplete="PF('CuentaCreateDialog').show()"/>
@@ -78,6 +84,7 @@
                     </p:dataTable>
                 </p:panel>
             </h:form>
+
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
