@@ -22,7 +22,7 @@ public class PaginaInicio {
     @PostConstruct
     public void init() {
         images = new ArrayList<>();
-        for (int i = 1; i <= 2; i++) {
+        for (int i = 1; i <= 15; i++) {
             images.add("instrumento" + i + ".jpg");
         }
     }

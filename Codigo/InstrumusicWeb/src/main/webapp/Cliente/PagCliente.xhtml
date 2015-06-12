@@ -4,41 +4,39 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    
+      xmlns:p="http://primefaces.org/ui">
+
     <h:body>
 
         <ui:composition template="./PagInicio.xhtml">
-            
+
             <ui:define name="top">
-                
+
                 <h:graphicImage id="image" alt="jsf-sun" url="../Logo_1img.jpg" style="height: 200px; width: 200px;" ></h:graphicImage>  
                 <h:graphicImage id="ejemplo" alt="jsf-sun" url="../inicio.jpg" style="height: 200px; width: 1115px;" ></h:graphicImage>  
 
                 <h:form>
                     <p:growl id="messages" showDetail="false"/>
                     <p:menubar>
-                        <p:menuitem value="#{bundleDeCliente.Inicio}" url="/faces/Cliente/PagCliente.xhtml" icon="ui-icon-home" />
-                        
-                        <p:submenu label="#{categoriaClienteController.getcategoriaPadre().nombreCategoria}" >
-                            
-                            <p:menuitem value="#{categoriaClienteController.categoriaHijos[1].nombreCategoria}" url="/faces/Cliente/#{bundleDeCliente.LinkDeGuitarras}" />
-                           
-                            
+                        <p:menuitem value="Inicio" url="/faces/Cliente/PagCliente.xhtml" icon="ui-icon-home" />
+                        <p:submenu label="Intrumentos de cuerda" >
+                            <p:menuitem value="Guitarras"  url="/faces/Cliente/intruCuerda.xhtml" />
+                            <p:menuitem value="Bajos"/>
+                            <p:menuitem value="Violines" />
                         </p:submenu>
-                        
-                        
-                        <!--<p:submenu label="#{categoriaClienteController.getcategoriaPadre(1).nombreCategoria}" >
-                            <c:forEach var="i" begin="1" end="##{categoriaClienteController.categoriaHijos[i]}">
-                                <p:menuitem value="#{categoriaClienteController.categoriaHijos[i].nombreCategoria}" url="/faces/Cliente/#{bundleDeCliente.LinkDeGuitarras}" />
-                            </c:forEach>-->
-                            
-                           
-                            
+                        <p:submenu label="Intrumentos de viento">
+                            <p:menuitem value="Trompetas" />
+                            <p:menuitem value="Saxofon"   />
+                            <p:menuitem value="Trombon"  />
                         </p:submenu>
-                        
-                       
+                        <p:submenu label="Intrumentos de percusión">
+                            <p:menuitem value="Bateria" actionListener="#{bundle.Save}"  url=""/>
+                            <p:menuitem value="Tambores" actionListener="#{bundle.Save}"  />
+                            <p:menuitem value="Timbales" actionListener="#{bundle.Save}"  />
+                        </p:submenu>
+                        <p:submenu label="Intrumentos de percusión">
+                            <p:menuitem value="Sonido" actionListener="#{bundle.Save}"  url=""/>
+                        </p:submenu>
 
                     </p:menubar>
                 </h:form>
@@ -49,7 +47,7 @@
                 <h:form>
                     <p:panel header="Ingresar">
                         <p:messages autoUpdate="true"/>
-                   
+
 
                         <h:panelGrid id="grid" columns="1" cellpadding="1">
                             <h:outputLabel for="usuario" value="Usuario:" style="font-weight:bold"/>                    
@@ -72,21 +70,21 @@
                     <p:growl autoUpdate="true"/>
 
                     <p:panelMenu style="width:150px">
-                        <p:submenu label="Ajax Menuitems">
-                            <p:menuitem value="Save" actionListener="#{menuView.save}" icon="ui-icon-disk" />
-                            <p:menuitem value="Update" actionListener="#{menuView.update}"  icon="ui-icon-arrowrefresh-1-w" />
+                        <p:submenu label="promociones">
+                            <p:menuitem value="Guitarras" actionListener="#{menuView.save}" />
+                            <p:menuitem value="Bajos" actionListener="#{menuView.update}"   />
                         </p:submenu>
-                        <p:submenu label="Non-Ajax Menuitem">
-                            <p:menuitem value="Delete" actionListener="#{menuView.delete}"  ajax="false" icon="ui-icon-close"/>
+                        <p:submenu label="Descuentos">
+                            <p:menuitem value="Intrumentos" actionListener="#{menuView.delete}"  ajax="false" />
                         </p:submenu>
                         <p:separator />
-                        <p:submenu label="Navigations" >
-                            <p:submenu label="Links" icon="ui-icon-extlink">
-                                <p:submenu label="PrimeFaces" icon="ui-icon-heart">
-                                    <p:menuitem value="Home" url="http://www.primefaces.org" icon="ui-icon-home" />
-                                    <p:menuitem value="Docs" url="http://www.primefaces.org/documentation" icon="ui-icon-document" />
-                                    <p:menuitem value="Download" url="http://www.primefaces.org/downloads" icon="ui-icon-arrowthick-1-s" />
-                                    <p:menuitem value="Support" url="http://www.primefaces.org/support" icon="ui-icon-wrench" />
+                        <p:submenu label="Precios Bajos" >
+                            <p:submenu label="Intrumentos de Cuerda">
+                                <p:submenu label="Guitarras" icon="ui-icon-arrowthick-1-s">
+                                    <p:menuitem value="500.000" url="http://www.primefaces.org" icon="ui-icon-star" />
+                                    <p:menuitem value="1.000.000" url="http://www.primefaces.org/documentation" icon="ui-icon-star" />
+                                    <p:menuitem value="1.500.000" url="http://www.primefaces.org/downloads" icon="ui-icon-star" />
+                                    <p:menuitem value="2.00.000" url="http://www.primefaces.org/support" icon="ui-icon-star" />
                                 </p:submenu>
                             </p:submenu>
                         </p:submenu>
@@ -95,7 +93,6 @@
             </ui:define>
 
             <ui:define name="right">
-                right
                 <h:form>
                     <p:growl id="messages" />
 
@@ -103,22 +100,16 @@
                         <p:menuitem value="Actualizar" actionListener="#{buttonView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
                         <p:menuitem value="Borrar" actionListener="#{buttonView.delete}" ajax="false" icon="ui-icon-close" />
                         <p:separator />
-                        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink" />
+                        <p:menuitem value="Pagina de inicio" url="/faces/Cliente/PagCliente.xhtml" icon="ui-icon-extlink" />
                     </p:splitButton>
                 </h:form>
             </ui:define>
 
             <ui:define name="content">
-                content<br/>
                 <p:galleria value="#{paginaInicio.images}" var="image" panelWidth="925" panelHeight="520" showCaption="true"> 
                     <p:graphicImage name="/resources/imagenes/#{image}" alt="Intrumentos en descuento #{image}" title="#{image}"/>
                 </p:galleria>
-                
-                <h:graphicImage library="imagenes" name="acordion.jpg" />
-                
-                  
             </ui:define>
-     
 
         </ui:composition>
 
