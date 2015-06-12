@@ -22,12 +22,14 @@
                         <h:outputText value="#{facturaController.selected.total}" title="#{bundle.ViewFacturaTitle_total}"/>
                         <h:outputText value="#{bundle.ViewFacturaLabel_pago}"/>
                         <h:outputText value="#{facturaController.selected.pago}" title="#{bundle.ViewFacturaTitle_pago}"/>
-                        <h:outputText value="#{bundle.ViewFacturaLabel_cuenta}"/>
-                        <h:outputText value="#{facturaController.selected.cuenta}" title="#{bundle.ViewFacturaTitle_cuenta}"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_cuentaTipDoc}"/>
+                        <h:outputText value="#{facturaController.selected.cuenta.cuentaPK.tipoDocumentotipoDocumento}" title="#{bundle.ViewFacturaTitle_cuenta}"/>
+                        <h:outputText value="#{bundle.ViewFacturaLabel_cuentaNumDoc}"/>
+                        <h:outputText value="#{facturaController.selected.cuenta.cuentaPK.numeroDocumento}" title="#{bundle.ViewFacturaTitle_cuenta}"/>
                         <h:outputText value="#{bundle.ViewFacturaLabel_pedido}"/>
                         <h:outputText value="#{facturaController.selected.pedido}" title="#{bundle.ViewFacturaTitle_pedido}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Save}" update=":VerProductoFacturaForm" oncomplete="PF('VerProductoFacturaDialog').show();"/>
+                    <p:commandButton value="#{bundle.VerItems}" update=":VerProductoFacturaForm" oncomplete="PF('VerProductoFacturaDialog').show();"/>
                     <p:commandButton value="#{bundle.Close}" onclick="FacturaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

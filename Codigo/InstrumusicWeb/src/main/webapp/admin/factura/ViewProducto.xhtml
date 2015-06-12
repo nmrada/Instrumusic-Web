@@ -8,9 +8,9 @@
 
     <ui:composition>
 
-        <p:dialog id="VerProductoFactura" widgetVar="VerProductoFacturaDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProductoTitle}">
+        <p:dialog id="VerProductoFactura" widgetVar="VerProductoFacturaDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewItemsTitle}">
             <h:form id="VerProductoFacturaForm">
-                <p:panel header="#{bundle.ListProductoTitle}">
+                <p:panel header="#{bundle.ListItemsTitle}">
                     <p:dataTable id="datalist" value="#{facturaController.selected.pedido.itemList}" var="item"
                                  selectionMode="single" selection="#{productoController.selected}"
                                  paginator="true"
@@ -20,67 +20,25 @@
                                  >
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductoTitle_nombre}"/>
+                                <h:outputText value="#{bundle.ListItemsTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.producto.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductoTitle_marca}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.producto.marca}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductoTitle_referencia}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.producto.referencia}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductoTitle_descripcion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.producto.descripcion}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductoTitle_material}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.producto.material}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductoTitle_color}"/>
-                            </f:facet>
-                            <h:outputText value="Sin color" style="background-color: \##{item.producto.color}; color: \##{item.producto.color}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductoTitle_cantidad}"/>
+                                <h:outputText value="#{bundle.ListItemsTitle_cantidad}"/>
                             </f:facet>
                             <h:outputText value="#{item.cantidad}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductoTitle_activo}"/>
-                            </f:facet>
-                            <p:selectBooleanCheckbox value="#{item.producto.activo}" disabled="true"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductoTitle_precioUnitario}"/>
+                                <h:outputText value="#{bundle.ListItemsTitle_precioUnitario}"/>
                             </f:facet>
                             <h:outputText value="#{item.costoUnitario}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductoTitle_descuento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.producto.descuento}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductoTitle_descuento}"/>
+                                <h:outputText value="#{bundle.ListItemsTitle_precioTotal}"/>
                             </f:facet>
                             <h:outputText value="#{item.costoTotal}"/>
                         </p:column>

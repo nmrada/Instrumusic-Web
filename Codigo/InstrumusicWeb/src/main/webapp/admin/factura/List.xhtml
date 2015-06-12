@@ -55,21 +55,15 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFacturaTitle_pago}"/>
+                                <h:outputText value="#{bundle.ListFacturaTitle_cuentaTipDoc}"/>
                             </f:facet>
-                            <h:outputText value="#{item.pago}"/>
+                            <h:outputText value="#{item.cuenta.cuentaPK.tipoDocumentotipoDocumento}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFacturaTitle_cuenta}"/>
+                                <h:outputText value="#{bundle.ListFacturaTitle_cuentaNumDoc}"/>
                             </f:facet>
-                            <h:outputText value="#{item.cuenta}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFacturaTitle_pedido}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.pedido}"/>
+                            <h:outputText value="#{item.cuenta.cuentaPK.numeroDocumento}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{facturaController.prepareCreate}" update=":FacturaCreateForm" oncomplete="PF('FacturaCreateDialog').show()"/>
